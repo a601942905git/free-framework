@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="js">
+        <!-- jQuery -->
+        <script th:src="@{/js/framework/jquery.min.js}"></script>
+        <!-- Bootstrap -->
+        <script th:src="@{/js/framework/bootstrap.min.js}"></script>
+        <!-- FastClick -->
+        <script th:src="@{/js/framework/fastclick.js}"></script>
+        <!-- NProgress -->
+        <script th:src="@{/js/framework/nprogress.js}"></script>
+        <!-- jQuery custom content scroller -->
+        <script th:src="@{/js/framework/jquery.mCustomScrollbar.concat.min.js}"></script>
+        <!-- Custom Theme Scripts -->
+        <script th:src="@{/js/framework/custom.min.js}"></script>
+        <!--layer-->
+        <script th:src="@{/component/layer/layer.js}"></script>
+        <!--webUploader-->
+        <script th:src="@{/js/third/webuploader/webuploader.min.js}"></script>
+
+        <!--customer page-->
+        <script th:src="@{/js/customer/common_page.js}"></script>
+        <!--customer biz operate-->
+        <script th:src="@{/js/customer/common_biz_operate.js}"></script>
+        <!--customer left-->
+        <script th:src="@{/js/customer/common_left.js}"></script>
+        <!--customer dialog-->
+        <script th:src="@{/js/customer/common_dialog.js}"></script>
+    </div>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="border:none">
+                    <div class="x_content">
+                        <br/>
+                        <table class="table" th:object="${user}">
+                            <tbody>
+                                <tr>
+                                    <td>编号:</td>
+                                    <td th:text="*{id}"></td>
+                                    <td>姓名:</td>
+                                    <td th:text="*{id}"></td>
+                                </tr>
+                                <tr>
+                                    <td>登录账号:</td>
+                                    <td th:text="*{loginCode}"></td>
+                                    <td>联系方式:</td>
+                                    <td th:text="*{mobile}"></td>
+                                </tr>
+                                <tr>
+                                    <td>年龄:</td>
+                                    <td th:text="*{age}"></td>
+                                    <td>性别:</td>
+                                    <td th:if="*{sex == '1'}">男</td>
+                                    <td th:if="*{sex == '2'}">女</td>
+                                </tr>
+                                <tr>
+                                    <td>头像:</td>
+                                    <td th:text="*{face}"></td>
+                                    <td>用户类型:</td>
+                                    <td th:if="*{type == '1'}">管理员</td>
+                                    <td th:if="*{type == '2'}">普通用户</td>
+                                </tr>
+                                <tr>
+                                    <td>添加人:</td>
+                                    <td th:text="*{savePerson}"></td>
+                                    <td>添加时间:</td>
+                                    <td th:text="*{#dates.format(saveDate, 'yyyy-MM-dd HH:mm:ss') }"></td>
+                                </tr>
+                                <tr>
+                                    <td>修改人:</td>
+                                    <td th:text="*{updatePerson}"></td>
+                                    <td>修改时间:</td>
+                                    <td th:text="*{#dates.format(updateDate, 'yyyy-MM-dd HH:mm:ss') }"></td>
+                                </tr>
+                                <tr>
+                                    <td>状态:</td>
+                                    <td th:if="*{status == '1'}" style="color: green;">启用</td>
+                                    <td th:if="*{status == '-1'}" style="color: red;">停用</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

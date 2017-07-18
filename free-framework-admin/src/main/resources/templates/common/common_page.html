@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <div th:fragment="page">
+        <div class="row">
+            <div class="col-md-3">
+                <input type="hidden" id="pageSize" name="pageSize" th:value="${pageInfo.pageSize}"/>
+                <label>当前页码/总页码:</label><span th:text="${pageInfo.pageNum} + '/' +${pageInfo.pages}"></span>
+                <label>总数:</label><span th:text="${pageInfo.total} + '条'"></span>
+                <select th:onchange="'changePage(this)'">
+                    <option selected="selected" th:if="${pageInfo.pageSize == 10}">10</option>
+                    <option th:unless="${pageInfo.pageSize == 10}">10</option>
+
+                    <option selected="selected" th:if="${pageInfo.pageSize == 15}">15</option>
+                    <option th:unless="${pageInfo.pageSize == 15}">15</option>
+
+                    <option selected="selected" th:if="${pageInfo.pageSize == 25}">25</option>
+                    <option th:unless="${pageInfo.pageSize == 25}">25</option>
+
+                    <option selected="selected" th:if="${pageInfo.pageSize == 30}">30</option>
+                    <option th:unless="${pageInfo.pageSize == 30}">30</option>
+
+                    <option selected="selected" th:if="${pageInfo.pageSize == 50}">50</option>
+                    <option th:unless="${pageInfo.pageSize == 50}">50</option>
+                </select>
+            </div>
+            <div class="col-md-9">
+                <div class="btn-group" role="group" style="float: right">
+                    <button type="button" class="btn btn-primary disabled" th:if="${pageInfo.isFirstPage or pageInfo.pageNum == 0}">首页</button>
+                    <button type="button" class="btn btn-primary" th:unless="${pageInfo.isFirstPage or pageInfo.pageNum == 0}" th:onclick="'searchPage(1)'">首页</button>
+
+                    <button type="button" class="btn btn-primary disabled" th:if="${pageInfo.isFirstPage or pageInfo.pageNum == 0}">上一页</button>
+                    <button type="button" class="btn btn-primary" th:unless="${pageInfo.isFirstPage or pageInfo.pageNum == 0}" th:onclick="'searchPage(' + ${pageInfo.prePage} + ',' + ${pageInfo.pageSize} + ')'">上一页</button>
+
+                    <button type="button" class="btn btn-primary disabled" th:if="${pageInfo.isLastPage}">下一页</button>
+                    <button type="button" class="btn btn-primary" th:unless="${pageInfo.isLastPage}" th:onclick="'searchPage(' + ${pageInfo.nextPage} + ',' + ${pageInfo.pageSize} + ')'">下一页</button>
+
+                    <button type="button" class="btn btn-primary disabled" th:if="${pageInfo.isLastPage}">尾页</button>
+                    <button type="button" class="btn btn-primary" th:unless="${pageInfo.isLastPage}" th:onclick="'searchPage(' + ${pageInfo.pages} + ',' + ${pageInfo.pageSize} + ')'">尾页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.free.framework.core.user.mapper.UserMapper">
+
+    <sql id="BASE_SELECT_COLUMN">
+        ID,
+        NAME,
+        AGE,
+        MOBILE,
+        FACE,
+        TYPE,
+        SEX,
+        LOGIN_CODE,
+        LOGIN_PASSWORD,
+        SAVE_DATE,
+        SAVE_PERSON,
+        UPDATE_DATE,
+        UPDATE_PERSON,
+        STATUS
+    </sql>
+
+    <!--查询用户列表信息-->
+    <select id="listUser" resultType="com.free.framework.core.user.entity.User" parameterType="com.free.framework.core.user.controller.param.UserParam">
+        SELECT
+            <include refid="BASE_SELECT_COLUMN"/>
+        FROM
+            md_user
+        WHERE 1 = 1
+        <if test="null != id and id != ''">
+            AND ID = #{id}
+        </if>
+        <if test="null != loginCode and loginCode != ''">
+            AND LOGIN_CODE = #{loginCode}
+        </if>
+        <if test="null != name and name != ''">
+            AND LOCATE(#{name}, NAME) > 0
+        </if>
+        <if test="null != sex and sex != '' and sex != -1">
+            AND SEX = #{sex}
+        </if>
+        <if test="null != type and type != '' and type != -1">
+            AND TYPE = #{type}
+        </if>
+        <if test="null != status and status != '' and status != 0">
+            AND STATUS = #{status}
+        </if>
+        ORDER BY ID DESC
+    </select>
+
+    <!--查询用户详情-->
+    <select id="getUser" resultType="com.free.framework.core.user.entity.User" parameterType="integer">
+        SELECT
+            <include refid="BASE_SELECT_COLUMN"/>
+        FROM
+            md_user
+        WHERE
+            ID = #{id}
+    </select>
+
+    <!--新增用户-->
+    <insert id="saveUser" parameterType="com.free.framework.core.user.entity.User">
+        INSERT INTO md_user(
+            ID,
+            NAME,
+            AGE,
+            MOBILE,
+            FACE,
+            TYPE,
+            SEX,
+            LOGIN_CODE,
+            LOGIN_PASSWORD,
+            SAVE_DATE,
+            SAVE_PERSON,
+            UPDATE_DATE,
+            UPDATE_PERSON,
+            STATUS
+        ) VALUES (
+            #{id},
+            #{name},
+            #{age},
+            #{mobile},
+            #{face},
+            #{type},
+            #{sex},
+            #{loginCode},
+            #{loginPassword},
+            #{saveDate},
+            #{savePerson},
+            #{updateDate},
+            #{updatePerson},
+            #{status}
+        )
+    </insert>
+
+    <!--修改用户信息-->
+    <update id="updateUser" parameterType="com.free.framework.core.user.entity.User">
+        UPDATE
+            md_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="null != name and name != ''">
+                NAME = #{name},
+            </if>
+            <if test="null != age and age != ''">
+                AGE = #{age},
+            </if>
+            <if test="null != mobile and mobile != ''">
+                MOBILE = #{mobile},
+            </if>
+            <if test="null != face and face != ''">
+                FACE = #{face},
+            </if>
+            <if test="null != type and type != ''">
+                TYPE = #{type},
+            </if>
+            <if test="null != sex and sex != ''">
+                SEX = #{sex},
+            </if>
+            <if test="null != loginCode and loginCode != ''">
+                LOGIN_CODE = #{loginCode},
+            </if>
+            <if test="null != updateDate">
+                UPDATE_DATE = #{updateDate},
+            </if>
+            <if test="null != updatePerson and updatePerson != ''">
+                UPDATE_PERSON = #{updatePerson},
+            </if>
+            <if test="null != status and status != ''">
+                STATUS = #{status},
+            </if>
+        </trim>
+        WHERE ID = #{id}
+    </update>
+
+</mapper>

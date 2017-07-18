@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="border:none">
+                    <div class="x_content">
+                        <br/>
+                        <form th:action="@{/users/}" id="form" type="post" class="form-horizontal form-label-left">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">姓名: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginCode">登录账号: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="loginCode" name="loginCode" required="required" class="form-control col-md-7 col-xs-12"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginPassword">登录密码: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="loginPassword" name="loginPassword" required="required" class="form-control col-md-7 col-xs-12"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">手机号: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="mobile" name="mobile" required="required" class="form-control col-md-7 col-xs-12"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">用户类型: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="type" name="type" class="form-control col-md-7 col-xs-12">
+                                        <option value="-1">--请选择--</option>
+                                        <option value="1">管理员</option>
+                                        <option value="2">普通用户</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="face">用户头像: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="face" name="face" required="required" class="form-control col-md-7 col-xs-12"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="age">年龄: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="age" name="age" required="required" class="form-control col-md-7 col-xs-12"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">性别: </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="sex" value="1" checked="checked"/> 男
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="sex" value="2"/> 女
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="text-align: center">
+                                    <button type="button" class="btn btn-primary" th:onclick="'commonOperate()'">新增</button>
+                                    <button class="btn btn-success" type="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

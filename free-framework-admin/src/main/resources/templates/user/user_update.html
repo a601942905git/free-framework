@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="border:none">
+                    <div class="x_content">
+                        <br/>
+                        <form th:action="@{/users/}" th:object="${user}" id="form" type="post" class="form-horizontal form-label-left">
+                            <input type="hidden" id="id" name="id" th:value="*{id}"/>
+                            <input type="hidden" id="_method" name="_method" value="PUT"/>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">姓名: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12" th:value="*{name}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginCode">登录账号: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="loginCode" name="loginCode" required="required" class="form-control col-md-7 col-xs-12" th:value="*{loginCode}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">手机号: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="mobile" name="mobile" required="required" class="form-control col-md-7 col-xs-12" th:value="*{mobile}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">用户类型: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="type" name="type" class="form-control col-md-7 col-xs-12">
+                                        <option th:selected="*{type == '-1'}" th:value="-1">--全部--</option>
+                                        <option th:selected="*{type == '1'}" th:value="1">管理员</option>
+                                        <option th:selected="*{type == '2'}" th:value="2">普通用户</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="face">用户头像: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="face" name="face" required="required" class="form-control col-md-7 col-xs-12" th:value="*{face}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="age">年龄: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="age" name="age" required="required" class="form-control col-md-7 col-xs-12" th:value="*{age}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">性别: </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="sex" th:checked="*{sex == '1'}" th:value="1"/> 男
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="sex" th:checked="*{sex == '2'}" th:value="2"/> 女
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="text-align: center">
+                                    <button type="button" class="btn btn-primary" th:onclick="'commonOperate()'">修改</button>
+                                    <button class="btn btn-success" type="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
