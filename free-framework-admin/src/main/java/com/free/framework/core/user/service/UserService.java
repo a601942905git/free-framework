@@ -5,8 +5,7 @@ import com.free.framework.core.user.entity.User;
 import com.free.framework.core.user.mapper.UserMapper;
 import com.free.framework.plateform.common.service.CommonService;
 import com.github.pagehelper.PageInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,8 @@ import java.util.List;
  * Created by Administrator on 2017/6/3.
  */
 @Service
+@Slf4j
 public class UserService extends CommonService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     /**
      * 缓存用户列表的key
