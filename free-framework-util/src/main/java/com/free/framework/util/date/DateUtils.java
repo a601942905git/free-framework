@@ -1,6 +1,6 @@
-package com.free.framework.plateform.util.date;
+package com.free.framework.util.date;
 
-import com.free.framework.plateform.util.date.constant.FormatterPatternConsts;
+import com.free.framework.util.date.constant.FormatterPatternConsts;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;

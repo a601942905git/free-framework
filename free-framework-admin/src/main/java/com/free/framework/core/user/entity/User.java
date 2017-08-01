@@ -1,17 +1,15 @@
 package com.free.framework.core.user.entity;
 
-
 import com.free.framework.plateform.common.entity.BaseEntity;
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * Created by Administrator on 2017/6/3.
+ * Created by smile on 2017/7/18.
  */
 @Data
 public class User extends BaseEntity implements Serializable{
-
     /**
      * 编号
      */

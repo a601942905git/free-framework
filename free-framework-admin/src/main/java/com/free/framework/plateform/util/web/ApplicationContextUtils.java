@@ -1,4 +1,4 @@
-package com.free.framework.plateform.util;
+package com.free.framework.plateform.util.web;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

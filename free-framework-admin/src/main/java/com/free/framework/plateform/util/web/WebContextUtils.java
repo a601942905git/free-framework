@@ -1,4 +1,4 @@
-package com.free.framework.plateform.util;
+package com.free.framework.plateform.util.web;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
