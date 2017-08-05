@@ -5,16 +5,17 @@
     <groupId>free-framework</groupId>
     <artifactId>free-framework</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>free-framework</name>
+    <url>http://maven.apache.org</url>
+
     <modules>
         <module>free-framework-admin</module>
         <module>free-framework-util</module>
         <module>free-framework-file</module>
         <module>free-framework-wx</module>
+        <module>free-framework-cache</module>
     </modules>
-    <packaging>pom</packaging>
-
-    <name>free-framework</name>
-    <url>http://maven.apache.org</url>
 
     <!--version properties-->
     <properties>
