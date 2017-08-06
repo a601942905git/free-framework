@@ -5,6 +5,7 @@ import com.free.framework.util.http.em.RequestTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
@@ -98,7 +99,7 @@ public class HttpUtils {
      * @dateTime 2017/8/6 13:39
      */
     public static String postWithForm(String url, Map<String, String> requestBodyMap) {
-        String responseStr = post(url, requestBodyMap, "", MediaTypeEnum.FORM, RequestTypeEnum.ASYNC);
+        String responseStr = post(url, requestBodyMap, "", null, MediaTypeEnum.FORM, RequestTypeEnum.ASYNC);
         return responseStr;
     }
 
@@ -111,7 +112,7 @@ public class HttpUtils {
      * @dateTime 2017/8/6 13:39
      */
     public static String postWithFormAsync(String url, Map<String, String> requestBodyMap) {
-        String responseStr = post(url, requestBodyMap, "", MediaTypeEnum.FORM, RequestTypeEnum.ASYNC);
+        String responseStr = post(url, requestBodyMap, "", null, MediaTypeEnum.FORM, RequestTypeEnum.ASYNC);
         return responseStr;
     }
 
@@ -124,7 +125,7 @@ public class HttpUtils {
      * @dateTime 2017/8/6 13:39
      */
     public static String postWithJson(String url, String requestJson) {
-        String responseStr = post(url, null, requestJson, MediaTypeEnum.JSON, RequestTypeEnum.SYNC);
+        String responseStr = post(url, null, requestJson, null, MediaTypeEnum.JSON, RequestTypeEnum.SYNC);
         return responseStr;
     }
 
@@ -137,7 +138,12 @@ public class HttpUtils {
      * @dateTime 2017/8/6 13:39
      */
     public static String postWithJsonAsync(String url, String requestJson) {
-        String responseStr = post(url, null, requestJson, MediaTypeEnum.JSON, RequestTypeEnum.ASYNC);
+        String responseStr = post(url, null, requestJson, null, MediaTypeEnum.JSON, RequestTypeEnum.ASYNC);
+        return responseStr;
+    }
+
+    public static String postWithFile(String url, File file) {
+        String responseStr = post(url, null, "", file, MediaTypeEnum.FILE, RequestTypeEnum.ASYNC);
         return responseStr;
     }
 
@@ -152,11 +158,13 @@ public class HttpUtils {
      * @return
      * @dateTime 2017/8/6 13:49
      */
-    private static String post(String url, Map<String, String> requestBodyMap, String json, MediaTypeEnum mediaTypeEnum, RequestTypeEnum requestTypeEnum) {
+    private static String post(String url,
+                               Map<String, String> requestBodyMap, String json, File file,
+                               MediaTypeEnum mediaTypeEnum, RequestTypeEnum requestTypeEnum) {
         String responseStr;
         OkHttpClient okHttpClient = getOkHttpClient();
         Request.Builder requestBuilder = new Request.Builder().url(url);
-        RequestBody requestBody = setRequestBody(requestBodyMap, json, mediaTypeEnum);
+        RequestBody requestBody = setRequestBody(requestBodyMap, json, file, mediaTypeEnum);
         Request request = requestBuilder.post(requestBody).build();
         responseStr = asyncOrNot(okHttpClient, request, url, requestTypeEnum);
         return responseStr;
@@ -167,11 +175,12 @@ public class HttpUtils {
      * @description             获取requestBody对象
      * @param requestBodyMap    post form参数
      * @param json              post json参数
+     * @param file              post file参数
      * @param mediaTypeEnum     post方式:FORM普通表单 JSON json格式
      * @return
      * @dateTime 2017/8/6 13:50
      */
-    private static RequestBody setRequestBody(Map<String, String> requestBodyMap, String json, MediaTypeEnum mediaTypeEnum) {
+    private static RequestBody setRequestBody(Map<String, String> requestBodyMap, String json, File file, MediaTypeEnum mediaTypeEnum) {
         RequestBody requestBody = null;
         if (mediaTypeEnum == MediaTypeEnum.JSON) {
             requestBody = RequestBody.create(JSON, json);
@@ -181,6 +190,11 @@ public class HttpUtils {
                     requestBodyMap1.forEach((key, value) -> formBodyBuilder.add(key, value))
             );
             requestBody = formBodyBuilder.build();
+        } else if (mediaTypeEnum == MediaTypeEnum.FILE) {
+            requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("image/png"), file))
+                    .build();
         }
         return requestBody;
     }
