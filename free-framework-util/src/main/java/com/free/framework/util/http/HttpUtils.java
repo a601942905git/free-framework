@@ -1,6 +1,7 @@
 package com.free.framework.util.http;
 
 import com.free.framework.util.http.em.MediaTypeEnum;
+import com.free.framework.util.http.em.RequestTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -19,31 +20,64 @@ public class HttpUtils {
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
+
     /**
      * @author lipeng
-     * @description     发送get请求
+     * @description     发送同步get请求
      * @param url       请求的url地址
      * @return          响应数据
      * @dateTime 2017/8/6 12:27
      */
     public static String get(String url) {
-        String responseStr;
-        OkHttpClient okHttpClient = getOkHttpClient();
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        responseStr = callAndResponse(okHttpClient, request, url);
+        String responseStr = getCommon(url, null, RequestTypeEnum.SYNC);
         return responseStr;
     }
 
     /**
      * @author lipeng
-     * @description     发送get请求
+     * @description     发送异步get请求
+     * @param url       请求的url地址
+     * @return          响应数据
+     * @dateTime 2017/8/6 12:27
+     */
+    public static String getAsync(String url) {
+        String responseStr = getCommon(url, null, RequestTypeEnum.ASYNC);
+        return responseStr;
+    }
+
+    /**
+     * @author lipeng
+     * @description     发送同步get请求
      * @param url       请求的url地址
      * @return          响应数据
      * @dateTime 2017/8/6 12:27
      */
     public static String getWithHeader(String url, Map<String, String> header) {
+        String responseStr = getCommon(url, header, RequestTypeEnum.SYNC);
+        return responseStr;
+    }
+
+    /**
+     * @author lipeng
+     * @description     发送异步get请求
+     * @param url       请求的url地址
+     * @return          响应数据
+     * @dateTime 2017/8/6 12:27
+     */
+    public static String getWithHeaderAsync(String url, Map<String, String> header) {
+        String responseStr = getCommon(url, header, RequestTypeEnum.ASYNC);
+        return responseStr;
+    }
+
+    /**
+     * @author lipeng
+     * @description             get请求公用
+     * @param url               请求url地址
+     * @param requestTypeEnum   请求类型同步or异步
+     * @return
+     * @dateTime 2017/8/6 14:47
+     */
+    private static String getCommon(String url,  Map<String, String> header ,RequestTypeEnum requestTypeEnum) {
         String responseStr;
         OkHttpClient okHttpClient = getOkHttpClient();
         Request.Builder builder = new Request.Builder().url(url);
@@ -51,33 +85,59 @@ public class HttpUtils {
                 headerMap.forEach((key, value) -> builder.addHeader(key, value))
         );
         Request request = builder.build();
-        responseStr = callAndResponse(okHttpClient, request, url);
+        responseStr = asyncOrNot(okHttpClient, request, url, requestTypeEnum);
         return responseStr;
     }
 
     /**
      * @author lipeng
-     * @description
+     * @description             同步form请求
      * @param url               请求的url地址
      * @param requestBodyMap    请求的body参数 form表单格式
      * @return
      * @dateTime 2017/8/6 13:39
      */
     public static String postWithForm(String url, Map<String, String> requestBodyMap) {
-        String responseStr = post(url, requestBodyMap, "", MediaTypeEnum.FORM.getId());
+        String responseStr = post(url, requestBodyMap, "", MediaTypeEnum.FORM, RequestTypeEnum.ASYNC);
         return responseStr;
     }
 
     /**
      * @author lipeng
-     * @description
+     * @description             异步form请求
+     * @param url               请求的url地址
+     * @param requestBodyMap    请求的body参数 form表单格式
+     * @return
+     * @dateTime 2017/8/6 13:39
+     */
+    public static String postWithFormAsync(String url, Map<String, String> requestBodyMap) {
+        String responseStr = post(url, requestBodyMap, "", MediaTypeEnum.FORM, RequestTypeEnum.ASYNC);
+        return responseStr;
+    }
+
+    /**
+     * @author lipeng
+     * @description             同步json请求
      * @param url               请求的url地址
      * @param requestJson       请求的body参数 json格式
      * @return
      * @dateTime 2017/8/6 13:39
      */
     public static String postWithJson(String url, String requestJson) {
-        String responseStr = post(url, null, requestJson, MediaTypeEnum.JSON.getId());
+        String responseStr = post(url, null, requestJson, MediaTypeEnum.JSON, RequestTypeEnum.SYNC);
+        return responseStr;
+    }
+
+    /**
+     * @author lipeng
+     * @description             异步json请求
+     * @param url               请求的url地址
+     * @param requestJson       请求的body参数 json格式
+     * @return
+     * @dateTime 2017/8/6 13:39
+     */
+    public static String postWithJsonAsync(String url, String requestJson) {
+        String responseStr = post(url, null, requestJson, MediaTypeEnum.JSON, RequestTypeEnum.ASYNC);
         return responseStr;
     }
 
@@ -88,17 +148,17 @@ public class HttpUtils {
      * @param url
      * @param requestBodyMap    post form参数
      * @param json              post json参数
-     * @param type              post方式1.form 2.json
+     * @param mediaTypeEnum     post方式:FORM普通表单 JSON json格式
      * @return
      * @dateTime 2017/8/6 13:49
      */
-    private static String post(String url, Map<String, String> requestBodyMap, String json, Integer type) {
+    private static String post(String url, Map<String, String> requestBodyMap, String json, MediaTypeEnum mediaTypeEnum, RequestTypeEnum requestTypeEnum) {
         String responseStr;
         OkHttpClient okHttpClient = getOkHttpClient();
         Request.Builder requestBuilder = new Request.Builder().url(url);
-        RequestBody requestBody = setRequestBody(requestBodyMap, json, type);
+        RequestBody requestBody = setRequestBody(requestBodyMap, json, mediaTypeEnum);
         Request request = requestBuilder.post(requestBody).build();
-        responseStr = callAndResponse(okHttpClient, request, url);
+        responseStr = asyncOrNot(okHttpClient, request, url, requestTypeEnum);
         return responseStr;
     }
 
@@ -107,15 +167,15 @@ public class HttpUtils {
      * @description             获取requestBody对象
      * @param requestBodyMap    post form参数
      * @param json              post json参数
-     * @param type              post方式1.form 2.json
+     * @param mediaTypeEnum     post方式:FORM普通表单 JSON json格式
      * @return
      * @dateTime 2017/8/6 13:50
      */
-    private static RequestBody setRequestBody(Map<String, String> requestBodyMap, String json, Integer type) {
+    private static RequestBody setRequestBody(Map<String, String> requestBodyMap, String json, MediaTypeEnum mediaTypeEnum) {
         RequestBody requestBody = null;
-        if (type == MediaTypeEnum.JSON.getId()) {
+        if (mediaTypeEnum == MediaTypeEnum.JSON) {
             requestBody = RequestBody.create(JSON, json);
-        } else if (type == MediaTypeEnum.FORM.getId()) {
+        } else if (mediaTypeEnum == MediaTypeEnum.FORM) {
             FormBody.Builder formBodyBuilder = new FormBody.Builder();
             Optional.ofNullable(requestBodyMap).ifPresent((requestBodyMap1) ->
                     requestBodyMap1.forEach((key, value) -> formBodyBuilder.add(key, value))
@@ -165,6 +225,26 @@ public class HttpUtils {
     /**
      * @author lipeng
      * @description
+     * @param okHttpClient          okHttpClient对象
+     * @param request               request对象
+     * @param url                   请求的url地址
+     * @param requestTypeEnum       请求类型:同步或者异步
+     * @return
+     * @dateTime 2017/8/6 15:13
+     */
+    private static String asyncOrNot(OkHttpClient okHttpClient, Request request, String url, RequestTypeEnum requestTypeEnum) {
+        String responseStr;
+        if (requestTypeEnum == RequestTypeEnum.SYNC) {
+            responseStr = callAndResponse(okHttpClient, request, url);
+        } else {
+            responseStr = callAndResponseAsync(okHttpClient, request, url);
+        }
+        return responseStr;
+    }
+
+    /**
+     * @author lipeng
+     * @description             同步发起请求并获取响应数据
      * @param okHttpClient      okHttpClient对象
      * @param request           request对象
      * @param url               请求的url地址
@@ -182,5 +262,37 @@ public class HttpUtils {
             log.error("【HttpUtils中的get方法响应异常:】", e.fillInStackTrace());
         }
         return responseStr;
+    }
+
+    /**
+     * @author lipeng
+     * @description             异步发起请求并获取响应数据
+     * @param okHttpClient      okHttpClient对象
+     * @param request           request对象
+     * @param url               请求的url地址
+     * @return
+     * @dateTime 2017/8/6 12:56
+     */
+    private static String callAndResponseAsync(OkHttpClient okHttpClient, Request request, String url) {
+        final String[] responseStr = new String[1];
+        Call call = getCall(okHttpClient, request);
+        try {
+            call.execute();
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    log.error("【HttpUtils中url:{}响应异常:】", url, e.fillInStackTrace());
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    responseStr[0] = response.body().string();
+                    log.info("【请求:】{}响应内容:{}", url, getResponseCode(response));
+                }
+            });
+        } catch (IOException e) {
+            log.error("【HttpUtils中请求url:{}响应异常:】", url, e.fillInStackTrace());
+        }
+        return responseStr[0];
     }
 }
