@@ -14,10 +14,11 @@ import java.util.Objects;
 public class DateUtils {
 
     /**
-     * 年月日
-     *
-     * @param formatPattern
-     * @return
+     * @author lipeng
+     * @description         获取当前系统时间,格式为yyyy-MM-dd
+     * @param formatPattern 时间格式化方式:yyyy-MM-dd
+     * @return              格式化后的当前系统时间
+     * @dateTime 2017/8/6 9:33
      */
     public static String getCurrentDate(String formatPattern) {
         String date;
@@ -30,11 +31,13 @@ public class DateUtils {
         return date;
     }
 
+
     /**
-     * 年月日时分秒
-     *
-     * @param formatPattern
-     * @return
+     * @author lipeng
+     * @description             获取当前系统时间,格式为yyyy-MM-dd HH:mm:ss
+     * @param formatPattern     时间格式化方式:yyyy-MM-dd HH:mm:ss
+     * @return                  格式化后的当前系统时间
+     * @dateTime 2017/8/6 9:34
      */
     public static String getCurrentDateTime(String formatPattern) {
         String dateTime;
@@ -46,11 +49,13 @@ public class DateUtils {
         return dateTime;
     }
 
+
     /**
-     * 日期格式化对象
-     *
-     * @param formatPattern
-     * @return
+     * @author lipeng
+     * @description             获取日期格式化对象
+     * @param formatPattern     时间格式化方式,如yyyy-MM-dd
+     * @return                  DateTimeFormatter对象
+     * @dateTime 2017/8/6 9:35
      */
     public static DateTimeFormatter getDateTimeFormatter(String formatPattern) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(formatPattern);
@@ -58,9 +63,11 @@ public class DateUtils {
     }
 
     /**
-     * LocalDateTime转Date
-     * @param localDateTime
-     * @return
+     * @author lipeng
+     * @description             LocalDateTime转Date
+     * @param localDateTime     LocalDateTime对象
+     * @return                  Date对象
+     * @dateTime 2017/8/6 9:36
      */
     public static Date convertLocalDateTimeToDate(LocalDateTime localDateTime) {
         Objects.requireNonNull(localDateTime);
@@ -71,10 +78,13 @@ public class DateUtils {
         return date;
     }
 
+
     /**
-     * Date转LocalDateTime
-     * @param date
-     * @return
+     * @author lipeng
+     * @description     LocalDateTime转Date
+     * @param date      Date对象
+     * @return          LocalDateTime对象
+     * @dateTime 2017/8/6 9:37
      */
     public static LocalDateTime convertDateToLocalDateTime(Date date) {
         Objects.requireNonNull(date);
@@ -85,9 +95,11 @@ public class DateUtils {
     }
 
     /**
-     * LocalDate转Date
-     * @param localDate
-     * @return
+     * @author lipeng
+     * @description         LocalDate转Date
+     * @param localDate     LocalDate对象
+     * @return              Date对象
+     * @dateTime 2017/8/6 9:37
      */
     public static Date convertLocalDateToDate(LocalDate localDate) {
         Objects.requireNonNull(localDate);
@@ -99,9 +111,11 @@ public class DateUtils {
     }
 
     /**
-     * Date转LocalDate
-     * @param date
-     * @return
+     * @author lipeng
+     * @description         Date转LocalDate
+     * @param date          Date对象
+     * @return              LocalDate对象
+     * @dateTime 2017/8/6 9:37
      */
     public static LocalDate convertDateToLocalDate(Date date) {
         Objects.requireNonNull(date);
@@ -113,8 +127,11 @@ public class DateUtils {
     }
 
     /**
-     * 获取默认时区
-     * @return
+     * @author lipeng
+     * @description     获取默认时间区
+     * @param
+     * @return          ZoneId对象
+     * @dateTime 2017/8/6 9:39
      */
     public static ZoneId getSystemZoneId() {
         ZoneId zoneId = ZoneId.systemDefault();
@@ -122,8 +139,11 @@ public class DateUtils {
     }
 
     /**
-     * 获取系统时间戳
+     * @author lipeng
+     * @description     获取系统默认时间戳
+     * @param
      * @return
+     * @dateTime 2017/8/6 9:39
      */
     public static Long getSystemMillis() {
         Clock clock = Clock.systemDefaultZone();
