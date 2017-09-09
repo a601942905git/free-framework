@@ -38,4 +38,11 @@ public interface UserMapper {
      * @return
      */
     Integer updateUser(User user);
+
+    /**
+     * 根据登陆账号查询用户信息
+     * @param loginCode 登陆账号
+     * @return
+     */
+    User getUserByLoginCode(String loginCode);
 }

@@ -7,7 +7,6 @@ import com.free.framework.plateform.common.service.CommonService;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,16 +18,8 @@ import java.util.List;
 @Slf4j
 public class UserService extends CommonService {
 
-    /**
-     * 缓存用户列表的key
-     */
-    private static final String LIST_USER_KEY = "userList";
-
     @Autowired
     private UserMapper userMapper;
-
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     /**
      * 查询用户列表信息
@@ -36,20 +27,12 @@ public class UserService extends CommonService {
      * @return
      */
     public PageInfo<User> pageUser(UserParam userParam) {
-       /* ListOperations<String, PageInfo> listOperations = redisTemplate.opsForList();
-        boolean hasKey = redisTemplate.hasKey(LIST_USER_KEY);
-        if (hasKey) {
-            PageInfo<User> pageUser = listOperations.index(LIST_USER_KEY, 0);
-            LOGGER.info("===============从缓存中获取用户列表数据信息{}", pageUser);
-            return pageUser;
-        }*/
         // 分页
         startPage(userParam);
         // 用户列表
         List<User> userList = userMapper.listUser(userParam);
         // 设置分页信息
         PageInfo<User> pageUser = new PageInfo(userList);
-        /*listOperations.leftPush(LIST_USER_KEY, pageUser);*/
         return pageUser;
     }
 
@@ -59,8 +42,16 @@ public class UserService extends CommonService {
      * @return
      */
     public User getUser(Integer id) {
-        User user = userMapper.getUser(id);
-        return user;
+        return userMapper.getUser(id);
+    }
+
+    /**
+     * 通过登陆账号查询用户信息
+     * @param loginCode 登陆账号
+     * @return
+     */
+    public User getUserByLoginCode(String loginCode) {
+        return userMapper.getUserByLoginCode(loginCode);
     }
 
     /**
@@ -69,8 +60,7 @@ public class UserService extends CommonService {
      * @return
      */
     public Integer saveUser(User user) {
-        Integer count = userMapper.saveUser(user);
-        return count;
+        return userMapper.saveUser(user);
     }
 
     /**
@@ -79,7 +69,6 @@ public class UserService extends CommonService {
      * @return
      */
     public Integer updateUser(User user) {
-        Integer count = userMapper.updateUser(user);
-        return count;
+        return userMapper.updateUser(user);
     }
 }

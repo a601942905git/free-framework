@@ -20,11 +20,11 @@
     </sql>
 
     <!--查询用户列表信息-->
-    <select id="listUser" resultType="com.free.framework.core.user.entity.User" parameterType="com.free.framework.core.user.controller.param.UserParam">
+    <select id="listUser" parameterType="com.free.framework.core.user.controller.param.UserParam" resultType="com.free.framework.core.user.entity.User">
         SELECT
             <include refid="BASE_SELECT_COLUMN"/>
         FROM
-            md_user
+            free_user
         WHERE 1 = 1
         <if test="null != id and id != ''">
             AND ID = #{id}
@@ -48,18 +48,28 @@
     </select>
 
     <!--查询用户详情-->
-    <select id="getUser" resultType="com.free.framework.core.user.entity.User" parameterType="integer">
+    <select id="getUser" parameterType="integer" resultType="com.free.framework.core.user.entity.User">
         SELECT
             <include refid="BASE_SELECT_COLUMN"/>
         FROM
-            md_user
+            free_user
         WHERE
             ID = #{id}
     </select>
 
+    <!--根据登陆账号查询用户信息-->
+    <select id="getUserByLoginCode" parameterType="string" resultType="com.free.framework.core.user.entity.User">
+        SELECT
+            <include refid="BASE_SELECT_COLUMN"/>
+        FROM
+            free_user
+        WHERE
+            LOGIN_CODE = #{loginCode}
+    </select>
+
     <!--新增用户-->
     <insert id="saveUser" parameterType="com.free.framework.core.user.entity.User">
-        INSERT INTO md_user(
+        INSERT INTO free_user(
             ID,
             NAME,
             AGE,
@@ -95,7 +105,7 @@
     <!--修改用户信息-->
     <update id="updateUser" parameterType="com.free.framework.core.user.entity.User">
         UPDATE
-            md_user
+            free_user
         <trim prefix="SET" suffixOverrides=",">
             <if test="null != name and name != ''">
                 NAME = #{name},
