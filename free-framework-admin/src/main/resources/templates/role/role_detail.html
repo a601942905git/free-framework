@@ -7,33 +7,13 @@
                 <div class="x_panel" style="border:none">
                     <div class="x_content">
                         <br/>
-                        <table class="table" th:object="${user}">
+                        <table class="table" th:object="${role}">
                             <tbody>
                                 <tr>
                                     <td>编号:</td>
                                     <td th:text="*{id}"></td>
                                     <td>姓名:</td>
                                     <td th:text="*{name}"></td>
-                                </tr>
-                                <tr>
-                                    <td>登录账号:</td>
-                                    <td th:text="*{loginCode}"></td>
-                                    <td>联系方式:</td>
-                                    <td th:text="*{mobile}"></td>
-                                </tr>
-                                <tr>
-                                    <td>年龄:</td>
-                                    <td th:text="*{age}"></td>
-                                    <td>性别:</td>
-                                    <td th:if="*{sex == '1'}">男</td>
-                                    <td th:if="*{sex == '2'}">女</td>
-                                </tr>
-                                <tr>
-                                    <td>头像:</td>
-                                    <td th:text="*{face}"></td>
-                                    <td>用户类型:</td>
-                                    <td th:if="*{type == '1'}">管理员</td>
-                                    <td th:if="*{type == '2'}">普通用户</td>
                                 </tr>
                                 <tr>
                                     <td>添加人:</td>

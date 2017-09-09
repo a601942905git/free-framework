@@ -1,25 +1,15 @@
 package com.free.framework.plateform.config.shiro;
 
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 /**
  * Apache Shiro 核心通过 Filter 来实现，就好像SpringMvc 通过DispachServlet 来主控制一样。
  * 既然是使用 Filter 一般也就能猜到，是通过URL规则来进行过滤和权限校验，
  * 所以我们需要定义一系列关于URL的规则和访问权限。
- */
+ *//**//*
 @Configuration
 @Slf4j
 public class ShiroConfiguration {
-    /**
+    *//**//**
      * ShiroFilterFactoryBean 处理拦截资源文件问题。
      * 注意：单独一个ShiroFilterFactoryBean配置是或报错的，以为在
      * 初始化ShiroFilterFactoryBean的时候需要注入：SecurityManager
@@ -28,7 +18,7 @@ public class ShiroConfiguration {
      * 2、当设置多个过滤器时，全部验证通过，才视为通过
      * 3、部分过滤器可指定参数，如perms，roles
      *
-     */
+     *//**//*
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager){
         log.info("【ShiroConfiguration.shirFilter()】");
@@ -65,5 +55,5 @@ public class ShiroConfiguration {
     public SecurityManager securityManager(){
         DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
         return securityManager;
-    }
-}
+    }*//*
+}*/

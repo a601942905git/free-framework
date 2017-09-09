@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.free.framework.core.role.mapper.RoleMapper">
+
+    <sql id="BASE_SELECT_COLUMN">
+        ID,
+        NAME,
+        SAVE_DATE,
+        SAVE_PERSON,
+        UPDATE_DATE,
+        UPDATE_PERSON,
+        STATUS
+    </sql>
+
+    <!--查询角色列表信息-->
+    <select id="listRole" parameterType="com.free.framework.core.role.controller.param.RoleParam" resultType="com.free.framework.core.role.entity.Role">
+        SELECT
+            <include refid="BASE_SELECT_COLUMN"/>
+        FROM
+            free_role
+        WHERE 1 = 1
+        <if test="null != id and id != ''">
+            AND ID = #{id}
+        </if>
+        <if test="null != name and name != ''">
+            AND LOCATE(#{name}, NAME) > 0
+        </if>
+        ORDER BY ID DESC
+    </select>
+
+    <!--查询角色详情-->
+    <select id="getRole" parameterType="integer" resultType="com.free.framework.core.role.entity.Role">
+        SELECT
+            <include refid="BASE_SELECT_COLUMN"/>
+        FROM
+            free_role
+        WHERE
+            ID = #{id}
+    </select>
+
+    <!--新增角色-->
+    <insert id="saveRole" parameterType="com.free.framework.core.role.entity.Role">
+        INSERT INTO free_role(
+            ID,
+            NAME,
+            SAVE_DATE,
+            SAVE_PERSON,
+            UPDATE_DATE,
+            UPDATE_PERSON,
+            STATUS
+        ) VALUES (
+            #{id},
+            #{name},
+            #{saveDate},
+            #{savePerson},
+            #{updateDate},
+            #{updatePerson},
+            #{status}
+        )
+    </insert>
+
+    <!--修改角色信息-->
+    <update id="updateRole" parameterType="com.free.framework.core.role.entity.Role">
+        UPDATE
+            free_role
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="null != name and name != ''">
+                NAME = #{name},
+            </if>
+            <if test="null != updateDate">
+                UPDATE_DATE = #{updateDate},
+            </if>
+            <if test="null != updatePerson and updatePerson != ''">
+                UPDATE_PERSON = #{updatePerson},
+            </if>
+            <if test="null != status and status != ''">
+                STATUS = #{status},
+            </if>
+        </trim>
+        WHERE ID = #{id}
+    </update>
+
+</mapper>
