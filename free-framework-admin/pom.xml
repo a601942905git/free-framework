@@ -75,6 +75,12 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
+        <!--shiro spring-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>free-framework</groupId>
             <artifactId>free-framework-util</artifactId>

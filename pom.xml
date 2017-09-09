@@ -39,6 +39,7 @@
         <logback.version>1.2.3</logback.version>
         <zookeeper.version>3.4.9</zookeeper.version>
         <okhttp.version>3.6.0</okhttp.version>
+        <shiro.spring.version>1.4.0</shiro.spring.version>
     </properties>
 
     <dependencyManagement>
@@ -117,6 +118,13 @@
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.spring.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
