@@ -100,3 +100,10 @@ function updateStatus(url, id, status) {
     });
 }
 
+/**
+ * 关闭弹框
+ */
+function closeDialog() {
+    layer.close(layer.index);
+}
+

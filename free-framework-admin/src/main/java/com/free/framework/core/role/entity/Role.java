@@ -9,6 +9,7 @@ import lombok.*;
  * @author lipeng
  * @dateTime 2017/9/9 22:54
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @NoArgsConstructor

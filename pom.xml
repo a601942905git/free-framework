@@ -16,6 +16,7 @@
         <module>free-framework-wx</module>
         <module>free-framework-cache</module>
         <module>free-framework-test</module>
+        <module>free-framework-codetool</module>
     </modules>
 
     <!--version properties-->

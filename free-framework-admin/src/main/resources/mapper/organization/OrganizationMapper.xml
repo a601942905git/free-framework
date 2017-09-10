@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.free.framework.core.organization.mapper.OrganizationMapper">
+	<sql id="BASE_SELECT_COLUMN">
+		ID,
+		NAME,
+		PID,
+		ORDER_NUM,
+		ICON,
+		STATUS,
+		SAVE_DATE,
+		SAVE_PERSON,
+		UPDATE_DATE,
+		UPDATE_PERSON
+  	</sql>
+  	
+  	<select id="getOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="Integer">
+  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_organization WHERE ID=#{id}
+  	</select>
+  
+  	<select id="listOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="com.free.framework.core.organization.controller.param.OrganizationParam">
+  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_organization WHERE 1=1
+  		<if test="id!=null and id!=''">
+  			AND ID=#{id}
+  		</if>
+  		<if test="name!=null and name!=''">
+  			AND NAME=#{name}
+  		</if>
+  		<if test="pid!=null and pid!=''">
+  			AND PID=#{pid}
+  		</if>
+  		<if test="orderNum!=null and orderNum!=''">
+  			AND ORDER_NUM=#{orderNum}
+  		</if>
+  		<if test="icon!=null and icon!=''">
+  			AND ICON=#{icon}
+  		</if>
+  		<if test="status!=null and status!=''">
+  			AND STATUS=#{status}
+  		</if>
+  		<if test="saveDate!=null and saveDate!=''">
+  			AND SAVE_DATE=#{saveDate}
+  		</if>
+  		<if test="savePerson!=null and savePerson!=''">
+  			AND SAVE_PERSON=#{savePerson}
+  		</if>
+  		<if test="updateDate!=null and updateDate!=''">
+  			AND UPDATE_DATE=#{updateDate}
+  		</if>
+  		<if test="updatePerson!=null and updatePerson!=''">
+  			AND UPDATE_PERSON=#{updatePerson}
+  		</if>
+  	</select>
+  
+  	<insert id="saveOrganization" parameterType="com.free.framework.core.organization.entity.Organization">
+  		INSERT INTO free_organization 
+  		(
+			
+			NAME,
+			PID,
+			ORDER_NUM,
+			ICON,
+			STATUS,
+			SAVE_DATE,
+			SAVE_PERSON,
+			UPDATE_DATE,
+			UPDATE_PERSON
+		) 
+  		VALUES 
+  		(
+			#{name},
+			#{pid},
+			#{orderNum},
+			#{icon},
+			#{status},
+			#{saveDate},
+			#{savePerson},
+			#{updateDate},
+			#{updatePerson}
+  		)
+	</insert>
+  
+  	<update id="updateOrganization" parameterType="com.free.framework.core.organization.entity.Organization">
+  		UPDATE free_organization SET 
+  		<trim suffixOverrides=",">
+				<if test="null != id">
+					ID=#{id},
+				</if>
+	    		<if test="null != name and name != ''">
+					NAME=#{name},
+				</if>
+				<if test="null != pid">
+					PID=#{pid},
+				</if>
+				<if test="null != orderNum">
+					ORDER_NUM=#{orderNum},
+				</if>
+	    		<if test="null != icon and icon != ''">
+					ICON=#{icon},
+				</if>
+				<if test="null != status">
+					STATUS=#{status},
+				</if>
+				<if test="null != saveDate">
+					SAVE_DATE=#{saveDate},
+				</if>
+	    		<if test="null != savePerson and savePerson != ''">
+					SAVE_PERSON=#{savePerson},
+				</if>
+				<if test="null != updateDate">
+					UPDATE_DATE=#{updateDate},
+				</if>
+	    		<if test="null != updatePerson and updatePerson != ''">
+					UPDATE_PERSON=#{updatePerson},
+				</if>
+  		</trim>
+  		WHERE ID=#{id}
+  	</update>
+</mapper>

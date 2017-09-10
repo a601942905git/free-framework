@@ -30,7 +30,7 @@ public class UserController extends BaseController {
      * @return
      */
     @GetMapping(UserControllerMappingURL.USER)
-    public String list(Model model, UserParam userParam) {
+    public String listUser(Model model, UserParam userParam) {
         PageInfo pageInfo = userService.pageUser(userParam);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("userParam", userParam);
