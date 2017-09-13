@@ -35,10 +35,7 @@
         <if test="null != name and name != ''">
             AND LOCATE(#{name}, NAME) > 0
         </if>
-        <if test="null != sex and sex != '' and sex != -1">
-            AND SEX = #{sex}
-        </if>
-        <if test="null != type and type != '' and type != -1">
+        <if test="null != type and type != '' and type != 0">
             AND TYPE = #{type}
         </if>
         <if test="null != status and status != '' and status != 0">

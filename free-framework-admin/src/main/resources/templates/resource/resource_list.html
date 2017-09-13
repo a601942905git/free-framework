@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb" style="background-color: #fff">
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);" class="active">资源管理</a></li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3>资源信息管理</h3>
+                </div>
+                <div class="x_content">
+                    <!--查询数据-->
+                    <form th:action="@{/resources/}" class="form" id="search_form">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <div class="input-group">
+                                    <span class="input-group-addon">编号</span>
+                                    <input class="form-control" name="id" id="id" th:value="${resourceParam.id}"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <div class="input-group">
+                                    <span class="input-group-addon">名称</span>
+                                    <input class="form-control" name="name" id="name" th:value="${resourceParam.name}"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <div class="input-group">
+                                    <span class="input-group-addon">父级编号</span>
+                                    <input class="form-control" name="pid" id="pid" th:value="${resourceParam.pid}"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <div class="input-group">
+                                    <span class="input-group-addon">类型</span>
+                                    <select class="form-control" name="type" id="type">
+                                        <option th:selected="${resourceParam.type == '0'}" th:value="0">--全部--</option>
+                                        <option th:selected="${resourceParam.type == '1'}" th:value="1">菜单</option>
+                                        <option th:selected="${resourceParam.type == '2'}" th:value="2">功能</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <div class="input-group">
+                                    <span class="input-group-addon">状态</span>
+                                    <select class="form-control" name="status" id="status">
+                                        <option th:selected="${resourceParam.status == '0'}" th:value="0">--全部--</option>
+                                        <option th:selected="${resourceParam.status == '1'}" th:value="1">启用</option>
+                                        <option th:selected="${resourceParam.status == '-1'}" th:value="-1">停用</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <button type="button" class="btn btn-info" th:onclick="'searchForm()'">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    搜索
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <button type="button" class="btn btn-primary" th:onclick="'dialog(\'/resources/page/add\', \'\', \'新增用户\', \'600px\')'">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    新增
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!--列表数据-->
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>名称</th>
+                            <th>父级名称</th>
+                            <th>排序编号</th>
+                            <th>路径 </th>
+                            <th>类型</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+							<tr th:each="resource : ${pageInfo.list}">
+                                <td th:text="${resource.id}"></td>
+                                <td th:text="${resource.name}"></td>
+                                <td th:text="${resource.pid}"></td>
+                                <td th:text="${resource.orderNum}"></td>
+                                <td th:text="${resource.path}"></td>
+                                <td th:text="${resource.type}"></td>
+                                <td th:if="${resource.status == '1'}"><span th:text="启用" style="color:green"></span></td>
+                                <td th:unless="${resource.status == '1'}"><span th:text="停用" style="color:red"></span></td>
+								<td>
+									<a th:onclick="'dialog(\'/resources/' + ${resource.id} + '\', \'\', \'查看用户详情\', \'600px\')'" style="cursor:pointer;">
+										<i class="fa fa-folder"></i>
+										<span>查看</span>
+									</a>
+									<a th:onclick="'dialog(\'/resources/page/update\', {id:' + ${resource.id} + '}, \'编辑用户\', \'600px\')'" style="cursor:pointer;">
+										<i class="fa fa-pencil"></i>
+										<span>编辑</span>
+									</a>
+									<a th:if="${resource.status == '1'}" th:onclick="'updateStatus(\'/resources/\', ' + ${resource.id} + ', \'-1\')'" style="cursor:pointer;">
+										<i class="fa fa-trash-o"></i>
+										<span th:text="停用"></span>
+									</a>
+									<a th:if="${resource.status == '-1'}" th:onclick="'updateStatus(\'/resources/\', ' + ${resource.id} + ', \'1\')'" style="cursor:pointer;">
+										<i class="fa fa-trash-o"></i>
+										<span th:text="启用"></span>
+									</a>
+								</td>
+							</tr>
+                        </tbody>
+                    </table>
+                    <!--分页-->
+                    <div th:replace="common/common_page::page"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

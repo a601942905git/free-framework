@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel" style="border:none">
+                <div class="x_content">
+                    <br/>
+                    <table class="table" th:object="${resource}">
+                        <tbody>
+                            <tr>
+                                <td>:</td>
+                                <td th:text="*{id}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>:</td>
+                                <td th:text="*{name}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>:</td>
+                                <td th:text="*{pid}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>:</td>
+                                <td th:text="*{orderNum}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>:</td>
+                                <td th:text="*{path}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>1菜单2操作:</td>
+                                <td th:text="*{type}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>1启用-1停用:</td>
+                                <td th:text="*{status}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>:</td>
+                                <td th:text="*{saveDate}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>:</td>
+                                <td th:text="*{savePerson}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>:</td>
+                                <td th:text="*{updateDate}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>:</td>
+                                <td th:text="*{updatePerson}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="text-align: center">
+                            <button type="button" class="btn btn-primary" th:onclick="'closeDialog()'">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

@@ -1,10 +1,10 @@
-package com.free.framework.core.organization.controller.param;
+package com.free.framework.core.resource.controller.param;
 
 import com.free.framework.plateform.common.controller.param.BaseParam;
 import lombok.Data;
 
 @Data
-public class OrganizationParam extends BaseParam {
+public class ResourceParam extends BaseParam {
 
     /**
      * 编号
@@ -23,6 +23,12 @@ public class OrganizationParam extends BaseParam {
      */
 
     private Integer pid;
+
+    /**
+     * 1菜单2操作
+     */
+
+    private String type;
 
     /**
      * 状态

@@ -21,19 +21,29 @@
                         <!--查询数据-->
                         <form th:action="@{/roles/}" class="form" id="search_form">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-4 col-md-2">
                                     <div class="input-group">
                                         <span class="input-group-addon">编号</span>
                                         <input class="form-control" name="id" id="id" th:value="${roleParam.id}"/>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-4 col-md-2">
                                     <div class="input-group">
                                         <span class="input-group-addon">名称</span>
                                         <input class="form-control" name="name" id="name" th:value="${roleParam.name}"/>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="col-xs-12 col-sm-4 col-md-2">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">状态</span>
+                                        <select class="form-control" name="status" id="status">
+                                            <option th:selected="${roleParam.status == '0'}" th:value="0">--全部--</option>
+                                            <option th:selected="${roleParam.status == '1'}" th:value="1">启用</option>
+                                            <option th:selected="${roleParam.status == '-1'}" th:value="-1">停用</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-2">
                                     <button type="button" class="btn btn-info" th:onclick="'searchForm()'">
                                         <span class="glyphicon glyphicon-search"></span>
                                         搜索
@@ -65,7 +75,7 @@
                                 <td th:text="${role.id}"></td>
                                 <td th:text="${role.name}"></td>
                                 <td th:if="${role.status == '1'}"><span th:text="启用" style="color:green"></span></td>
-                                <td th:if="${role.status == '-1'}"><span th:text="停用" style="color:red"></span></td>
+                                <td th:unless="${role.status == '1'}"><span th:text="停用" style="color:red"></span></td>
                                 <td>
                                     <a th:onclick="'dialog(\'/roles/' + ${role.id} + '\', \'\', \'查看角色详情\', \'600px\')'" style="cursor:pointer;">
                                         <i class="fa fa-folder"></i>

@@ -11,10 +11,10 @@
 						<#if columns??>
                         <#list columns as col>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">${col.remark!}: <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">${col.remark!}: <span>*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="${col.propertyName}" name="${col.propertyName}" required="required" class="form-control col-md-7 col-xs-12"/>
+                                <input type="text" id="${col.propertyName}" name="${col.propertyName}" class="form-control col-md-7 col-xs-12"/>
                             </div>
                         </div>
                         </#list>

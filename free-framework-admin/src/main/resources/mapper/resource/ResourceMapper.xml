@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.free.framework.core.organization.mapper.OrganizationMapper">
+<mapper namespace="com.free.framework.core.resource.mapper.ResourceMapper">
 	<sql id="BASE_SELECT_COLUMN">
 		ID,
 		NAME,
 		PID,
 		ORDER_NUM,
-		ICON,
+		PATH,
+		TYPE,
 		STATUS,
 		SAVE_DATE,
 		SAVE_PERSON,
@@ -14,34 +15,38 @@
 		UPDATE_PERSON
   	</sql>
   	
-  	<select id="getOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="Integer">
-  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_organization WHERE ID=#{id}
+  	<select id="getResource" resultType="com.free.framework.core.resource.entity.Resource" parameterType="Integer">
+  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_resource WHERE ID=#{id}
   	</select>
   
-  	<select id="listOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="com.free.framework.core.organization.controller.param.OrganizationParam">
-  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_organization WHERE 1=1
+  	<select id="listResource" resultType="com.free.framework.core.resource.entity.Resource" parameterType="com.free.framework.core.resource.controller.param.ResourceParam">
+  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_resource WHERE 1=1
   		<if test="id!=null and id!=''">
-  			AND ID=#{id}
+  			AND ID =# {id}
   		</if>
   		<if test="name!=null and name!=''">
-  			AND NAME=#{name}
+  			AND NAME =# {name}
   		</if>
   		<if test="pid!=null and pid!=''">
-  			AND PID=#{pid}
+  			AND PID =# {pid}
   		</if>
-  		<if test="status != null and status != '' and status != 0">
-  			AND STATUS = #{status}
+  		<if test="type!=null and type!='' and type != 0">
+  			AND TYPE =# {type}
   		</if>
+		<if test="status != null and status != '' and status != 0">
+			AND STATUS = #{status}
+		</if>
   	</select>
   
-  	<insert id="saveOrganization" parameterType="com.free.framework.core.organization.entity.Organization">
-  		INSERT INTO free_organization 
+  	<insert id="saveResource" parameterType="com.free.framework.core.resource.entity.Resource">
+  		INSERT INTO free_resource 
   		(
 			
 			NAME,
 			PID,
 			ORDER_NUM,
-			ICON,
+			PATH,
+			TYPE,
 			STATUS,
 			SAVE_DATE,
 			SAVE_PERSON,
@@ -53,7 +58,8 @@
 			#{name},
 			#{pid},
 			#{orderNum},
-			#{icon},
+			#{path},
+			#{type},
 			#{status},
 			#{saveDate},
 			#{savePerson},
@@ -62,8 +68,8 @@
   		)
 	</insert>
   
-  	<update id="updateOrganization" parameterType="com.free.framework.core.organization.entity.Organization">
-  		UPDATE free_organization SET 
+  	<update id="updateResource" parameterType="com.free.framework.core.resource.entity.Resource">
+  		UPDATE free_resource SET 
   		<trim suffixOverrides=",">
 				<if test="null != id">
 					ID=#{id},
@@ -77,8 +83,11 @@
 				<if test="null != orderNum">
 					ORDER_NUM=#{orderNum},
 				</if>
-	    		<if test="null != icon and icon != ''">
-					ICON=#{icon},
+	    		<if test="null != path and path != ''">
+					PATH=#{path},
+				</if>
+				<if test="null != type">
+					TYPE=#{type},
 				</if>
 				<if test="null != status">
 					STATUS=#{status},

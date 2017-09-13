@@ -3,48 +3,52 @@ package com.free.framework.core.resource.entity;
 import com.free.framework.plateform.common.entity.BaseEntity;
 import lombok.*;
 
+import java.io.Serializable;
+
 /**
- * com.free.framework.core.resource.entity.Resource
- * 资源
- * @author lipeng
- * @dateTime 2017/9/9 23:00
+ * 
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @ToString
-public class Resource extends BaseEntity{
+public class Resource extends BaseEntity implements Serializable {
 
-    /**
-     * 编号
-     */
-    private Integer id;
+	/**
+	 * 编号
+	 */
 
-    /**
-     * 名称
-     */
-    private String name;
+	private Integer id;
 
-    /**
-     * 父级编号
-     */
-    private Integer pid;
+	/**
+	 * 名称
+	 */
 
-    /**
-     * 排序编号
-     */
-    private Integer orderNum;
+	private String name;
 
-    /**
-     * 路径
-     */
-    private String path;
+	/**
+	 * 父级编号
+	 */
 
-    /**
-     * 类型
-     * 1.菜单
-     * 2.功能(增删改查按钮)
-     */
-    private String type;
+	private Integer pid;
+
+	/**
+	 * 排序编号
+	 */
+
+	private Integer orderNum;
+
+	/**
+	 * 资源路径
+	 */
+
+	private String path;
+
+	/**
+	 * 1菜单2操作
+	 */
+
+	private String type;
+
 }

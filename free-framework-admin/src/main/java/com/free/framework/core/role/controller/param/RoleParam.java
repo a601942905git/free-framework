@@ -12,7 +12,18 @@ import lombok.Data;
 @Data
 public class RoleParam extends BaseParam{
 
+    /**
+     * 编号
+     */
     private Integer id;
 
+    /**
+     * 名称
+     */
     private String name;
+
+    /**
+     * 状态
+     */
+    private String status;
 }

@@ -15,7 +15,7 @@
   		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM ${tableFullName} WHERE 1=1
   		<#list columns as col>
   		<if test="${col.propertyName}!=null and ${col.propertyName}!=''">
-  			AND ${col.columnName}=${'#'}{${col.propertyName}}
+  			AND ${col.columnName} = ${'#'}{${col.propertyName}}
   		</if>
     	</#list>
   	</select>

@@ -1,9 +1,9 @@
 package com.free.framework.core.organization.entity;
 
-import java.io.Serializable;
 import com.free.framework.plateform.common.entity.BaseEntity;
 import lombok.*;
-import java.util.Date;
+
+import java.io.Serializable;
 
 /**
  * 
@@ -15,42 +15,33 @@ import java.util.Date;
 @ToString
 public class Organization extends BaseEntity implements Serializable {
 
-	private static final long serialVersionUID = 1505036513265L;
-
 	/**
-	 * 
+	 * 编号
 	 */
 
 	private Integer id;
 
 	/**
-	 * 
+	 * 名称
 	 */
 
 	private String name;
 
 	/**
-	 * 
+	 * 父级编号
 	 */
 
 	private Integer pid;
 
 	/**
-	 * 
+	 * 排序编号
 	 */
 
 	private Integer orderNum;
 
 	/**
-	 * 
+	 * 图标
 	 */
 
 	private String icon;
-
-	/**
-	 * 1启用-1停用
-	 */
-
-	private String status;
-
 }

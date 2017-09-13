@@ -31,7 +31,7 @@
                             </div>
                             </#list>
 							</#if>
-                            <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="col-xs-12 col-sm-4 col-md-2">
                                 <button type="button" class="btn btn-info" th:onclick="'searchForm()'">
                                     <span class="glyphicon glyphicon-search"></span>
                                     搜索

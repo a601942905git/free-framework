@@ -37,8 +37,6 @@ import ${imp!};
 @ToString
 public class ${entityName!} extends BaseEntity implements Serializable {
 
-	private static final long serialVersionUID = ${entitySystemTime}L;
-
 <#if columns??>
 	<#list columns as col>
 	/**

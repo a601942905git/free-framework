@@ -10,56 +10,63 @@
                         <form th:action="@{/users/}" id="form" type="post" class="form-horizontal form-label-left">
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">姓名: <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">姓名: <span>*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12"/>
+                                    <input type="text" id="name" name="name" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginCode">登录账号: <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginCode">登录账号: <span>*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="loginCode" name="loginCode" required="required" class="form-control col-md-7 col-xs-12"/>
+                                    <input type="text" id="loginCode" name="loginCode" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginPassword">登录密码: <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginPassword">登录密码: <span>*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="loginPassword" name="loginPassword" required="required" class="form-control col-md-7 col-xs-12"/>
+                                    <input type="password" id="loginPassword" name="loginPassword" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">手机号: <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginPassword">确认密码: <span>*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="mobile" name="mobile" required="required" class="form-control col-md-7 col-xs-12"/>
+                                    <input type="password" id="loginRePassword" name="loginRePassword" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">用户类型: <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">手机号: <span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="mobile" name="mobile" class="form-control col-md-7 col-xs-12"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">用户类型: <span>*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select id="type" name="type" class="form-control col-md-7 col-xs-12">
-                                        <option value="-1">--请选择--</option>
+                                        <option value="0">--请选择--</option>
                                         <option value="1">管理员</option>
                                         <option value="2">普通用户</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="face">用户头像: <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="face">用户头像: <span></span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="face" name="face" required="required" class="form-control col-md-7 col-xs-12"/>
+                                    <input type="text" id="face" name="face" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="age">年龄: <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="age">年龄: <span></span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="age" name="age" required="required" class="form-control col-md-7 col-xs-12"/>
+                                    <input type="text" id="age" name="age" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -78,7 +85,7 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="text-align: center">
-                                    <button type="button" class="btn btn-primary" th:onclick="'commonOperate()'">新增</button>
+                                    <button type="submit" class="btn btn-primary">新增</button>
                                     <button class="btn btn-success" type="reset">重置</button>
                                 </div>
                             </div>
@@ -88,4 +95,74 @@
             </div>
         </div>
     </div>
+    <script>
+        $(function(){
+            $("#form").validate({
+                // 验证通过之后执行的函数
+                submitHandler: function(form) {
+                    commonOperate();
+                },
+                rules: {
+                    name: {
+                        required: true,
+                        rangelength: [2,10],
+                    },
+                    loginCode: {
+                        required: true,
+                        rangelength: [6,15],
+                    },
+                    loginPassword: {
+                        required: true,
+                        rangelength: [6,15],
+                    },
+                    loginRePassword: {
+                        equalTo:"#loginPassword"
+                    },
+                    mobile: {
+                        mobile: true,
+                        minlength: 11,
+                        maxlength: 11
+                    },
+                    type: {
+                        required: true,
+                        min: 1
+                    },
+                    age: {
+                        min: 1,
+                        max: 150
+                    }
+                },
+                messages: {
+                    name: {
+                        required: '请输入用户名',
+                        rangelength: '用户名长度在2-10之间',
+                    },
+                    loginCode: {
+                        required: '请输入登录账号',
+                        rangelength: '登录账号长度在6-15之间',
+                    },
+                    loginPassword: {
+                        required: '请输入密码',
+                        rangelength: '密码在6-15之间',
+                    },
+                    loginRePassword: {
+                        equalTo: '两次输入的密码不一致'
+                    },
+                    mobile: {
+                        mobile: '手机号格式不正确',
+                        minlength: '手机号码必须为11位',
+                        maxlength: '手机号码必须为11位'
+                    },
+                    type: {
+                        required: '请选择用户类型',
+                        min: '请选择用户类型',
+                    },
+                    age: {
+                        min: '最小年龄为1岁',
+                        max: '最大年龄为150岁'
+                    }
+                }
+            });
+        });
+    </script>
 </html>

@@ -95,7 +95,7 @@ public class ${entityName}Controller extends BaseController {
 	 * 修改${remark!}
 	 * @param ${entityParamName}
 	 */
-	@PostMapping(${entityName}ControllerMappingURL.${entityName?upper_case})
+	@PutMapping(${entityName}ControllerMappingURL.${entityName?upper_case})
 	@ResponseBody
 	public Integer update${entityName}(${entityName} ${entityParamName}){
 		${entityParamName}.setUpdatePerson("111111");

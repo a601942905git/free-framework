@@ -25,6 +25,9 @@
         <if test="null != name and name != ''">
             AND LOCATE(#{name}, NAME) > 0
         </if>
+        <if test="status != null and status != '' and status != 0">
+            AND STATUS = #{status}
+        </if>
         ORDER BY ID DESC
     </select>
 

@@ -3,6 +3,8 @@ package com.free.framework.core.role.entity;
 import com.free.framework.plateform.common.entity.BaseEntity;
 import lombok.*;
 
+import java.io.Serializable;
+
 /**
  * com.free.framework.core.role.entity.Role
  * 角色
@@ -15,7 +17,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Role extends BaseEntity{
+public class Role extends BaseEntity implements Serializable {
 
     /**
      * 编号

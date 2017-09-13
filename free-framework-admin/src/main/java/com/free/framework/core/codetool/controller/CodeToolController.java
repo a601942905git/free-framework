@@ -87,7 +87,7 @@ public class CodeToolController {
                         .persistanceFramework("mybatis")
                         .framework("mvc")
                         .frameworkMapping("mapping")
-                        .excludeColumns("SAVE_DATE&SAVE_PERSON&UPDATE_DATE&UPDATE_PERSON&STATUS")
+                        .excludeColumns("SAVE_DATE&SAVE_PERSON&UPDATE_DATE&UPDATE_PERSON&STATUS&")
                         .build();
         return generateCodeParam;
     }
