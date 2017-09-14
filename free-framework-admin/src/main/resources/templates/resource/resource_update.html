@@ -1,69 +1,119 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel" style="border:none">
-                <div class="x_content">
-                    <br/>
-                    <form th:action="@{/resources/}" th:object="${resource}" id="form" type="post" class="form-horizontal form-label-left">
-                        <input type="hidden" id="id" name="id" th:value="*{id}"/>
-                        <input type="hidden" id="_method" name="_method" value="PUT"/>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">名称: <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12" th:value="*{name}"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">父级名称: <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="pid" name="pid" required="required" class="form-control col-md-7 col-xs-12" th:value="*{pid}"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">排序编号: <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="orderNum" name="orderNum" required="required" class="form-control col-md-7 col-xs-12" th:value="*{orderNum}"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">路径: <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="path" name="path" required="required" class="form-control col-md-7 col-xs-12" th:value="*{path}"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">类型: <span class="required">*</span>
-                            </label>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="border:none">
+                    <div class="x_content">
+                        <br/>
+                        <form th:action="@{/resources/}" th:object="${resource}" id="form" type="post" class="form-horizontal form-label-left">
+                            <input type="hidden" id="id" name="id" th:value="*{id}"/>
+                            <input type="hidden" id="_method" name="_method" value="PUT"/>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">类型: <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">名称: <span>*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="type" name="type" class="form-control col-md-7 col-xs-12">
-                                        <option th:selected="*{type == '-1'}" th:value="-1">--全部--</option>
-                                        <option th:selected="*{type == '1'}" th:value="1">菜单</option>
-                                        <option th:selected="*{type == '2'}" th:value="2">功能</option>
-                                    </select>
+                                    <input type="text" id="name" name="name" class="form-control col-md-7 col-xs-12" th:value="*{name}"/>
                                 </div>
                             </div>
-                        </div>
-                        <div class="ln_solid"></div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="text-align: center">
-                                <button type="button" class="btn btn-primary" th:onclick="'commonOperate()'">修改</button>
-                                <button class="btn btn-success" type="reset">重置</button>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pid">父级名称: <span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="pid" name="pid" class="form-control col-md-7 col-xs-12" th:value="*{pid}"/>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="orderNum">排序编号: <span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="orderNum" name="orderNum" class="form-control col-md-7 col-xs-12" th:value="*{orderNum}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="path">路径: <span>*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="path" name="path" class="form-control col-md-7 col-xs-12" th:value="*{path}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">类型: <span>*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select id="type" name="type" class="form-control col-md-7 col-xs-12">
+                                            <option th:selected="*{type == '-1'}" th:value="-1">--全部--</option>
+                                            <option th:selected="*{type == '1'}" th:value="1">菜单</option>
+                                            <option th:selected="*{type == '2'}" th:value="2">功能</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="text-align: center">
+                                    <button type="button" class="btn btn-primary" th:onclick="'commonOperate()'">修改</button>
+                                    <button class="btn btn-success" type="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <script>
+        $(function(){
+            $("#form").validate({
+                // 验证通过之后执行的函数
+                submitHandler: function(form) {
+                    commonOperate();
+                },
+                rules: {
+                    name: {
+                        required: true,
+                        rangelength: [2,10],
+                    },
+                    pid: {
+                        required: true,
+                    },
+                    orderNum: {
+                        required: true,
+                        rangelength: [1,2],
+                    },
+                    path: {
+                        required: true,
+                        rangelength: [1,50],
+                    },
+                    type: {
+                        required: true,
+                        min: 1,
+                    },
+                },
+                messages: {
+                    name: {
+                        required: "请输入名称",
+                        rangelength: "名称长度在2-10之间",
+                    },
+                    pid: {
+                        required: "请选择父级资源",
+                    },
+                    orderNum: {
+                        required: "请填写排序序号",
+                        rangelength: "排序序号在1-99之间",
+                    },
+                    path: {
+                        required: "请填写资源路径",
+                        rangelength: "资源路径长度为1-50之间",
+                    },
+                    type: {
+                        required: "请选择资源类型",
+                        min: "请选择资源类型",
+                    },
+                }
+            });
+        });
+    </script>
 </html>
