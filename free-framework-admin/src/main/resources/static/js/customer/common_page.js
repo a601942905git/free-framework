@@ -5,8 +5,8 @@ let pageSize = 15;
  * 刷新页面
  */
 function refresh() {
-    var url = getSearchFormUrl();
-    var param = getFormParam();
+    let url = getSearchFormUrl();
+    let param = getFormParam();
     $('#main_container').load(url, param);
 }
 
@@ -14,7 +14,7 @@ function refresh() {
  * 表单对象
  */
 function getSearchForm() {
-    var $form = $('#search_form');
+    let $form = $('#search_form');
     return $form;
 }
 
@@ -23,8 +23,8 @@ function getSearchForm() {
  * @returns {*}
  */
 function getSearchFormUrl() {
-    var $form = getSearchForm();
-    var url = $form.attr('action');
+    let $form = getSearchForm();
+    let url = $form.attr('action');
     return url;
 }
 

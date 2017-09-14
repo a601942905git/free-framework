@@ -17,3 +17,10 @@ function dialog(url, param, dialogTitle, dialogWidth) {
         console.log('弹框异常状态码:%s,异常返回内容:%s', ex.status, ex.responseText);
     });
 }
+
+/**
+ * 关闭弹框
+ */
+function closeDialog() {
+    layer.close(layer.index);
+}

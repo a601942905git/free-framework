@@ -87,6 +87,7 @@
             $("#form").validate({
                 // 验证通过之后执行的函数
                 submitHandler: function(form) {
+                    clearFormTrim();
                     commonOperate();
                 },
                 rules: {

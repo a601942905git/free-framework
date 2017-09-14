@@ -2,7 +2,7 @@
  * 表单对象
  */
 function getSubmitForm() {
-    var $form = $('#form');
+    let $form = $('#form');
     return $form;
 }
 
@@ -11,8 +11,8 @@ function getSubmitForm() {
  * @returns {*}
  */
 function getSubmitFormUrl() {
-    var $form = getSubmitForm();
-    var url = $form.attr('action');
+    let $form = getSubmitForm();
+    let url = $form.attr('action');
     return url;
 }
 
@@ -20,8 +20,8 @@ function getSubmitFormUrl() {
  * 表单提交参数
  */
 function getSubmitFormParam() {
-    var $form = getSubmitForm();
-    var param = $form.serialize();
+    let $form = getSubmitForm();
+    let param = $form.serialize();
     return param;
 }
 
@@ -29,8 +29,8 @@ function getSubmitFormParam() {
  * 公用操作
  */
 function commonOperate() {
-    var url = getSubmitFormUrl();
-    var param = getSubmitFormParam();
+    let url = getSubmitFormUrl();
+    let param = getSubmitFormParam();
     $.ajax({
         url: url,
         data: param,
@@ -101,9 +101,24 @@ function updateStatus(url, id, status) {
 }
 
 /**
- * 关闭弹框
+ * 去除空格
+ * @param str
+ * @returns {string|*|void|XML}
  */
-function closeDialog() {
-    layer.close(layer.index);
+function trim(str) {
+    let result;
+    result = str.replace(/(^\s+)|(\s+$)/g, "");
+    result = result.replace(/\s/g, "");
+    return result;
+}
+
+/**
+ * 清楚表单元素空格
+ */
+function clearFormTrim() {
+    let $form = getSubmitForm();
+    $form.find('input[clear!="false"]').each(function () {
+        $(this).val(trim($(this).val()));
+    });
 }
 

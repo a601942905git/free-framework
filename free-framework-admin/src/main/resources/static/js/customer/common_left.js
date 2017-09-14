@@ -13,16 +13,16 @@ $(function(){
  * 给所有的二级菜单绑定点击事件
  */
 function bindClickEventOnSecondMenu() {
-    var $slideBarMenu = getSidebarMenu();
+    let $slideBarMenu = getSidebarMenu();
     $slideBarMenu.find('li[dir="second_menu"]').on('click', function () {
         $(this).parent('ul').find('li').each(function () {
-            var hasActive = $(this).hasClass('active');
+            let hasActive = $(this).hasClass('active');
             if (hasActive) {
                 $(this).removeClass('active');
             }
         });
         $(this).addClass('active');
-        var url = $(this).find('a').attr('dir');
+        let url = $(this).find('a').attr('dir');
         loadContent(url);
         /**
          * 由于一级菜单绑定了点击事件,二级菜单也绑定了点击事件,
@@ -36,7 +36,7 @@ function bindClickEventOnSecondMenu() {
  * 给所有的一级菜单绑定点击事件
  */
 function bindClickEventOnFirstMenu() {
-    var $slideBarMenu = getSidebarMenu();
+    let $slideBarMenu = getSidebarMenu();
     $slideBarMenu.find('li[dir="first_menu"]').on('click', function () {
         menuOperate($(this));
     });
