@@ -98,25 +98,21 @@
                                 <td th:text="${resource.orderNum}"></td>
                                 <td th:text="${resource.path}"></td>
                                 <td th:text="${resource.type}"></td>
-                                <td th:if="${resource.status == '1'}"><span th:text="启用" style="color:green"></span></td>
-                                <td th:unless="${resource.status == '1'}"><span th:text="停用" style="color:red"></span></td>
+                                <td th:if="${resource.status == '1'}" th:text="启用" style="color:green"></td>
+                                <td th:unless="${resource.status == '1'}" th:text="停用" style="color:red"></td>
 								<td>
-									<a th:onclick="'dialog(\'resources/' + ${resource.id} + '\', \'\', \'查看用户详情\', \'600px\')'" style="cursor:pointer;">
-										<i class="fa fa-folder"></i>
-										<span>查看</span>
-									</a>
-									<a th:onclick="'dialog(\'resources/page/update\', {id:' + ${resource.id} + '}, \'编辑用户\', \'600px\')'" style="cursor:pointer;">
-										<i class="fa fa-pencil"></i>
-										<span>编辑</span>
-									</a>
-									<a th:if="${resource.status == '1'}" th:onclick="'updateStatus(\'resources/\', ' + ${resource.id} + ', \'-1\')'" style="cursor:pointer;">
-										<i class="fa fa-trash-o"></i>
-										<span th:text="停用"></span>
-									</a>
-									<a th:if="${resource.status == '-1'}" th:onclick="'updateStatus(\'resources/\', ' + ${resource.id} + ', \'1\')'" style="cursor:pointer;">
-										<i class="fa fa-trash-o"></i>
-										<span th:text="启用"></span>
-									</a>
+                                    <a th:onclick="'dialog(\'resources/' + ${resource.id} + '\', \'\', \'查看用户详情\', \'600px\')'" class="btn btn-primary btn-xs">
+                                        <i class="fa fa-folder"></i> 查看
+                                    </a>
+                                    <a th:onclick="'dialog(\'resources/page/update\', {id:' + ${resource.id} + '}, \'编辑用户\', \'600px\')'" class="btn btn-info btn-xs">
+                                        <i class="fa fa-pencil"></i> 编辑
+                                    </a>
+                                    <a th:if="${resource.status == '1'}" th:onclick="'updateStatus(\'resources/\', ' + ${resource.id} + ', \'-1\')'" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-folder"></i> 停用
+                                    </a>
+                                    <a th:if="${resource.status == '-1'}" th:onclick="'updateStatus(\'resources/\', ' + ${resource.id} + ', \'1\')'" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-folder"></i> 启用
+                                    </a>
 								</td>
 							</tr>
                         </tbody>

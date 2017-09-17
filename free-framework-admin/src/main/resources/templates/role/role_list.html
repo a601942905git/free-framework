@@ -74,24 +74,24 @@
                             <tr th:each="role : ${pageInfo.list}">
                                 <td th:text="${role.id}"></td>
                                 <td th:text="${role.name}"></td>
-                                <td th:if="${role.status == '1'}"><span th:text="启用" style="color:green"></span></td>
-                                <td th:unless="${role.status == '1'}"><span th:text="停用" style="color:red"></span></td>
+                                <td th:if="${role.status == '1'}" th:text="启用" style="color:green"></td>
+                                <td th:unless="${role.status == '1'}" th:text="停用" style="color:red"></td>
                                 <td>
-                                    <a th:onclick="'dialog(\'roles/' + ${role.id} + '\', \'\', \'查看角色详情\', \'600px\')'" style="cursor:pointer;">
-                                        <i class="fa fa-folder"></i>
-                                        <span>查看</span>
+                                    <a th:onclick="'dialog(\'roles/' + ${role.id} + '\', \'\', \'查看角色详情\', \'600px\')'" class="btn btn-primary btn-xs">
+                                        <i class="fa fa-folder"></i> 查看
+                                    </a>
+                                    <a th:onclick="'dialog(\'roles/page/update\', {id:' + ${role.id} + '}, \'编辑角色\', \'600px\')'" class="btn btn-info btn-xs">
+                                        <i class="fa fa-pencil"></i> 编辑
+                                    </a>
+                                    <a th:if="${role.status == '1'}" th:onclick="'updateStatus(\'roles/\', ' + ${role.id} + ', \'-1\')'" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-folder"></i> 停用
+                                    </a>
+                                    <a th:if="${role.status == '-1'}" th:onclick="'updateStatus(\'roles/\', ' + ${role.id} + ', \'1\')'" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-folder"></i> 启用
                                     </a>
                                     <a th:onclick="'dialog(\'roles/page/update\', {id:' + ${role.id} + '}, \'编辑角色\', \'600px\')'" style="cursor:pointer;">
-                                        <i class="fa fa-pencil"></i>
-                                        <span>编辑</span>
-                                    </a>
-                                    <a th:if="${role.status == '1'}" th:onclick="'updateStatus(\'roles/\', ' + ${role.id} + ', \'-1\')'" style="cursor:pointer;">
-                                        <i class="fa fa-trash-o"></i>
-                                        <span th:text="停用"></span>
-                                    </a>
-                                    <a th:if="${role.status == '-1'}" th:onclick="'updateStatus(\'roles/\', ' + ${role.id} + ', \'1\')'" style="cursor:pointer;">
-                                        <i class="fa fa-trash-o"></i>
-                                        <span th:text="启用"></span>
+                                        <i class="fa fa-user"></i>
+                                        <span>授权</span>
                                     </a>
                                 </td>
                             </tr>

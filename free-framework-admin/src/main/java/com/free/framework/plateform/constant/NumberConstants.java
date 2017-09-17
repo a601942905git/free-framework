@@ -3,7 +3,7 @@ package com.free.framework.plateform.constant;
 /**
  * 阿拉伯数字常量
  */
-public interface NumberConsts {
+public interface NumberConstants {
 
     Integer ONE = 1;
 

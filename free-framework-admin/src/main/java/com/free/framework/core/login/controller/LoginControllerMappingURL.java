@@ -13,4 +13,6 @@ public interface LoginControllerMappingURL {
     String LOGIN_RETURN_PAGE = "login/login";
 
     String LOGIN = "login";
+
+    String LOG_OUT = "logout";
 }

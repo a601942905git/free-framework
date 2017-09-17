@@ -1,7 +1,7 @@
 package com.free.framework.plateform.common.service;
 
 import com.free.framework.plateform.common.controller.param.BaseParam;
-import com.free.framework.plateform.constant.SystemConsts;
+import com.free.framework.plateform.constant.SystemConstants;
 import com.github.pagehelper.PageHelper;
 
 /**
@@ -15,9 +15,9 @@ public class CommonService {
      */
     public void startPage(BaseParam baseParam) {
         Integer pageNo = baseParam.getPageNo();
-        pageNo = null == pageNo ? SystemConsts.PAGE_NO : pageNo;
+        pageNo = null == pageNo ? SystemConstants.PAGE_NO : pageNo;
         Integer pageSize = baseParam.getPageSize();
-        pageSize = null == pageSize ? SystemConsts.PAGE_SIZE : pageSize;
+        pageSize = null == pageSize ? SystemConstants.PAGE_SIZE : pageSize;
         PageHelper.startPage(pageNo, pageSize);
     }
 }

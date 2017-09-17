@@ -3,7 +3,7 @@ package com.free.framework.plateform.constant;
 /**
  * 系统级别的常量
  */
-public interface SystemConsts {
+public interface SystemConstants {
 
     /**
      * 当前页码
@@ -15,4 +15,5 @@ public interface SystemConsts {
      */
     Integer PAGE_SIZE = 15;
 
+    String REDIRECT = "redirect:";
 }

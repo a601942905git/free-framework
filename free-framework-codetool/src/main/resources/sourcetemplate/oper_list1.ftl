@@ -68,22 +68,18 @@
                             </#list>
                             </#if>
 								<td>
-									<a th:onclick="'dialog(\'${moduleName}s/' + ${r"${"}${moduleName}${r"."}${primaryProperty}} + '\', \'\', \'查看用户详情\', \'600px\')'" style="cursor:pointer;">
-										<i class="fa fa-folder"></i>
-										<span>查看</span>
-									</a>
-									<a th:onclick="'dialog(\'${moduleName}s/page/update\', {id:' + ${r"${"}${moduleName}${r"."}${primaryProperty}${r"}"} + '}, \'编辑用户\', \'600px\')'" style="cursor:pointer;">
-										<i class="fa fa-pencil"></i>
-										<span>编辑</span>
-									</a>
-									<a th:if="${r"${"}${moduleName}${r".status"} == '1'${r"}"}" th:onclick="'updateStatus(\'${moduleName}s/\', ' + ${r"${"}${moduleName}${r"."}${primaryProperty}${r"}"} + ', \'-1\')'" style="cursor:pointer;">
-										<i class="fa fa-trash-o"></i>
-										<span th:text="停用"></span>
-									</a>
-									<a th:if="${r"${"}${moduleName}${r".status"} == '-1'${r"}"}" th:onclick="'updateStatus(\'${moduleName}s/\', ' + ${r"${"}${moduleName}${r"."}${primaryProperty}${r"}"} + ', \'1\')'" style="cursor:pointer;">
-										<i class="fa fa-trash-o"></i>
-										<span th:text="启用"></span>
-									</a>
+                                    <a th:onclick="'dialog(\'${moduleName}s/' + ${r"${"}${moduleName}${r"."}${primaryProperty}} + '\', \'\', \'查看用户详情\', \'600px\')'" class="btn btn-primary btn-xs">
+                                        <i class="fa fa-folder"></i> 查看
+                                    </a>
+                                    <a th:onclick="'dialog(\'${moduleName}s/page/update\', {id:' + ${r"${"}${moduleName}${r"."}${primaryProperty}${r"}"} + '}, \'编辑用户\', \'600px\')'" class="btn btn-info btn-xs">
+                                        <i class="fa fa-pencil"></i> 编辑
+                                    </a>
+                                    <a th:if="${r"${"}${moduleName}${r".status"} == '1'${r"}"}" th:onclick="'updateStatus(\'${moduleName}s/\', ' + ${r"${"}${moduleName}${r"."}${primaryProperty}${r"}"} + ', \'-1\')'" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-folder"></i> 停用
+                                    </a>
+                                    <a th:if="${r"${"}${moduleName}${r".status"} == '-1'${r"}"}" th:onclick="'updateStatus(\'${moduleName}s/\', ' + ${r"${"}${moduleName}${r"."}${primaryProperty}${r"}"} + ', \'1\')'" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-folder"></i> 启用
+                                    </a>
 								</td>
 							</tr>
                         </tbody>
