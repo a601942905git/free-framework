@@ -3,7 +3,10 @@ package com.free.framework.core.user.service;
 import com.free.framework.core.user.controller.param.UserParam;
 import com.free.framework.core.user.entity.User;
 import com.free.framework.core.user.mapper.UserMapper;
+import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.plateform.common.service.CommonService;
+import com.free.framework.plateform.constant.StatusEnum;
+import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +63,13 @@ public class UserService extends CommonService {
      * @return
      */
     public Integer saveUser(User user) {
+        String loginCode = user.getLoginCode();
+        String loginPassword = user.getLoginPassword();
+        String encryptPassword = UserUtils.generateEncryptPassword(loginCode, loginPassword);
+        user.setLoginPassword(encryptPassword);
+        user.setSavePerson(UserUtils.getUserLoginCode());
+        user.setSaveDate(DateUtils.getCurrentDate());
+        user.setStatus(StatusEnum.ENABLE_STATUS.getId());
         return userMapper.saveUser(user);
     }
 
@@ -69,6 +79,8 @@ public class UserService extends CommonService {
      * @return
      */
     public Integer updateUser(User user) {
+        user.setUpdatePerson(UserUtils.getUserLoginCode());
+        user.setUpdateDate(DateUtils.getCurrentDate());
         return userMapper.updateUser(user);
     }
 }

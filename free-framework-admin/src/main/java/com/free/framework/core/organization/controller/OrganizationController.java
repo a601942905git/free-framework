@@ -1,21 +1,15 @@
 package com.free.framework.core.organization.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.github.pagehelper.PageInfo;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
 import com.free.framework.core.organization.controller.param.OrganizationParam;
 import com.free.framework.core.organization.entity.Organization;
 import com.free.framework.core.organization.service.OrganizationService;
-
 import com.free.framework.plateform.common.controller.BaseController;
-import com.free.framework.plateform.constant.StatusEnum;
-
-import java.util.Date;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -84,9 +78,6 @@ public class OrganizationController extends BaseController {
 	@PostMapping(OrganizationControllerMappingURL.ORGANIZATION)
 	@ResponseBody
 	public Integer saveOrganization(Organization organization){
-		organization.setSavePerson("111111");
-		organization.setSaveDate(new Date());
-		organization.setStatus(StatusEnum.ENABLE_STATUS.getId());
 		Integer count = organizationService.saveOrganization(organization);
 		return count;
 	}
@@ -98,8 +89,6 @@ public class OrganizationController extends BaseController {
 	@PutMapping(OrganizationControllerMappingURL.ORGANIZATION)
 	@ResponseBody
 	public Integer updateOrganization(Organization organization){
-		organization.setUpdatePerson("111111");
-		organization.setUpdateDate(new Date());
 		Integer count = organizationService.updateOrganization(organization);
 		return count;
 	}

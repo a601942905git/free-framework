@@ -4,14 +4,11 @@ import com.free.framework.core.role.controller.param.RoleParam;
 import com.free.framework.core.role.entity.Role;
 import com.free.framework.core.role.service.RoleService;
 import com.free.framework.plateform.common.controller.BaseController;
-import com.free.framework.plateform.constant.StatusEnum;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 /**
  * com.free.framework.core.role.controller.RoleController
@@ -69,9 +66,6 @@ public class RoleController extends BaseController {
     @PostMapping(RoleControllerMappingURL.ROLE)
     @ResponseBody
     public Integer save(Role role) {
-        role.setSavePerson("111111");
-        role.setSaveDate(new Date());
-        role.setStatus(StatusEnum.ENABLE_STATUS.getId());
         Integer count = roleService.saveRole(role);
         return count;
     }
@@ -95,8 +89,6 @@ public class RoleController extends BaseController {
     @PutMapping(RoleControllerMappingURL.ROLE)
     @ResponseBody
     public Integer update(Role role) {
-        role.setUpdatePerson("111111");
-        role.setUpdateDate(new Date());
         Integer count = roleService.updateRole(role);
         return count;
     }

@@ -5,14 +5,11 @@ import com.free.framework.core.user.controller.param.UserParam;
 import com.free.framework.core.user.entity.User;
 import com.free.framework.core.user.service.UserService;
 import com.free.framework.plateform.common.controller.BaseController;
-import com.free.framework.plateform.constant.StatusEnum;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 /**
  * Created by Administrator on 2017/6/3.
@@ -67,9 +64,6 @@ public class UserController extends BaseController {
     @PostMapping(UserControllerMappingURL.USER)
     @ResponseBody
     public Integer save(User user) {
-        user.setSavePerson("111111");
-        user.setSaveDate(new Date());
-        user.setStatus(StatusEnum.ENABLE_STATUS.getId());
         Integer count = userService.saveUser(user);
         return count;
     }
@@ -93,8 +87,6 @@ public class UserController extends BaseController {
     @PutMapping(UserControllerMappingURL.USER)
     @ResponseBody
     public Integer update(User user) {
-        user.setUpdatePerson("111111");
-        user.setUpdateDate(new Date());
         Integer count = userService.updateUser(user);
         return count;
     }

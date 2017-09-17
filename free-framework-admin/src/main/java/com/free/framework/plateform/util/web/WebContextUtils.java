@@ -5,6 +5,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * web上下文
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class WebContextUtils {
     /**
      * 获取request对象
-     * @return
+     * @return  request对象
      */
     public static HttpServletRequest getRequest() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -22,8 +23,34 @@ public class WebContextUtils {
     }
 
     /**
+     * 获取session对象
+     * @return  session对象
+     */
+    public static HttpSession getSession() {
+        return getRequest().getSession();
+    }
+
+    /**
+     * 设置session
+     * @param key       session的key
+     * @param value     session的value
+     */
+    public static void setSessionAttribute(String key, Object value) {
+        getSession().setAttribute(key, value);
+    }
+
+    /**
+     * 获取session中的value
+     * @param key   session的key
+     * @return      session的value
+     */
+    public static Object getSessionAttribute(String key) {
+        return getSession().getAttribute(key);
+    }
+
+    /**
      * 获取response对象
-     * @return
+     * @return  response对象
      */
     public static HttpServletResponse getResponse() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();

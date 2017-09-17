@@ -84,9 +84,6 @@ public class ${entityName}Controller extends BaseController {
 	@PostMapping(${entityName}ControllerMappingURL.${entityName?upper_case})
 	@ResponseBody
 	public Integer save${entityName}(${entityName} ${entityParamName}){
-		${entityParamName}.setSavePerson("111111");
-		${entityParamName}.setSaveDate(new Date());
-		${entityParamName}.setStatus(StatusEnum.ENABLE_STATUS.getId());
 		Integer count = ${entityParamName}Service.save${entityName}(${entityParamName});
 		return count;
 	}
@@ -98,8 +95,6 @@ public class ${entityName}Controller extends BaseController {
 	@PutMapping(${entityName}ControllerMappingURL.${entityName?upper_case})
 	@ResponseBody
 	public Integer update${entityName}(${entityName} ${entityParamName}){
-		${entityParamName}.setUpdatePerson("111111");
-		${entityParamName}.setUpdateDate(new Date());
 		Integer count = ${entityParamName}Service.update${entityName}(${entityParamName});
 		return count;
 	}

@@ -150,4 +150,12 @@ public class DateUtils {
         Long systemMillis = clock.millis();
         return systemMillis;
     }
+
+    /**
+     * 获取当前系统时间
+     * @return  返回当前系统时间
+     */
+    public static Date getCurrentDate() {
+        return new Date();
+    }
 }

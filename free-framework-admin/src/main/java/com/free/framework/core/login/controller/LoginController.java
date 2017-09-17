@@ -1,16 +1,14 @@
-package com.free.framework.core.login;
+package com.free.framework.core.login.controller;
 
-import com.free.framework.core.user.entity.User;
+import com.free.framework.core.login.param.LoginParam;
+import com.free.framework.core.login.service.LoginService;
+import com.free.framework.plateform.common.response.ResponseData;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
-import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * com.free.framework.core.login.LoginController
@@ -22,12 +20,31 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Slf4j
 public class LoginController {
 
-    @GetMapping(LoginControllerMappingURL.LOGIN_PAGE)
+    @Autowired
+    private LoginService loginService;
+
+    /**
+     * 请求登陆页面
+     * @return  登陆页面
+     */
+    @GetMapping(LoginControllerMappingURL.LOGIN_CONTROLLER)
     public String loginPage(){
         return LoginControllerMappingURL.LOGIN_RETURN_PAGE;
     }
 
-    @GetMapping(value="/login")
+    /**
+     * 登陆
+     * @param loginParam    登陆信息
+     * @return  是否登陆成功
+     */
+    @PostMapping(LoginControllerMappingURL.LOGIN)
+    @ResponseBody
+    public ResponseData login(LoginParam loginParam) {
+        ResponseData responseData = loginService.login(loginParam);
+        return responseData;
+    }
+
+    /*@GetMapping(value="/login")
     public String loginForm(Model model){
         model.addAttribute("user", new User());
         return "login";
@@ -87,5 +104,5 @@ public class LoginController {
     public String unauthorizedRole(){
         log.info("------没有权限-------");
         return "403";
-    }
+    }*/
 }

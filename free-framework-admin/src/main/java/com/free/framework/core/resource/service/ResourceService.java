@@ -1,17 +1,18 @@
 package com.free.framework.core.resource.service;
 
-import java.util.List;
-
-import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.free.framework.core.resource.controller.param.ResourceParam;
 import com.free.framework.core.resource.entity.Resource;
 import com.free.framework.core.resource.mapper.ResourceMapper;
+import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.plateform.common.service.CommonService;
+import com.free.framework.plateform.constant.StatusEnum;
+import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 /**
  * 操作相关
  */
@@ -51,6 +52,9 @@ public class ResourceService extends CommonService {
 	 * @param resource
 	 */
 	public Integer saveResource(Resource resource){
+		resource.setSavePerson(UserUtils.getUserLoginCode());
+		resource.setSaveDate(DateUtils.getCurrentDate());
+		resource.setStatus(StatusEnum.ENABLE_STATUS.getId());
 		return resourceMapper.saveResource(resource);
 	}
 	
@@ -59,6 +63,8 @@ public class ResourceService extends CommonService {
 	 * @param resource
 	 */
 	public Integer updateResource(Resource resource){
+		resource.setUpdatePerson(UserUtils.getUserLoginCode());
+		resource.setUpdateDate(DateUtils.getCurrentDate());
 		return resourceMapper.updateResource(resource);
 	}
 }

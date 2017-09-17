@@ -3,7 +3,10 @@ package com.free.framework.core.organization.service;
 import com.free.framework.core.organization.controller.param.OrganizationParam;
 import com.free.framework.core.organization.entity.Organization;
 import com.free.framework.core.organization.mapper.OrganizationMapper;
+import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.plateform.common.service.CommonService;
+import com.free.framework.plateform.constant.StatusEnum;
+import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +52,9 @@ public class OrganizationService extends CommonService {
 	 * @param organization
 	 */
 	public Integer saveOrganization(Organization organization){
+		organization.setSavePerson(UserUtils.getUserLoginCode());
+		organization.setSaveDate(DateUtils.getCurrentDate());
+		organization.setStatus(StatusEnum.ENABLE_STATUS.getId());
 		return organizationMapper.saveOrganization(organization);
 	}
 	
@@ -57,6 +63,8 @@ public class OrganizationService extends CommonService {
 	 * @param organization
 	 */
 	public Integer updateOrganization(Organization organization){
+		organization.setUpdatePerson(UserUtils.getUserLoginCode());
+		organization.setUpdateDate(DateUtils.getCurrentDate());
 		return organizationMapper.updateOrganization(organization);
 	}
 }

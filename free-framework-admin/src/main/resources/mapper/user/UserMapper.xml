@@ -52,6 +52,7 @@
             free_user
         WHERE
             ID = #{id}
+        LIMIT 1
     </select>
 
     <!--根据登陆账号查询用户信息-->
@@ -62,6 +63,7 @@
             free_user
         WHERE
             LOGIN_CODE = #{loginCode}
+        LIMIT 1
     </select>
 
     <!--新增用户-->

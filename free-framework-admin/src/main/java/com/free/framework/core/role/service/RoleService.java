@@ -3,7 +3,10 @@ package com.free.framework.core.role.service;
 import com.free.framework.core.role.controller.param.RoleParam;
 import com.free.framework.core.role.entity.Role;
 import com.free.framework.core.role.mapper.RoleMapper;
+import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.plateform.common.service.CommonService;
+import com.free.framework.plateform.constant.StatusEnum;
+import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,19 +53,24 @@ public class RoleService extends CommonService{
 
     /**
      * 新增角色信息
-     * @param Role  角色对象
+     * @param role  角色对象
      * @return
      */
-    public Integer saveRole(Role Role) {
-        return roleMapper.saveRole(Role);
+    public Integer saveRole(Role role) {
+        role.setSavePerson(UserUtils.getUserLoginCode());
+        role.setSaveDate(DateUtils.getCurrentDate());
+        role.setStatus(StatusEnum.ENABLE_STATUS.getId());
+        return roleMapper.saveRole(role);
     }
 
     /**
      * 修改角色信息
-     * @param Role  角色对象
+     * @param role  角色对象
      * @return
      */
-    public Integer updateRole(Role Role) {
-        return roleMapper.updateRole(Role);
+    public Integer updateRole(Role role) {
+        role.setUpdatePerson(UserUtils.getUserLoginCode());
+        role.setUpdateDate(DateUtils.getCurrentDate());
+        return roleMapper.updateRole(role);
     }
 }

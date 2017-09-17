@@ -12,8 +12,12 @@ import org.springframework.stereotype.Service;
 import ${basePackage}.${baseCorePackage}.${moduleName}.${actionPackage}.param.${entityName}Param;
 import ${basePackage}.${baseCorePackage}.${moduleName}.${entityPackage}.${entityCamelName};
 import ${basePackage}.${baseCorePackage}.${moduleName}.${daoPackage}.${entityName}Mapper;
+import com.free.framework.core.user.util.UserUtils;
+import com.free.framework.util.date.DateUtils;
 import com.free.framework.plateform.common.service.CommonService;
 import com.github.pagehelper.PageInfo;
+
+import java.util.Date;
 /**
  * ${remark!}操作相关
  */
@@ -53,6 +57,9 @@ public class ${entityName}Service extends CommonService {
 	 * @param ${entityParamName}
 	 */
 	public Integer save${entityName}(${entityName} ${entityParamName}){
+		${entityParamName}.setSavePerson(UserUtils.getUserLoginCode());
+		${entityParamName}.setSaveDate(DateUtils.getCurrentDate());
+		${entityParamName}.setStatus(StatusEnum.ENABLE_STATUS.getId());
 		return ${entityParamName}Mapper.save${entityName}(${entityParamName});
 	}
 	
@@ -61,6 +68,8 @@ public class ${entityName}Service extends CommonService {
 	 * @param ${entityParamName}
 	 */
 	public Integer update${entityName}(${entityName} ${entityParamName}){
+		${entityParamName}.setUpdatePerson(UserUtils.getUserLoginCode());
+		${entityParamName}.setUpdateDate(DateUtils.getCurrentDate());
 		return ${entityParamName}Mapper.update${entityName}(${entityParamName});
 	}
 }

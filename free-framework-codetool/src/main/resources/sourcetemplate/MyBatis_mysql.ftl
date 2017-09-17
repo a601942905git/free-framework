@@ -8,7 +8,7 @@
   	</sql>
   	
   	<select id="get${entityName}" resultType="${basePackage}.${baseCorePackage}.${moduleName}.${entityPackage}.${entityCamelName}" parameterType="${primaryPropertyType}">
-  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM ${tableFullName} WHERE ${primaryKey!}=${'#'}{${primaryProperty!}}
+  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM ${tableFullName} WHERE ${primaryKey!}=${'#'}{${primaryProperty!}} LIMIT 1
   	</select>
   
   	<select id="list${entityName}" resultType="${basePackage}.${baseCorePackage}.${moduleName}.${entityPackage}.${entityCamelName}" parameterType="${basePackage}.${baseCorePackage}.${moduleName}.${actionPackage}.param.${entityName}Param">
