@@ -3,7 +3,7 @@ package com.free.framework.core.user.util;
 import com.free.framework.core.user.constants.UserConstants;
 import com.free.framework.core.user.entity.User;
 import com.free.framework.plateform.util.web.WebContextUtils;
-import com.free.framework.util.MD5Utils;
+import com.free.framework.util.encrypt.MD5Utils;
 import lombok.extern.slf4j.Slf4j;
 
 /**

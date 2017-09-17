@@ -1,4 +1,4 @@
-package com.free.framework.util;
+package com.free.framework.util.encrypt;
 
 import java.security.MessageDigest;
 
@@ -17,7 +17,7 @@ public class MD5Utils {
      * @return encode结果
      */
     public static String encode(String data) throws Exception {
-        java.security.MessageDigest md = MessageDigest.getInstance("MD5");
+        MessageDigest md = MessageDigest.getInstance("MD5");
         byte[] array = md.digest(data.getBytes("UTF-8"));
         StringBuilder sb = new StringBuilder();
         for (byte item : array) {
