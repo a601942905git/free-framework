@@ -98,7 +98,7 @@ $('input[type="button"]').click(function () {
         //登陆
         var JsonData = { loginCode: login, loginPassword: pwd, code: code };
         //此处做为ajax内部判断
-        var url = "/login";
+        var url = "login";
         AjaxPost(url, JsonData,
             function () {
                 //ajax加载中
@@ -124,7 +124,7 @@ $('input[type="button"]').click(function () {
                         //登录成功
                         $('.login div').fadeOut(100);
                         //跳转操作
-                        window.location.href = "/index";
+                        window.location.href = "index";
                     } else {
                         ErroAlert(data.message);
                     }

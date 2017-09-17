@@ -13,7 +13,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="/images/img.jpg" alt="..." class="img-circle profile_img"/>
+                        <img th:src="@{/images/img.jpg}" alt="..." class="img-circle profile_img"/>
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
@@ -36,10 +36,10 @@
                                     <span class="fa fa-chevron-down"></span>
                                 </a>
                                 <ul class="nav child_menu">
-                                    <li dir="second_menu"><a href="javascript:void(0);" dir="/organizations/">组织管理</a></li>
-                                    <li dir="second_menu"><a href="javascript:void(0);" dir="/users/">用户管理</a></li>
-                                    <li dir="second_menu"><a href="javascript:void(0);" dir="/roles/">角色管理</a></li>
-                                    <li dir="second_menu"><a href="javascript:void(0);" dir="/resources/">资源管理</a></li>
+                                    <li dir="second_menu"><a href="javascript:void(0);" dir="organizations/">组织管理</a></li>
+                                    <li dir="second_menu"><a href="javascript:void(0);" dir="users/">用户管理</a></li>
+                                    <li dir="second_menu"><a href="javascript:void(0);" dir="roles/">角色管理</a></li>
+                                    <li dir="second_menu"><a href="javascript:void(0);" dir="resources/">资源管理</a></li>
                                 </ul>
                             </li>
                             <li dir="first_menu">
@@ -49,7 +49,7 @@
                                     <span class="fa fa-chevron-down"></span>
                                 </a>
                                 <ul class="nav child_menu">
-                                    <li dir="second_menu"><a href="javascript:void(0);" dir="/code/tool/">生成代码</a></li>
+                                    <li dir="second_menu"><a href="javascript:void(0);" dir="code/tool/">生成代码</a></li>
                                 </ul>
                             </li>
                         </ul>

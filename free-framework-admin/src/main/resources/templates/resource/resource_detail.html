@@ -10,70 +10,42 @@
                     <table class="table" th:object="${resource}">
                         <tbody>
                             <tr>
-                                <td>:</td>
+                                <td>编号:</td>
                                 <td th:text="*{id}"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>:</td>
+                                <td>名称:</td>
                                 <td th:text="*{name}"></td>
-                                <td></td>
-                                <td></td>
                             </tr>
                             <tr>
-                                <td>:</td>
+                                <td>上级资源:</td>
                                 <td th:text="*{pid}"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>:</td>
+                                <td>排序编号:</td>
                                 <td th:text="*{orderNum}"></td>
-                                <td></td>
-                                <td></td>
                             </tr>
                             <tr>
-                                <td>:</td>
+                                <td>类型:</td>
+                                <td th:text="*{orderNum}"></td>
+                                <td>状态:</td>
+                                <td th:if="*{type == '1'}" style="color: green;">操作</td>
+                                <td th:if="*{type == '2'}" style="color: red;">功能</td>
+                            </tr>
+                            <tr>
+                                <td>路径:</td>
                                 <td th:text="*{path}"></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>1菜单2操作:</td>
-                                <td th:text="*{type}"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>1启用-1停用:</td>
-                                <td th:text="*{status}"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>:</td>
-                                <td th:text="*{saveDate}"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>:</td>
+                                <td>添加人:</td>
                                 <td th:text="*{savePerson}"></td>
-                                <td></td>
-                                <td></td>
+                                <td>添加时间:</td>
+                                <td th:text="*{#dates.format(saveDate, 'yyyy-MM-dd HH:mm:ss') }"></td>
                             </tr>
                             <tr>
-                                <td>:</td>
-                                <td th:text="*{updateDate}"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>:</td>
+                                <td>修改人:</td>
                                 <td th:text="*{updatePerson}"></td>
-                                <td></td>
-                                <td></td>
+                                <td>修改时间:</td>
+                                <td th:if="*{null == updateDate}"></td>
+                                <td th:if="*{null != updateDate}" th:text="*{#dates.format(updateDate, 'yyyy-MM-dd HH:mm:ss') }"></td>
                             </tr>
                         </tbody>
                     </table>

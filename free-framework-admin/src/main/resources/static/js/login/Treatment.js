@@ -7,7 +7,7 @@ function AjaxPost(Url,JsonData,LodingFun,ReturnFun) {
         dataType: 'json',
         async: 'false',
         beforeSend: LodingFun,
-        error: function () { AjaxErro({ "Status": "Erro", "Erro": "500" }); },
+        error: function (ex) { console.log(ex.status + "====" + ex.responseText) },
         success: ReturnFun
     });
 }
