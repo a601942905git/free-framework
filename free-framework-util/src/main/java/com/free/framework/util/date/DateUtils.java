@@ -1,6 +1,6 @@
 package com.free.framework.util.date;
 
-import com.free.framework.util.date.constant.FormatterPatternConsts;
+import com.free.framework.util.date.constant.FormatterPatternConstants;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.*;
@@ -25,7 +25,7 @@ public class DateUtils {
         LocalDate localDate = LocalDate.now();
         formatPattern = StringUtils.isNotEmpty(formatPattern)
                 ? formatPattern
-                : FormatterPatternConsts.DATE_FORMAT_PATTERN;
+                : FormatterPatternConstants.DATE_FORMAT_PATTERN;
         DateTimeFormatter dateTimeFormatter = getDateTimeFormatter(formatPattern);
         date = dateTimeFormatter.format(localDate);
         return date;
@@ -43,7 +43,7 @@ public class DateUtils {
         String dateTime;
         LocalDateTime localDate = LocalDateTime.now();
         formatPattern = StringUtils.isNotEmpty(formatPattern)
-                ? formatPattern : FormatterPatternConsts.DATE_TIME_FORMAT_PATTERN;
+                ? formatPattern : FormatterPatternConstants.DATE_TIME_FORMAT_PATTERN;
         DateTimeFormatter dateTimeFormatter = getDateTimeFormatter(formatPattern);
         dateTime = dateTimeFormatter.format(localDate);
         return dateTime;

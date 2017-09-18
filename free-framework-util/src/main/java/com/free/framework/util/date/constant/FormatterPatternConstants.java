@@ -3,7 +3,7 @@ package com.free.framework.util.date.constant;
 /**
  * Created by Administrator on 2017/6/12.
  */
-public interface FormatterPatternConsts {
+public interface FormatterPatternConstants {
 
     /**
      * 年月日时分秒
