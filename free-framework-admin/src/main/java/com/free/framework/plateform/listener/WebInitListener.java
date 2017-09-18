@@ -3,10 +3,11 @@ package com.free.framework.plateform.listener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
+
+import javax.servlet.annotation.WebListener;
 
 @Slf4j
-@Component
+@WebListener
 public class WebInitListener implements ApplicationListener<EmbeddedServletContainerInitializedEvent>{
 
     @Override
