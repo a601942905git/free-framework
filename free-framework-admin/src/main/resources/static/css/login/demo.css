@@ -18,7 +18,14 @@ input:-ms-input-placeholder{
 input::-webkit-input-placeholder{
     color: #CECFD2;opacity:1;
 }
-html, body { padding: 0; margin: 0; height: 100%; font-size: 16px; background-repeat: no-repeat; background-position: left top; background-color: #242645; color: #fff; font-family: 'Source Sans Pro'; background-size: 100%; background-image: url(/images/login/Starry.jpg); }
+html, body {
+	padding: 0; margin: 0; height: 100%; font-size: 16px;
+	background-repeat: no-repeat; background-position: left top; background-color: #242645;
+	color: #fff; font-family: 'Source Sans Pro'; background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	background-image: url(/images/login/Starry.jpg);
+}
 
 h1 {
 	font-size: 2.8em;

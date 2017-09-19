@@ -1,9 +1,5 @@
 var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
 var ajaxmockjax = 0;//是否启用虚拟Ajax的请求响 0 不启用  1 启用
-//默认账号密码
-
-var truelogin = "kbcxy";
-var truepwd = "mcwjs";
 
 var CodeVal = 0;
 Code();
