@@ -30,6 +30,13 @@
             </exclusions>
         </dependency>
 
+        <!--spring boot devtools-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!--thymeleaf-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

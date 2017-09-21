@@ -31,7 +31,7 @@ public class LoginController {
      * @return  登陆页面
      */
     @GetMapping(LoginControllerMappingURL.LOGIN_CONTROLLER)
-    public String loginPage(){
+    public String loginPage() {
         return LoginControllerMappingURL.LOGIN_RETURN_PAGE;
     }
 

@@ -42,6 +42,16 @@
     <!--manage dependency-->
     <dependencyManagement>
         <dependencies>
+
+            <!-- Override Spring Data release train provided by Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-releasetrain</artifactId>
+                <version>Fowler-SR2</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
             <!--spring boot parent-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
