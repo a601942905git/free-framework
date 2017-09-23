@@ -5,6 +5,7 @@ import com.free.framework.core.resource.controller.param.ResourceParam;
 import com.free.framework.core.resource.entity.Resource;
 import com.free.framework.core.resource.service.ResourceService;
 import com.free.framework.plateform.common.controller.BaseController;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,9 +78,9 @@ public class ResourceController extends BaseController {
 	 */
 	@PostMapping(ResourceControllerMappingURL.RESOURCE)
 	@ResponseBody
-	public Integer saveResource(Resource resource){
-		Integer count = resourceService.saveResource(resource);
-		return count;
+	public ResponseData saveResource(Resource resource){
+		ResponseData responseData = resourceService.saveResource(resource);
+		return responseData;
 	}
 	
 	/**
@@ -88,8 +89,8 @@ public class ResourceController extends BaseController {
 	 */
 	@PutMapping(ResourceControllerMappingURL.RESOURCE)
 	@ResponseBody
-	public Integer updateResource(Resource resource){
-		Integer count = resourceService.updateResource(resource);
-		return count;
+	public ResponseData updateResource(Resource resource){
+		ResponseData responseData = resourceService.updateResource(resource);
+		return responseData;
 	}
 }

@@ -5,6 +5,7 @@ import com.free.framework.core.organization.controller.param.OrganizationParam;
 import com.free.framework.core.organization.entity.Organization;
 import com.free.framework.core.organization.service.OrganizationService;
 import com.free.framework.plateform.common.controller.BaseController;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,9 +78,9 @@ public class OrganizationController extends BaseController {
 	 */
 	@PostMapping(OrganizationControllerMappingURL.ORGANIZATION)
 	@ResponseBody
-	public Integer saveOrganization(Organization organization){
-		Integer count = organizationService.saveOrganization(organization);
-		return count;
+	public ResponseData saveOrganization(Organization organization){
+		ResponseData responseData = organizationService.saveOrganization(organization);
+		return responseData;
 	}
 	
 	/**
@@ -88,9 +89,9 @@ public class OrganizationController extends BaseController {
 	 */
 	@PutMapping(OrganizationControllerMappingURL.ORGANIZATION)
 	@ResponseBody
-	public Integer updateOrganization(Organization organization){
-		Integer count = organizationService.updateOrganization(organization);
-		return count;
+	public ResponseData updateOrganization(Organization organization){
+		ResponseData responseData = organizationService.updateOrganization(organization);
+		return responseData;
 	}
 
 

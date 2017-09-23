@@ -5,6 +5,7 @@ import com.free.framework.core.user.controller.param.UserParam;
 import com.free.framework.core.user.entity.User;
 import com.free.framework.core.user.service.UserService;
 import com.free.framework.plateform.common.controller.BaseController;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,9 +64,9 @@ public class UserController extends BaseController {
      */
     @PostMapping(UserControllerMappingURL.USER)
     @ResponseBody
-    public Integer save(User user) {
-        Integer count = userService.saveUser(user);
-        return count;
+    public ResponseData save(User user) {
+        ResponseData responseData = userService.saveUser(user);
+        return responseData;
     }
 
     /**
@@ -86,8 +87,8 @@ public class UserController extends BaseController {
      */
     @PutMapping(UserControllerMappingURL.USER)
     @ResponseBody
-    public Integer update(User user) {
-        Integer count = userService.updateUser(user);
-        return count;
+    public ResponseData update(User user) {
+        ResponseData responseData = userService.updateUser(user);
+        return responseData;
     }
 }

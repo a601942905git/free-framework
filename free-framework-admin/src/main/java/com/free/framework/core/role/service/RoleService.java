@@ -4,6 +4,7 @@ import com.free.framework.core.role.controller.param.RoleParam;
 import com.free.framework.core.role.entity.Role;
 import com.free.framework.core.role.mapper.RoleMapper;
 import com.free.framework.core.user.util.UserUtils;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
 import com.free.framework.plateform.constant.StatusEnum;
 import com.free.framework.util.date.DateUtils;
@@ -56,11 +57,12 @@ public class RoleService extends CommonService{
      * @param role  角色对象
      * @return
      */
-    public Integer saveRole(Role role) {
+    public ResponseData saveRole(Role role) {
         role.setSavePerson(UserUtils.getUserLoginCode());
         role.setSaveDate(DateUtils.getCurrentDate());
         role.setStatus(StatusEnum.ENABLE_STATUS.getId());
-        return roleMapper.saveRole(role);
+        int count = roleMapper.saveRole(role);
+        return count == 1 ? ResponseData.success() : ResponseData.fail();
     }
 
     /**
@@ -68,9 +70,10 @@ public class RoleService extends CommonService{
      * @param role  角色对象
      * @return
      */
-    public Integer updateRole(Role role) {
+    public ResponseData updateRole(Role role) {
         role.setUpdatePerson(UserUtils.getUserLoginCode());
         role.setUpdateDate(DateUtils.getCurrentDate());
-        return roleMapper.updateRole(role);
+        int count = roleMapper.updateRole(role);
+        return count == 1 ? ResponseData.success() : ResponseData.fail();
     }
 }

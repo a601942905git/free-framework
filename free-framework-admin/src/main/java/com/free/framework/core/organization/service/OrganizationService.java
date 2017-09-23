@@ -5,6 +5,7 @@ import com.free.framework.core.organization.entity.Organization;
 import com.free.framework.core.organization.mapper.OrganizationMapper;
 import com.free.framework.core.organization.vo.OrganizationTreeVO;
 import com.free.framework.core.user.util.UserUtils;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
 import com.free.framework.plateform.constant.StatusEnum;
 import com.free.framework.plateform.constant.SystemConstants;
@@ -57,21 +58,23 @@ public class OrganizationService extends CommonService {
 	 * 新增保存
 	 * @param organization
 	 */
-	public Integer saveOrganization(Organization organization){
+	public ResponseData saveOrganization(Organization organization){
 		organization.setSavePerson(UserUtils.getUserLoginCode());
 		organization.setSaveDate(DateUtils.getCurrentDate());
 		organization.setStatus(StatusEnum.ENABLE_STATUS.getId());
-		return organizationMapper.saveOrganization(organization);
+		int count = organizationMapper.saveOrganization(organization);
+		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}
 	
 	/**
 	 * 修改
 	 * @param organization
 	 */
-	public Integer updateOrganization(Organization organization){
+	public ResponseData updateOrganization(Organization organization){
 		organization.setUpdatePerson(UserUtils.getUserLoginCode());
 		organization.setUpdateDate(DateUtils.getCurrentDate());
-		return organizationMapper.updateOrganization(organization);
+		int count = organizationMapper.updateOrganization(organization);
+		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}
 
 	/**

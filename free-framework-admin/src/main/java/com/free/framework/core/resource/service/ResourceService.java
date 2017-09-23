@@ -5,6 +5,7 @@ import com.free.framework.core.resource.entity.Resource;
 import com.free.framework.core.resource.mapper.ResourceMapper;
 import com.free.framework.core.resource.vo.ResourceTreeVO;
 import com.free.framework.core.user.util.UserUtils;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
 import com.free.framework.plateform.constant.StatusEnum;
 import com.free.framework.plateform.constant.SystemConstants;
@@ -58,21 +59,23 @@ public class ResourceService extends CommonService {
 	 * 新增保存
 	 * @param resource
 	 */
-	public Integer saveResource(Resource resource){
+	public ResponseData saveResource(Resource resource){
 		resource.setSavePerson(UserUtils.getUserLoginCode());
 		resource.setSaveDate(DateUtils.getCurrentDate());
 		resource.setStatus(StatusEnum.ENABLE_STATUS.getId());
-		return resourceMapper.saveResource(resource);
+		int count = resourceMapper.saveResource(resource);
+		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}
 	
 	/**
 	 * 修改
 	 * @param resource
 	 */
-	public Integer updateResource(Resource resource){
+	public ResponseData updateResource(Resource resource){
 		resource.setUpdatePerson(UserUtils.getUserLoginCode());
 		resource.setUpdateDate(DateUtils.getCurrentDate());
-		return resourceMapper.updateResource(resource);
+		int count = resourceMapper.updateResource(resource);
+		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}
 
 	/**

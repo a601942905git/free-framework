@@ -4,6 +4,7 @@ import com.free.framework.core.role.controller.param.RoleParam;
 import com.free.framework.core.role.entity.Role;
 import com.free.framework.core.role.service.RoleService;
 import com.free.framework.plateform.common.controller.BaseController;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,9 +66,9 @@ public class RoleController extends BaseController {
      */
     @PostMapping(RoleControllerMappingURL.ROLE)
     @ResponseBody
-    public Integer save(Role role) {
-        Integer count = roleService.saveRole(role);
-        return count;
+    public ResponseData save(Role role) {
+        ResponseData responseData = roleService.saveRole(role);
+        return responseData;
     }
 
     /**
@@ -88,8 +89,8 @@ public class RoleController extends BaseController {
      */
     @PutMapping(RoleControllerMappingURL.ROLE)
     @ResponseBody
-    public Integer update(Role role) {
-        Integer count = roleService.updateRole(role);
-        return count;
+    public ResponseData update(Role role) {
+        ResponseData responseData = roleService.updateRole(role);
+        return responseData;
     }
 }
