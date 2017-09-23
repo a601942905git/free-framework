@@ -2,6 +2,7 @@ package com.free.framework.core.organization.mapper;
 
 import com.free.framework.core.organization.controller.param.OrganizationParam;
 import com.free.framework.core.organization.entity.Organization;
+import com.free.framework.core.organization.vo.OrganizationTreeVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -37,4 +38,10 @@ public interface OrganizationMapper {
 	 * @return
 	 */
 	List<Organization> listOrganization(OrganizationParam organizationParam);
+
+	/**
+	 * 查询组织列表,提供给前台select展示
+	 * @return
+	 */
+    List<OrganizationTreeVO> listOrganizationSelect();
 }

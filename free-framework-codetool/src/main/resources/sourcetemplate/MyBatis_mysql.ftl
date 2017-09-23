@@ -48,15 +48,15 @@
 	    	</#if>
 	    	<#if jdbcType=="CHAR" || jdbcType=="VARCHAR" || jdbcType=="TEXT" || jdbcType=="BINARY" || jdbcType=="VARBINARY" || jdbcType=="BLOB">
 	    		<if test="null != ${col.propertyName} and ${col.propertyName} != ''">
-					${col.columnName}=${'#'}{${col.propertyName}},
+					${col.columnName} = ${'#'}{${col.propertyName}},
 				</if>
 				<#else>
 				<if test="null != ${col.propertyName}">
-					${col.columnName}=${'#'}{${col.propertyName}},
+					${col.columnName} = ${'#'}{${col.propertyName}},
 				</if>
 	    	</#if>
 	  		</#list>
   		</trim>
-  		WHERE ${primaryKey!}=${'#'}{${primaryProperty!}}
+  		WHERE ${primaryKey!} = ${'#'}{${primaryProperty!}}
   	</update>
 </mapper>

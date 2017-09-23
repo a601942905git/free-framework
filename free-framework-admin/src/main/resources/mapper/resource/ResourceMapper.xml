@@ -16,29 +16,41 @@
   	</sql>
   	
   	<select id="getResource" resultType="com.free.framework.core.resource.entity.Resource" parameterType="Integer">
-  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_resource WHERE ID=#{id}
+  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_resource WHERE ID=#{id} LIMIT 1
   	</select>
   
   	<select id="listResource" resultType="com.free.framework.core.resource.entity.Resource" parameterType="com.free.framework.core.resource.controller.param.ResourceParam">
   		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_resource WHERE 1=1
   		<if test="id!=null and id!=''">
-  			AND ID =# {id}
+  			AND ID = #{id}
   		</if>
   		<if test="name!=null and name!=''">
-  			AND NAME =# {name}
+  			AND NAME = #{name}
   		</if>
   		<if test="pid!=null and pid!=''">
-  			AND PID =# {pid}
+  			AND PID = #{pid}
   		</if>
   		<if test="type!=null and type!='' and type != 0">
-  			AND TYPE =# {type}
+  			AND TYPE = #{type}
   		</if>
 		<if test="status != null and status != '' and status != 0">
 			AND STATUS = #{status}
 		</if>
   	</select>
-  
-  	<insert id="saveResource" parameterType="com.free.framework.core.resource.entity.Resource">
+
+	<!--查询资源列表信息-->
+	<select id="listResourceTree" resultType="com.free.framework.core.resource.vo.ResourceTreeVO">
+		SELECT
+			ID,
+			NAME,
+			PID,
+			ORDER_NUM
+		FROM
+			free_resource
+		WHERE STATUS = '1'
+	</select>
+
+	<insert id="saveResource" parameterType="com.free.framework.core.resource.entity.Resource">
   		INSERT INTO free_resource 
   		(
 			
@@ -72,37 +84,37 @@
   		UPDATE free_resource SET 
   		<trim suffixOverrides=",">
 				<if test="null != id">
-					ID=#{id},
+					ID = #{id},
 				</if>
 	    		<if test="null != name and name != ''">
-					NAME=#{name},
+					NAME = #{name},
 				</if>
 				<if test="null != pid">
-					PID=#{pid},
+					PID = #{pid},
 				</if>
 				<if test="null != orderNum">
-					ORDER_NUM=#{orderNum},
+					ORDER_NUM = #{orderNum},
 				</if>
 	    		<if test="null != path and path != ''">
-					PATH=#{path},
+					PATH = #{path},
 				</if>
 				<if test="null != type">
-					TYPE=#{type},
+					TYPE = #{type},
 				</if>
 				<if test="null != status">
-					STATUS=#{status},
+					STATUS = #{status},
 				</if>
 				<if test="null != saveDate">
-					SAVE_DATE=#{saveDate},
+					SAVE_DATE = #{saveDate},
 				</if>
 	    		<if test="null != savePerson and savePerson != ''">
-					SAVE_PERSON=#{savePerson},
+					SAVE_PERSON = #{savePerson},
 				</if>
 				<if test="null != updateDate">
-					UPDATE_DATE=#{updateDate},
+					UPDATE_DATE = #{updateDate},
 				</if>
 	    		<if test="null != updatePerson and updatePerson != ''">
-					UPDATE_PERSON=#{updatePerson},
+					UPDATE_PERSON = #{updatePerson},
 				</if>
   		</trim>
   		WHERE ID=#{id}

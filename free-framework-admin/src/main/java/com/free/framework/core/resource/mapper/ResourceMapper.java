@@ -1,9 +1,11 @@
 package com.free.framework.core.resource.mapper;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Mapper;
-import com.free.framework.core.resource.entity.Resource;
 import com.free.framework.core.resource.controller.param.ResourceParam;
+import com.free.framework.core.resource.entity.Resource;
+import com.free.framework.core.resource.vo.ResourceTreeVO;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 操作相关
@@ -36,4 +38,10 @@ public interface ResourceMapper {
 	 * @return
 	 */
 	List<Resource> listResource(ResourceParam resourceParam);
+
+	/**
+	 * 查询资源列表信息
+	 * @return
+	 */
+    List<ResourceTreeVO> listResourceTree();
 }

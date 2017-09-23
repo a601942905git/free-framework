@@ -29,6 +29,11 @@ public interface OrganizationControllerMappingURL {
 	String PAGE_UPDATE = "/page/update";
 
 	/**
+	 * 组织树请求映射路径
+	 */
+	String PAGE_ORGANIZATION_TREE = "/page/organization/tree";
+
+	/**
 	* 列表页返回路径
 	*/
 	String PAGE_LIST_RETURN = "organization/organization_list";
@@ -47,4 +52,9 @@ public interface OrganizationControllerMappingURL {
 	* 修改页面返回路径
 	*/
 	String PAGE_UPDATE_RETURN = "organization/organization_update";
+
+	/**
+	 * 组织树返回路径
+	 */
+	String PAGE_ORGANIZATION_TREE_RETURN = "organization/organization_tree";
 }

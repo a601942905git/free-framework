@@ -92,4 +92,10 @@ public class OrganizationController extends BaseController {
 		Integer count = organizationService.updateOrganization(organization);
 		return count;
 	}
+
+
+	@GetMapping(OrganizationControllerMappingURL.PAGE_ORGANIZATION_TREE)
+	public String organizationTreePage() {
+		return OrganizationControllerMappingURL.PAGE_ORGANIZATION_TREE_RETURN;
+	}
 }
