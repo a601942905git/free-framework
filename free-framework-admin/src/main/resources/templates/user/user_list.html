@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h3>用户信息管理</h3>
+                        <h3>用户信息管理(共<span th:text="${pageInfo.total}"></span>条)</h3>
                     </div>
                     <div class="x_content">
                         <!--查询数据-->
@@ -77,7 +77,7 @@
                         </form>
 
                         <!--列表数据-->
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover table-condensed">
                             <thead>
                             <tr>
                                 <th>编号</th>
@@ -101,10 +101,8 @@
                                 <td th:text="${user.sex == '1'} ? '男' : '女'"></td>
                                 <td th:text="${user.face}"></td>
                                 <td th:text="${user.mobile}"></td>
-                                <td th:if="${user.type == '1'}" th:text="管理员" style="color:green"></td>
-                                <td th:unless="${user.type == '1'}" th:text="普通用户"></td>
-                                <td th:if="${user.status == '1'}" th:text="启用" style="color:green"></td>
-                                <td th:unless="${user.status == '1'}" th:text="停用" style="color:red"></td>
+                                <td th:text="${user.type == '1'} ? '管理员' : '普通用户'" th:style="${user.type == '1'} ? 'color:green' : ''"></td>
+                                <td th:text="${user.status == '1'} ? '启用' : '停用'" th:style="${user.status == '1'} ? 'color:green' : 'color:red'"></td>
                                 <td>
                                     <a th:onclick="'dialog(\'users/' + ${user.id} + '\', \'\', \'查看用户详情\', \'600px\')'" class="btn btn-primary btn-xs">
                                         <i class="fa fa-folder"></i> 查看
@@ -123,7 +121,7 @@
                             </tbody>
                         </table>
                         <!--分页-->
-                        <div th:replace="common/common_page::page"></div>
+                        <div th:replace="common/common_bootstrap_page::bootstrap_page"></div>
                     </div>
                 </div>
             </div>

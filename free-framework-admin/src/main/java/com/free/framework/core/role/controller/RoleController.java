@@ -8,7 +8,6 @@ import com.free.framework.plateform.common.response.ResponseData;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,27 +25,25 @@ public class RoleController extends BaseController {
 
     /**
      * 获取角色列表信息
-     * @param model 存放后台数据用于前台展示
      * @return
      */
     @GetMapping(RoleControllerMappingURL.ROLE)
-    public String list(Model model, RoleParam roleParam) {
+    public String list(RoleParam roleParam) {
         PageInfo pageInfo = roleService.pageRole(roleParam);
-        model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("roleParam", roleParam);
+        setRequestAttribute("pageInfo", pageInfo);
+        setRequestAttribute("roleParam", roleParam);
         return RoleControllerMappingURL.PAGE_LIST_RETURN;
     }
 
     /**
      * 查询角色详情信息
      * @param id     角色编号
-     * @param model 存放后台数据用于前台展示
      * @return String
      */
     @GetMapping(RoleControllerMappingURL.ONE_ROLE)
-    public String getDetail(@PathVariable(ID) Integer id, Model model) {
+    public String getDetail(@PathVariable(ID) Integer id) {
         Role role = roleService.getRole(id);
-        model.addAttribute("role", role);
+        setRequestAttribute("role", role);
         return RoleControllerMappingURL.PAGE_DETAIL_RETURN;
     }
 
@@ -76,9 +73,9 @@ public class RoleController extends BaseController {
      * @return
      */
     @GetMapping(RoleControllerMappingURL.PAGE_UPDATE)
-    public String updatePage(Integer id, Model model) {
+    public String updatePage(Integer id) {
         Role role = roleService.getRole(id);
-        model.addAttribute("role", role);
+        setRequestAttribute("role", role);
         return RoleControllerMappingURL.PAGE_UPDATE_RETURN;
     }
 

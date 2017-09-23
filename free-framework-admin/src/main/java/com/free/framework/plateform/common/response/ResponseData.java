@@ -62,12 +62,12 @@ public class ResponseData <T> {
         /**
          * 用户不存在
          */
-        public static final String USER_NOT_EXISTS__CODE = "100001";
+        public static final String USER_NOT_EXISTS_CODE = "100001";
 
         /**
          * 用户密码错误
          */
-        public static final String USER_PASSWORD_ERROR__CODE = "100002";
+        public static final String USER_PASSWORD_ERROR_CODE = "100002";
     }
 
     public enum RESULT_MESSAGE {

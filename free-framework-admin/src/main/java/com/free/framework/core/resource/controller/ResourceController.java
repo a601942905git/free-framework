@@ -9,7 +9,6 @@ import com.free.framework.plateform.common.response.ResponseData;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -30,10 +29,10 @@ public class ResourceController extends BaseController {
 	 * @return
 	 */
     @GetMapping(ResourceControllerMappingURL.RESOURCE)
-	public String listResourceList(Model model, ResourceParam resourceParam){
+	public String listResourceList(ResourceParam resourceParam){
 		PageInfo pageInfo = resourceService.pageResource(resourceParam);
-		model.addAttribute("pageInfo", pageInfo);
-		model.addAttribute("resourceParam", resourceParam);
+		setRequestAttribute("pageInfo", pageInfo);
+		setRequestAttribute("resourceParam", resourceParam);
 		return ResourceControllerMappingURL.PAGE_LIST_RETURN;
 	}
 
@@ -53,9 +52,9 @@ public class ResourceController extends BaseController {
 	* @return
 	*/
 	@GetMapping(ResourceControllerMappingURL.PAGE_UPDATE)
-	public String updatePage(Model model,Integer id){
+	public String updatePage(Integer id){
 		Resource resource = resourceService.getResource(id);
-		model.addAttribute("resource", resource);
+		setRequestAttribute("resource", resource);
 		return ResourceControllerMappingURL.PAGE_UPDATE_RETURN;
 
 	}
@@ -66,9 +65,9 @@ public class ResourceController extends BaseController {
 	 * @return
 	 */
 	@GetMapping(ResourceControllerMappingURL.ONE_RESOURCE)
-	public String getResourceDetail(@PathVariable("id") Integer id, Model model){
+	public String getResourceDetail(@PathVariable("id") Integer id){
 		Resource resource = resourceService.getResource(id);
-		model.addAttribute("resource", resource);
+		setRequestAttribute("resource", resource);
 		return ResourceControllerMappingURL.PAGE_DETAIL_RETURN;
 	}
 

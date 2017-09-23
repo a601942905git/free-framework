@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import ${basePackage}.${baseCorePackage}.${moduleName}.${actionPackage}.param.${entityName}Param;
 import ${basePackage}.${baseCorePackage}.${moduleName}.${entityPackage}.${entityCamelName};
 import ${basePackage}.${baseCorePackage}.${moduleName}.${daoPackage}.${entityName}Mapper;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.util.date.DateUtils;
 import com.free.framework.plateform.common.service.CommonService;
@@ -23,7 +24,7 @@ import java.util.Date;
  */
 @Service
 @Slf4j
-public class ${entityName}Service extends CommonService {
+public class ${entityName}Service extends CommonService<${entityName}> {
 
 	@Autowired
 	private ${entityName}Mapper ${entityParamName}Mapper;
@@ -38,9 +39,7 @@ public class ${entityName}Service extends CommonService {
 		startPage(${entityParamName}Param);
 		// 用户列表
 		List<${entityName}> ${entityParamName}List = ${entityParamName}Mapper.list${entityName}(${entityParamName}Param);
-		// 设置分页信息
-    	PageInfo<${entityName}> page${entityName} = new PageInfo(${entityParamName}List);
-        return page${entityName};
+        return getPageInfo(${entityParamName}List);
 	}
 	
 	/**
@@ -56,20 +55,22 @@ public class ${entityName}Service extends CommonService {
 	 * 新增保存${remark!}
 	 * @param ${entityParamName}
 	 */
-	public Integer save${entityName}(${entityName} ${entityParamName}){
+	public ResponseData save${entityName}(${entityName} ${entityParamName}){
 		${entityParamName}.setSavePerson(UserUtils.getUserLoginCode());
 		${entityParamName}.setSaveDate(DateUtils.getCurrentDate());
 		${entityParamName}.setStatus(StatusEnum.ENABLE_STATUS.getId());
-		return ${entityParamName}Mapper.save${entityName}(${entityParamName});
+		int count = ${entityParamName}Mapper.save${entityName}(${entityParamName});
+		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}
 	
 	/**
 	 * 修改${remark!}
 	 * @param ${entityParamName}
 	 */
-	public Integer update${entityName}(${entityName} ${entityParamName}){
+	public ResponseData update${entityName}(${entityName} ${entityParamName}){
 		${entityParamName}.setUpdatePerson(UserUtils.getUserLoginCode());
 		${entityParamName}.setUpdateDate(DateUtils.getCurrentDate());
-		return ${entityParamName}Mapper.update${entityName}(${entityParamName});
+		int count = ${entityParamName}Mapper.update${entityName}(${entityParamName});
+		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}
 }

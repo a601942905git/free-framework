@@ -8,24 +8,22 @@ import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
 import com.free.framework.plateform.constant.StatusEnum;
-import com.free.framework.plateform.constant.SystemConstants;
 import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * 操作相关
  */
 @Service
 @Slf4j
-public class OrganizationService extends CommonService {
+public class OrganizationService extends CommonService<Organization> {
 
 	@Autowired
 	private OrganizationMapper organizationMapper;
@@ -40,9 +38,7 @@ public class OrganizationService extends CommonService {
 		startPage(organizationParam);
 		// 用户列表
 		List<Organization> organizationList = organizationMapper.listOrganization(organizationParam);
-		// 设置分页信息
-    	PageInfo<Organization> pageOrganization = new PageInfo(organizationList);
-        return pageOrganization;
+        return getPageInfo(organizationList);
 	}
 	
 	/**
@@ -81,16 +77,36 @@ public class OrganizationService extends CommonService {
 	 * 查询组织列表,提供给前台select展示
 	 * @return
 	 */
-	public List<OrganizationTreeVO> listOrganizationSelect() {
-		return organizationMapper.listOrganizationSelect();
+	public List<OrganizationTreeVO> treeOrganization() {
+		List<OrganizationTreeVO> organizationTreeVOList = organizationMapper.treeOrganization();
+		Optional<List<OrganizationTreeVO>> optional = addRootNode(organizationTreeVOList);
+		return optional.orElseGet(ArrayList::new);
 	}
+
+	/**
+	 * 添加根节点
+	 * @param organizationTreeVOList
+	 * @return
+	 */
+	private Optional<List<OrganizationTreeVO>> addRootNode(List<OrganizationTreeVO> organizationTreeVOList) {
+		if (null == organizationTreeVOList) {
+			return Optional.empty();
+		}
+
+		OrganizationTreeVO organizationTreeVO =
+				OrganizationTreeVO.builder().id(-1).pId(-1).name("公司").open("true").build();
+		organizationTreeVOList.add(organizationTreeVO);
+
+		return Optional.of(organizationTreeVOList);
+	}
+
 
 	/**
 	 * 组装组织树
 	 * @param organizationTreeVOList
 	 * @return
 	 */
-	private Optional<List<OrganizationTreeVO>> organizeResourceTreeVOList(List<OrganizationTreeVO> organizationTreeVOList) {
+	/*private Optional<List<OrganizationTreeVO>> organizeResourceTreeVOList(List<OrganizationTreeVO> organizationTreeVOList) {
 		if (CollectionUtils.isEmpty(organizationTreeVOList)) {
 			return Optional.empty();
 		}
@@ -108,5 +124,5 @@ public class OrganizationService extends CommonService {
 				.collect(Collectors.toList());
 
 		return Optional.of(organizationTreeVOList1);
-	}
+	}*/
 }

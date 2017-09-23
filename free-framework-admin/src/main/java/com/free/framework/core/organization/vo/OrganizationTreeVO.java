@@ -1,9 +1,9 @@
 package com.free.framework.core.organization.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 /**
  * com.free.framework.core.organization.vo.OrganizationTreeVO
@@ -12,6 +12,9 @@ import java.util.List;
  * @dateTime 2017/9/22 23:40
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class OrganizationTreeVO {
 
     /**
@@ -27,7 +30,7 @@ public class OrganizationTreeVO {
     /**
      * 父级编号
      */
-    private Integer pid;
+    private Integer pId;
 
     /**
      * 排序编号
@@ -35,7 +38,12 @@ public class OrganizationTreeVO {
     private Integer orderNum;
 
     /**
-     * 子组装列表信息
+     * 默认不选中
      */
-    private List<OrganizationTreeVO> organizationTreeVOList = new ArrayList<>();
+    private String checked = "false";
+
+    /**
+     * 默认不展开
+     */
+    private String open = "false";
 }

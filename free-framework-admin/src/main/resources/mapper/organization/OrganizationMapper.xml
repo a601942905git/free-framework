@@ -2,24 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.free.framework.core.organization.mapper.OrganizationMapper">
 	<sql id="BASE_SELECT_COLUMN">
-		ID,
-		NAME,
-		PID,
-		ORDER_NUM,
-		ICON,
-		STATUS,
-		SAVE_DATE,
-		SAVE_PERSON,
-		UPDATE_DATE,
-		UPDATE_PERSON
+		organization.ID,
+		organization.NAME,
+		organization.PID,
+		organization.ORDER_NUM,
+		organization.ICON,
+		organization.STATUS,
+		organization.SAVE_DATE,
+		organization.SAVE_PERSON,
+		organization.UPDATE_DATE,
+		organization.UPDATE_PERSON
   	</sql>
   	
   	<select id="getOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="Integer">
-  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_organization WHERE ID=#{id} LIMIT 1
+  		SELECT
+			<include refid="BASE_SELECT_COLUMN"/>,
+			organization1.NAME pName
+  		FROM
+  			free_organization organization
+  				LEFT JOIN free_organization organization1 ON organization.PID = organization1.ID
+  		WHERE organization.ID = #{id} LIMIT 1
   	</select>
   
   	<select id="listOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="com.free.framework.core.organization.controller.param.OrganizationParam">
-  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_organization WHERE 1=1
+  		SELECT
+			<include refid="BASE_SELECT_COLUMN"/>,
+			organization1.NAME pName
+		FROM
+			free_organization organization
+			LEFT JOIN free_organization organization1 ON organization.PID = organization1.ID
+		WHERE 1=1
   		<if test="id!=null and id!=''">
   			AND ID = #{id}
   		</if>
@@ -34,12 +46,12 @@
   		</if>
   	</select>
 
-	<!--查询组织列表信息提供给前端select使用-->
-    <select id="listOrganizationSelect" resultType="com.free.framework.core.organization.vo.OrganizationTreeVO">
+	<!--查询组织列表树-->
+    <select id="treeOrganization" resultType="com.free.framework.core.organization.vo.OrganizationTreeVO">
 		SELECT
 			ID,
 			NAME,
-			PID,
+			PID pId,
 			ORDER_NUM
 		FROM
 			free_organization
@@ -49,7 +61,6 @@
     <insert id="saveOrganization" parameterType="com.free.framework.core.organization.entity.Organization">
   		INSERT INTO free_organization 
   		(
-			
 			NAME,
 			PID,
 			ORDER_NUM,

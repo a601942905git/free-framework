@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class RoleService extends CommonService{
+public class RoleService extends CommonService<Role> {
 
     @Autowired
     private RoleMapper roleMapper;
@@ -38,9 +38,7 @@ public class RoleService extends CommonService{
         startPage(roleParam);
         // 角色列表
         List<Role> rolesList = roleMapper.listRole(roleParam);
-        // 设置分页信息
-        PageInfo<Role> pageRole = new PageInfo(rolesList);
-        return pageRole;
+        return getPageInfo(rolesList);
     }
 
     /**

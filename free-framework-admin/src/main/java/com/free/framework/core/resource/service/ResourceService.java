@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
-public class ResourceService extends CommonService {
+public class ResourceService extends CommonService<Resource> {
 
 	@Autowired
 	private ResourceMapper resourceMapper;
@@ -41,9 +41,7 @@ public class ResourceService extends CommonService {
 		startPage(resourceParam);
 		// 用户列表
 		List<Resource> resourceList = resourceMapper.listResource(resourceParam);
-		// 设置分页信息
-    	PageInfo<Resource> pageResource = new PageInfo(resourceList);
-        return pageResource;
+        return getPageInfo(resourceList);
 	}
 	
 	/**

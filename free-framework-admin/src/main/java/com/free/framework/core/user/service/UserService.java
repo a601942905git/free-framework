@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class UserService extends CommonService {
+public class UserService extends CommonService<User> {
 
     @Autowired
     private UserMapper userMapper;
@@ -35,9 +35,7 @@ public class UserService extends CommonService {
         startPage(userParam);
         // 用户列表
         List<User> userList = userMapper.listUser(userParam);
-        // 设置分页信息
-        PageInfo<User> pageUser = new PageInfo(userList);
-        return pageUser;
+        return getPageInfo(userList);
     }
 
     /**

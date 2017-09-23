@@ -1,9 +1,11 @@
 package com.free.framework.core.organization.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.free.framework.core.organization.controller.param.OrganizationParam;
 import com.free.framework.core.organization.entity.Organization;
 import com.free.framework.core.organization.service.OrganizationService;
+import com.free.framework.core.organization.vo.OrganizationTreeVO;
 import com.free.framework.plateform.common.controller.BaseController;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.github.pagehelper.PageInfo;
@@ -11,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -30,10 +34,10 @@ public class OrganizationController extends BaseController {
 	 * @return
 	 */
     @GetMapping(OrganizationControllerMappingURL.ORGANIZATION)
-	public String listOrganizationList(Model model, OrganizationParam organizationParam){
+	public String listOrganizationList(OrganizationParam organizationParam){
 		PageInfo pageInfo = organizationService.pageOrganization(organizationParam);
-		model.addAttribute("pageInfo", pageInfo);
-		model.addAttribute("organizationParam", organizationParam);
+		setRequestAttribute("pageInfo", pageInfo);
+		setRequestAttribute("organizationParam", organizationParam);
 		return OrganizationControllerMappingURL.PAGE_LIST_RETURN;
 	}
 
@@ -53,9 +57,9 @@ public class OrganizationController extends BaseController {
 	* @return
 	*/
 	@GetMapping(OrganizationControllerMappingURL.PAGE_UPDATE)
-	public String updatePage(Model model,Integer id){
+	public String updatePage(Integer id){
 		Organization organization = organizationService.getOrganization(id);
-		model.addAttribute("organization", organization);
+		setRequestAttribute("organization", organization);
 		return OrganizationControllerMappingURL.PAGE_UPDATE_RETURN;
 
 	}
@@ -66,9 +70,9 @@ public class OrganizationController extends BaseController {
 	 * @return
 	 */
 	@GetMapping(OrganizationControllerMappingURL.ONE_ORGANIZATION)
-	public String getOrganizationDetail(@PathVariable("id") Integer id, Model model){
+	public String getOrganizationDetail(@PathVariable(ID) Integer id, Model model){
 		Organization organization = organizationService.getOrganization(id);
-		model.addAttribute("organization", organization);
+		setRequestAttribute("organization", organization);
 		return OrganizationControllerMappingURL.PAGE_DETAIL_RETURN;
 	}
 
@@ -97,6 +101,8 @@ public class OrganizationController extends BaseController {
 
 	@GetMapping(OrganizationControllerMappingURL.PAGE_ORGANIZATION_TREE)
 	public String organizationTreePage() {
+		List<OrganizationTreeVO> organizationTreeVOList = organizationService.treeOrganization();
+		setRequestAttribute("organizationTreeVOList", JSON.toJSONString(organizationTreeVOList));
 		return OrganizationControllerMappingURL.PAGE_ORGANIZATION_TREE_RETURN;
 	}
 }

@@ -12,6 +12,7 @@ import ${basePackage}.${baseCorePackage}.${moduleName}.${actionPackage}.param.${
 import ${basePackage}.${baseCorePackage}.${moduleName!}.${entityPackage}.${entityName!};
 import ${basePackage}.${baseCorePackage}.${moduleName}.${servicePackage}.${entityName}Service;
 
+import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.controller.BaseController;
 import com.free.framework.plateform.constant.StatusEnum;
 
@@ -35,10 +36,10 @@ public class ${entityName}Controller extends BaseController {
 	 * @return
 	 */
     @GetMapping(${entityName}ControllerMappingURL.${entityName?upper_case})
-	public String list${entityName}List(Model model, ${entityName!}Param ${entityParamName}Param){
+	public String list${entityName}List(${entityName!}Param ${entityParamName}Param){
 		PageInfo pageInfo = ${entityParamName}Service.page${entityName!}(${entityParamName}Param);
-		model.addAttribute("pageInfo", pageInfo);
-		model.addAttribute("${entityParamName}Param", ${entityParamName}Param);
+		setRequestAttribute("pageInfo", pageInfo);
+		setRequestAttribute("${entityParamName}Param", ${entityParamName}Param);
 		return ${entityName!}ControllerMappingURL.PAGE_LIST_RETURN;
 	}
 
@@ -58,9 +59,9 @@ public class ${entityName}Controller extends BaseController {
 	* @return
 	*/
 	@GetMapping(${entityName!}ControllerMappingURL.PAGE_UPDATE)
-	public String updatePage(Model model,Integer ${primaryProperty}){
+	public String updatePage(Integer ${primaryProperty}){
 		${entityName!} ${entityParamName} = ${entityParamName}Service.get${entityName!}(${primaryProperty});
-		model.addAttribute("${entityParamName}", ${entityParamName});
+		setRequestAttribute("${entityParamName}", ${entityParamName});
 		return ${entityName!}ControllerMappingURL.PAGE_UPDATE_RETURN;
 
 	}
@@ -71,9 +72,9 @@ public class ${entityName}Controller extends BaseController {
 	 * @return
 	 */
 	@GetMapping(${entityName}ControllerMappingURL.ONE_${entityName?upper_case})
-	public String get${entityName}Detail(@PathVariable("${primaryProperty}") ${primaryPropertyType} ${primaryProperty}, Model model){
+	public String get${entityName}Detail(@PathVariable("${primaryProperty}") ${primaryPropertyType} ${primaryProperty}){
 		${entityName} ${entityParamName} = ${entityParamName}Service.get${entityName}(${primaryProperty});
-		model.addAttribute("${entityParamName}", ${entityParamName});
+		setRequestAttribute("${entityParamName}", ${entityParamName});
 		return ${entityName}ControllerMappingURL.PAGE_DETAIL_RETURN;
 	}
 
@@ -83,9 +84,9 @@ public class ${entityName}Controller extends BaseController {
 	 */
 	@PostMapping(${entityName}ControllerMappingURL.${entityName?upper_case})
 	@ResponseBody
-	public Integer save${entityName}(${entityName} ${entityParamName}){
-		Integer count = ${entityParamName}Service.save${entityName}(${entityParamName});
-		return count;
+	public ResponseData save${entityName}(${entityName} ${entityParamName}){
+		ResponseData responseData = ${entityParamName}Service.save${entityName}(${entityParamName});
+		return responseData;
 	}
 	
 	/**
@@ -94,8 +95,8 @@ public class ${entityName}Controller extends BaseController {
 	 */
 	@PutMapping(${entityName}ControllerMappingURL.${entityName?upper_case})
 	@ResponseBody
-	public Integer update${entityName}(${entityName} ${entityParamName}){
-		Integer count = ${entityParamName}Service.update${entityName}(${entityParamName});
-		return count;
+	public ResponseData update${entityName}(${entityName} ${entityParamName}){
+		ResponseData responseData = ${entityParamName}Service.update${entityName}(${entityParamName});
+		return responseData;
 	}
 }

@@ -40,8 +40,8 @@ public interface OrganizationMapper {
 	List<Organization> listOrganization(OrganizationParam organizationParam);
 
 	/**
-	 * 查询组织列表,提供给前台select展示
+	 * 查询组织树
 	 * @return
 	 */
-    List<OrganizationTreeVO> listOrganizationSelect();
+    List<OrganizationTreeVO> treeOrganization();
 }

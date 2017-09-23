@@ -37,7 +37,7 @@ public class LoginService {
         //  账号不存在
         if (null == user) {
             return ResponseData.builder()
-                    .code(ResponseData.RESULT_CODE.USER_NOT_EXISTS__CODE)
+                    .code(ResponseData.RESULT_CODE.USER_NOT_EXISTS_CODE)
                     .message(ResponseData.RESULT_MESSAGE.USER_NOT_EXISTS_MESSAGE)
                     .build();
         }
@@ -47,7 +47,7 @@ public class LoginService {
         // 密码错误
         if (!userPassword.equalsIgnoreCase(loginPassword)) {
             return ResponseData.builder()
-                    .code(ResponseData.RESULT_CODE.USER_PASSWORD_ERROR__CODE)
+                    .code(ResponseData.RESULT_CODE.USER_PASSWORD_ERROR_CODE)
                     .message(ResponseData.RESULT_MESSAGE.USER_PASSWORD_ERROR_MESSAGE)
                     .build();
         }
