@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-md-1 col-sm-1 col-xs-1" style="margin-top: 20px;">
                 <select class="form-control col-md-1 col-xs-1" th:onchange="'changePage(this)'">
-                    <option value="5"  th:selected="${pageInfo.pageSize == 5} ?  'selected': 'false'">5</option>
-                    <option value="10" th:selected="${pageInfo.pageSize == 10} ? 'selected': 'false'">10</option>
-                    <option value="15" th:selected="${pageInfo.pageSize == 15} ? 'selected': 'false'">15</option>
-                    <option value="20" th:selected="${pageInfo.pageSize == 20} ? 'selected': 'false'">20</option>
-                    <option value="30" th:selected="${pageInfo.pageSize == 30} ? 'selected': 'false'">30</option>
-                    <option value="50" th:selected="${pageInfo.pageSize == 50} ? 'selected': 'false'">50</option>
+                    <option value="5"  th:selected="${pageInfo.pageSize == 5}">5</option>
+                    <option value="10" th:selected="${pageInfo.pageSize == 10}">10</option>
+                    <option value="15" th:selected="${pageInfo.pageSize == 15}">15</option>
+                    <option value="20" th:selected="${pageInfo.pageSize == 20}">20</option>
+                    <option value="30" th:selected="${pageInfo.pageSize == 30}">30</option>
+                    <option value="50" th:selected="${pageInfo.pageSize == 50}">50</option>
                 </select>
             </div>
             <div class="col-md-11 col-sm-11 col-xs-11">
