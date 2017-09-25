@@ -14,7 +14,7 @@
     <artifactId>free-framework-admin</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <name>free-framework-admin Maven Webapp</name>
+    <name>free-framework-admin</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -128,6 +128,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--fork :  如果没有该项配置则devtools不会起作用，即应用不会restart -->
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>
