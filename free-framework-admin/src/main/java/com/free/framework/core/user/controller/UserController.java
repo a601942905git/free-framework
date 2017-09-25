@@ -5,10 +5,10 @@ import com.free.framework.core.user.controller.param.UserParam;
 import com.free.framework.core.user.entity.User;
 import com.free.framework.core.user.service.UserService;
 import com.free.framework.plateform.common.controller.BaseController;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -23,27 +23,26 @@ public class UserController extends BaseController {
 
     /**
      * 获取用户列表信息
-     * @param model 存放后台数据用于前台展示
+     * @param userParam 查询请求参数
      * @return
      */
     @GetMapping(UserControllerMappingURL.USER)
-    public String listUser(Model model, UserParam userParam) {
+    public String listUser(UserParam userParam) {
         PageInfo pageInfo = userService.pageUser(userParam);
-        model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("userParam", userParam);
+        setRequestAttribute("pageInfo", pageInfo);
+        setRequestAttribute("userParam", userParam);
         return UserControllerMappingURL.PAGE_LIST_RETURN;
     }
 
     /**
      * 查询用户详情信息
      * @param id     用户编号
-     * @param model 存放后台数据用于前台展示
      * @return
      */
     @GetMapping(UserControllerMappingURL.ONE_USER)
-    public String getDetail(@PathVariable(ID) Integer id, Model model) {
+    public String getDetail(@PathVariable(ID) Integer id) {
         User user = userService.getUser(id);
-        model.addAttribute("user", user);
+        setRequestAttribute("user", user);
         return UserControllerMappingURL.PAGE_DETAIL_RETURN;
     }
 
@@ -63,9 +62,9 @@ public class UserController extends BaseController {
      */
     @PostMapping(UserControllerMappingURL.USER)
     @ResponseBody
-    public Integer save(User user) {
-        Integer count = userService.saveUser(user);
-        return count;
+    public ResponseData save(User user) {
+        ResponseData responseData = userService.saveUser(user);
+        return responseData;
     }
 
     /**
@@ -73,9 +72,9 @@ public class UserController extends BaseController {
      * @return
      */
     @GetMapping(UserControllerMappingURL.PAGE_UPDATE)
-    public String updatePage(Integer id, Model model) {
+    public String updatePage(Integer id) {
         User user = userService.getUser(id);
-        model.addAttribute("user", user);
+        setRequestAttribute("user", user);
         return UserControllerMappingURL.PAGE_UPDATE_RETURN;
     }
 
@@ -86,8 +85,8 @@ public class UserController extends BaseController {
      */
     @PutMapping(UserControllerMappingURL.USER)
     @ResponseBody
-    public Integer update(User user) {
-        Integer count = userService.updateUser(user);
-        return count;
+    public ResponseData update(User user) {
+        ResponseData responseData = userService.updateUser(user);
+        return responseData;
     }
 }

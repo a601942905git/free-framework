@@ -4,6 +4,7 @@ import com.free.framework.core.user.controller.param.UserParam;
 import com.free.framework.core.user.entity.User;
 import com.free.framework.core.user.mapper.UserMapper;
 import com.free.framework.core.user.util.UserUtils;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
 import com.free.framework.plateform.constant.StatusEnum;
 import com.free.framework.util.date.DateUtils;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class UserService extends CommonService {
+public class UserService extends CommonService<User> {
 
     @Autowired
     private UserMapper userMapper;
@@ -34,9 +35,7 @@ public class UserService extends CommonService {
         startPage(userParam);
         // 用户列表
         List<User> userList = userMapper.listUser(userParam);
-        // 设置分页信息
-        PageInfo<User> pageUser = new PageInfo(userList);
-        return pageUser;
+        return getPageInfo(userList);
     }
 
     /**
@@ -62,7 +61,7 @@ public class UserService extends CommonService {
      * @param user  用户对象
      * @return
      */
-    public Integer saveUser(User user) {
+    public ResponseData saveUser(User user) {
         String loginCode = user.getLoginCode();
         String loginPassword = user.getLoginPassword();
         String encryptPassword = UserUtils.generateEncryptPassword(loginCode, loginPassword);
@@ -70,7 +69,8 @@ public class UserService extends CommonService {
         user.setSavePerson(UserUtils.getUserLoginCode());
         user.setSaveDate(DateUtils.getCurrentDate());
         user.setStatus(StatusEnum.ENABLE_STATUS.getId());
-        return userMapper.saveUser(user);
+        int count = userMapper.saveUser(user);
+        return count == 1 ? ResponseData.success() : ResponseData.fail();
     }
 
     /**
@@ -78,9 +78,10 @@ public class UserService extends CommonService {
      * @param user  用户对象
      * @return
      */
-    public Integer updateUser(User user) {
+    public ResponseData updateUser(User user) {
         user.setUpdatePerson(UserUtils.getUserLoginCode());
         user.setUpdateDate(DateUtils.getCurrentDate());
-        return userMapper.updateUser(user);
+        int count = userMapper.updateUser(user);
+        return count == 1 ? ResponseData.success() : ResponseData.fail();
     }
 }

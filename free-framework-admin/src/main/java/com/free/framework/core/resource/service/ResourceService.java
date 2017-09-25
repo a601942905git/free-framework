@@ -3,22 +3,30 @@ package com.free.framework.core.resource.service;
 import com.free.framework.core.resource.controller.param.ResourceParam;
 import com.free.framework.core.resource.entity.Resource;
 import com.free.framework.core.resource.mapper.ResourceMapper;
+import com.free.framework.core.resource.vo.ResourceTreeVO;
 import com.free.framework.core.user.util.UserUtils;
+import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
 import com.free.framework.plateform.constant.StatusEnum;
+import com.free.framework.plateform.constant.SystemConstants;
 import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 /**
  * 操作相关
  */
 @Service
 @Slf4j
-public class ResourceService extends CommonService {
+public class ResourceService extends CommonService<Resource> {
 
 	@Autowired
 	private ResourceMapper resourceMapper;
@@ -33,9 +41,7 @@ public class ResourceService extends CommonService {
 		startPage(resourceParam);
 		// 用户列表
 		List<Resource> resourceList = resourceMapper.listResource(resourceParam);
-		// 设置分页信息
-    	PageInfo<Resource> pageResource = new PageInfo(resourceList);
-        return pageResource;
+        return getPageInfo(resourceList);
 	}
 	
 	/**
@@ -51,20 +57,58 @@ public class ResourceService extends CommonService {
 	 * 新增保存
 	 * @param resource
 	 */
-	public Integer saveResource(Resource resource){
+	public ResponseData saveResource(Resource resource){
 		resource.setSavePerson(UserUtils.getUserLoginCode());
 		resource.setSaveDate(DateUtils.getCurrentDate());
 		resource.setStatus(StatusEnum.ENABLE_STATUS.getId());
-		return resourceMapper.saveResource(resource);
+		int count = resourceMapper.saveResource(resource);
+		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}
 	
 	/**
 	 * 修改
 	 * @param resource
 	 */
-	public Integer updateResource(Resource resource){
+	public ResponseData updateResource(Resource resource){
 		resource.setUpdatePerson(UserUtils.getUserLoginCode());
 		resource.setUpdateDate(DateUtils.getCurrentDate());
-		return resourceMapper.updateResource(resource);
+		int count = resourceMapper.updateResource(resource);
+		return count == 1 ? ResponseData.success() : ResponseData.fail();
+	}
+
+	/**
+	 * 查询资源列表信息
+	 * @return
+	 */
+	public List<ResourceTreeVO> listResourceTree() {
+		List<ResourceTreeVO> resourceTreeVOList = resourceMapper.listResourceTree();
+		// 组装成树
+		Optional<List<ResourceTreeVO>> optional = organizeResourceTreeVOList(resourceTreeVOList);
+		return optional.orElseGet(ArrayList::new);
+	}
+
+	/**
+	 * 组装资源树
+	 * @param resourceTreeVOList
+	 * @return
+	 */
+	private Optional<List<ResourceTreeVO>> organizeResourceTreeVOList(List<ResourceTreeVO> resourceTreeVOList) {
+		if (CollectionUtils.isEmpty(resourceTreeVOList)) {
+			return Optional.empty();
+		}
+
+		List<ResourceTreeVO> resourceTreeVOList1 = resourceTreeVOList.stream()
+				.map(resourceTreeVO -> {
+					// 查找当前节点下面所有的子节点
+					resourceTreeVO.getResourceTreeVOList().addAll(resourceTreeVOList.stream()
+							.filter(resourceTreeVO1 -> resourceTreeVO.getId().equals(resourceTreeVO1.getPid()))
+							.collect(Collectors.toList()));
+					return resourceTreeVO;
+				})
+				// 过滤的到所有的一级节点
+				.filter(resourceTreeVO -> SystemConstants.PARENT_ID.equals(resourceTreeVO.getPid()))
+				.collect(Collectors.toList());
+
+		return Optional.of(resourceTreeVOList1);
 	}
 }

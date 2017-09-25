@@ -49,7 +49,7 @@
                     </form>
 
                     <!--列表数据-->
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover table-condensed">
                         <thead>
                         <tr>
                         <#if columns??>

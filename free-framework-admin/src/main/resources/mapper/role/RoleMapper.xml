@@ -39,6 +39,7 @@
             free_role
         WHERE
             ID = #{id}
+        LIMIT 1
     </select>
 
     <!--新增角色-->

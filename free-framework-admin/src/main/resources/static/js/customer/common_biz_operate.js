@@ -49,25 +49,21 @@ function commonOperate() {
  */
 function commonSuccessOperate(data) {
     if (data) {
-        layer.close(layer.index);
-        if (data == 1){
-            layer.open({
-                icon: '1',
-                title: '结果',
-                content: '操作成功!',
+        layer.closeAll();
+        if (data.code == 1){
+            openDailog({
                 yes: function () {
-                    layer.close(layer.index);
+                    closeDialog();
                     refresh();
                 },
                 cancel: function () {
-                    layer.close(layer.index);
+                    closeDialog();
                     refresh();
                 },
             });
         } else {
-            layer.open({
+            openDailog({
                 icon: '2',
-                title: '结果',
                 content: '操作失败!'
             });
         }

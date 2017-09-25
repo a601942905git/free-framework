@@ -15,5 +15,18 @@ public interface SystemConstants {
      */
     Integer PAGE_SIZE = 15;
 
+    /**
+     * 重定向
+     */
     String REDIRECT = "redirect:";
+
+    /**
+     * 父级编号定定义为-1
+     */
+    Integer PARENT_ID = -1;
+
+    /**
+     * 分页导航显示数量
+     */
+    int navigatePages = 10;
 }
