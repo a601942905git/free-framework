@@ -17,7 +17,7 @@ public class WebContextUtils {
      * @return  request对象
      */
     public static HttpServletRequest getRequest() {
-        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes servletRequestAttributes = getServletRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
         return request;
     }
@@ -53,8 +53,16 @@ public class WebContextUtils {
      * @return  response对象
      */
     public static HttpServletResponse getResponse() {
-        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes servletRequestAttributes = getServletRequestAttributes();
         HttpServletResponse response = servletRequestAttributes.getResponse();
         return response;
+    }
+
+    /**
+     * 获取servletRequestAttributes对象
+     * @return servletRequestAttributes对象
+     */
+    private static ServletRequestAttributes getServletRequestAttributes() {
+        return (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
     }
 }

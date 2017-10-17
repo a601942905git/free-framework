@@ -38,6 +38,7 @@
         <zookeeper.version>3.4.9</zookeeper.version>
         <okhttp.version>3.6.0</okhttp.version>
         <shiro.spring.version>1.4.0</shiro.spring.version>
+        <logback.version>1.2.3</logback.version>
     </properties>
 
     <!--manage dependency-->
@@ -115,11 +116,17 @@
                 <artifactId>shiro-spring</artifactId>
                 <version>${shiro.spring.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -132,12 +139,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${apache.commons.lang.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
         </dependency>
     </dependencies>
 
