@@ -83,6 +83,6 @@ public class ResponseData <T> {
         /**
          * 密码错误
          */
-        public static final String USER_PASSWORD_ERROR_MESSAGE = "100002";
+        public static final String USER_PASSWORD_ERROR_MESSAGE = "密码错误";
     }
 }
