@@ -39,6 +39,7 @@
         <okhttp.version>3.6.0</okhttp.version>
         <shiro.spring.version>1.4.0</shiro.spring.version>
         <logback.version>1.2.3</logback.version>
+        <jwt.version>0.9.0</jwt.version>
     </properties>
 
     <!--manage dependency-->
@@ -122,6 +123,12 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
