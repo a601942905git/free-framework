@@ -153,11 +153,23 @@
         可将hibernate的级别设置为debug，如此一来，日志文件中就会出现hibernate的debug级别日志， 而其它包则会按root的级别输出日志 -->
     <logger name="org.springframework" level="INFO" />
 
-    <!-- 生产环境，将合此级别配置为适的级别，以名日志文件太多或影响程序性能 -->
-    <root level="INFO">
-        <appender-ref ref="FILE_DEBUG" />
-        <appender-ref ref="FILE_INFO" />
-        <appender-ref ref="FILE_WARN" />
-        <appender-ref ref="FILE_ERROR" />
-    </root>
+    <!-- 开发 -->
+    <springProfile name="dev">
+        <root level="DEBUG">
+            <appender-ref ref="FILE_DEBUG" />
+            <appender-ref ref="FILE_INFO" />
+            <appender-ref ref="FILE_WARN" />
+            <appender-ref ref="FILE_ERROR" />
+        </root>
+    </springProfile>
+
+    <!-- 生产 -->
+    <springProfile name="production">
+        <root level="INFO">
+            <appender-ref ref="FILE_DEBUG" />
+            <appender-ref ref="FILE_INFO" />
+            <appender-ref ref="FILE_WARN" />
+            <appender-ref ref="FILE_ERROR" />
+        </root>
+    </springProfile>
 </configuration>
