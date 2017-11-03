@@ -42,6 +42,5 @@ public class Application implements ApplicationListener<EmbeddedServletContainer
         log.info("=================================");
         log.info("      项目名称:" + applicationName);
         log.info("      项目访问地址:" + ip + ":" + port);
-        log.info("=================================");
     }
 }
