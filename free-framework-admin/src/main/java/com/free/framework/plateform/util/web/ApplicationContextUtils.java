@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * 应用上下文
  * 获取对应的bean
+ * @author lipeng
  */
 @Component
 public class ApplicationContextUtils implements ApplicationContextAware{
