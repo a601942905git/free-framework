@@ -104,9 +104,10 @@ public class OrganizationController extends BaseController {
 	 * @param organization
 	 */
 	@ApiOperation(value = "修改组织信息")
-	@PutMapping(OrganizationControllerMappingURL.ORGANIZATION)
+	@PutMapping(OrganizationControllerMappingURL.ONE_ORGANIZATION)
 	@ResponseBody
-	public ResponseData updateOrganization(Organization organization){
+	public ResponseData updateOrganization(@PathVariable(ID) Integer id, Organization organization){
+		organization.setId(id);
 		ResponseData responseData = organizationService.updateOrganization(organization);
 		return responseData;
 	}

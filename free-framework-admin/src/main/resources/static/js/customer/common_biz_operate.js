@@ -84,8 +84,8 @@ function updateStatus(url, id, status) {
         btn: ['确定','取消'] //按钮
     }, function(){
         $.ajax({
-            url: url,
-            data: {id: id, status: status, _method: 'PUT'},
+            url: url + "/" + id,
+            data: {status: status, _method: 'PUT'},
             type: 'POST',
             dataType: 'json'
         }).done(function (data) {

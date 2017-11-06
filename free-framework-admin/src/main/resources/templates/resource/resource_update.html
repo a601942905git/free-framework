@@ -7,8 +7,7 @@
                 <div class="x_panel" style="border:none">
                     <div class="x_content">
                         <br/>
-                        <form th:action="@{/resources/}" th:object="${resource}" id="form" type="post" class="form-horizontal form-label-left">
-                            <input type="hidden" id="id" name="id" th:value="*{id}"/>
+                        <form th:action="@{'/resources/' + ${resource.id}}" th:object="${resource}" id="form" type="post" class="form-horizontal form-label-left">
                             <input type="hidden" id="_method" name="_method" value="PUT"/>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">名称: <span>*</span>
