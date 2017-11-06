@@ -7,7 +7,7 @@
                 <div class="x_panel" style="border:none">
                     <div class="x_content">
                         <br/>
-                        <form th:action="@{/${moduleName}s/}" id="form" type="post" class="form-horizontal form-label-left">
+                        <form th:action="@{'/${moduleName}s/'}" id="form" type="post" class="form-horizontal form-label-left">
                             <#if columns??>
                             <#list columns as col>
                             <div class="form-group">

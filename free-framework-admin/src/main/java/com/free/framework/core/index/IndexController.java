@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Created by Administrator on 2017/6/3.
+ * @author lipeng
  */
 @Controller
 public class IndexController {

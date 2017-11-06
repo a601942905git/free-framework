@@ -3,7 +3,7 @@ package com.free.framework.core.user.controller;
 /**
  * Created by Administrator on 2017/6/3.
  */
-public interface UserControllerMappingURL {
+public interface UserControllerMappingUrl {
 
     String USER_CONTROLLER = "/users";
 

@@ -2,9 +2,10 @@ package com.free.framework.core.resource.controller;
 
 /**
  * 请求映射路径
+ * @author lipeng
  *
  */
-public interface ResourceControllerMappingURL {
+public interface ResourceControllerMappingUrl {
 
 	String RESOURCE_CONTROLLER = "/resources";
 

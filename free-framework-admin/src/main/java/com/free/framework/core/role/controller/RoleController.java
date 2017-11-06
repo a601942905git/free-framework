@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @dateTime 2017/9/9 23:04
  */
 @Controller
-@RequestMapping(RoleControllerMappingURL.ROLE_CONTROLLER)
+@RequestMapping(RoleControllerMappingUrl.ROLE_CONTROLLER)
 public class RoleController extends BaseController {
 
     @Autowired
@@ -29,12 +29,12 @@ public class RoleController extends BaseController {
      * 获取角色列表信息
      * @return
      */
-    @GetMapping(RoleControllerMappingURL.ROLE)
+    @GetMapping(RoleControllerMappingUrl.ROLE)
     public String list(RoleParam roleParam) {
         PageInfo pageInfo = roleService.pageRole(roleParam);
         setRequestAttribute("pageInfo", pageInfo);
         setRequestAttribute("roleParam", roleParam);
-        return RoleControllerMappingURL.PAGE_LIST_RETURN;
+        return RoleControllerMappingUrl.PAGE_LIST_RETURN;
     }
 
     /**
@@ -42,11 +42,11 @@ public class RoleController extends BaseController {
      * @param id     角色编号
      * @return String
      */
-    @GetMapping(RoleControllerMappingURL.ONE_ROLE)
+    @GetMapping(RoleControllerMappingUrl.ONE_ROLE)
     public String getDetail(@PathVariable(ID) Integer id) {
         Role role = roleService.getRole(id);
         setRequestAttribute("role", role);
-        return RoleControllerMappingURL.PAGE_DETAIL_RETURN;
+        return RoleControllerMappingUrl.PAGE_DETAIL_RETURN;
     }
 
     /**
@@ -54,9 +54,9 @@ public class RoleController extends BaseController {
      * @return
      */
     @GenerateToken
-    @GetMapping(RoleControllerMappingURL.PAGE_ADD)
+    @GetMapping(RoleControllerMappingUrl.PAGE_ADD)
     public String addPage() {
-        return RoleControllerMappingURL.PAGE_ADD_RETURN;
+        return RoleControllerMappingUrl.PAGE_ADD_RETURN;
     }
 
     /**
@@ -65,7 +65,7 @@ public class RoleController extends BaseController {
      * @return
      */
     @ValidateToken
-    @PostMapping(RoleControllerMappingURL.ROLE)
+    @PostMapping(RoleControllerMappingUrl.ROLE)
     @ResponseBody
     public ResponseData save(Role role) {
         ResponseData responseData = roleService.saveRole(role);
@@ -77,11 +77,11 @@ public class RoleController extends BaseController {
      * @return
      */
     @GenerateToken
-    @GetMapping(RoleControllerMappingURL.PAGE_UPDATE)
+    @GetMapping(RoleControllerMappingUrl.PAGE_UPDATE)
     public String updatePage(Integer id) {
         Role role = roleService.getRole(id);
         setRequestAttribute("role", role);
-        return RoleControllerMappingURL.PAGE_UPDATE_RETURN;
+        return RoleControllerMappingUrl.PAGE_UPDATE_RETURN;
     }
 
     /**
@@ -90,7 +90,7 @@ public class RoleController extends BaseController {
      * @return
      */
     @ValidateToken
-    @PutMapping(RoleControllerMappingURL.ROLE)
+    @PutMapping(RoleControllerMappingUrl.ROLE)
     @ResponseBody
     public ResponseData update(Role role) {
         ResponseData responseData = roleService.updateRole(role);

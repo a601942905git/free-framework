@@ -30,9 +30,9 @@ public class LoginController {
      * 请求登陆页面
      * @return  登陆页面
      */
-    @GetMapping(LoginControllerMappingURL.LOGIN_CONTROLLER)
+    @GetMapping(LoginControllerMappingUrl.LOGIN_CONTROLLER)
     public String loginPage() {
-        return LoginControllerMappingURL.LOGIN_RETURN_PAGE;
+        return LoginControllerMappingUrl.LOGIN_RETURN_PAGE;
     }
 
     /**
@@ -40,7 +40,7 @@ public class LoginController {
      * @param loginParam    登陆信息
      * @return  是否登陆成功
      */
-    @PostMapping(LoginControllerMappingURL.LOGIN)
+    @PostMapping(LoginControllerMappingUrl.LOGIN)
     @ResponseBody
     public ResponseData login(LoginParam loginParam) {
         ResponseData responseData = loginService.login(loginParam);
@@ -52,10 +52,10 @@ public class LoginController {
      * @param request   request对象
      * @return          登陆页面
      */
-    @GetMapping(LoginControllerMappingURL.LOG_OUT)
+    @GetMapping(LoginControllerMappingUrl.LOG_OUT)
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
-        return SystemConstants.REDIRECT + LoginControllerMappingURL.LOGIN_CONTROLLER;
+        return SystemConstants.REDIRECT + LoginControllerMappingUrl.LOGIN_CONTROLLER;
     }
 
     /*@GetMapping(value="/login")

@@ -1,12 +1,12 @@
 package com.free.framework.core.role.controller;
 
 /**
- * com.free.framework.core.role.controller.RoleControllerMappingURL
+ * com.free.framework.core.role.controller.RoleControllerMappingUrl
  * 角色控制器url映射
  * @author lipeng
  * @dateTime 2017/9/9 23:05
  */
-public interface RoleControllerMappingURL {
+public interface RoleControllerMappingUrl {
 
     String ROLE_CONTROLLER = "/roles";
 

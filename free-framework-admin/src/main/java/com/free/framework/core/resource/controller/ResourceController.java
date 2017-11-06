@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  *
  */
 @Controller
-@RequestMapping(ResourceControllerMappingURL.RESOURCE_CONTROLLER)
+@RequestMapping(ResourceControllerMappingUrl.RESOURCE_CONTROLLER)
 public class ResourceController extends BaseController {
 	
 	@Autowired
@@ -30,12 +30,12 @@ public class ResourceController extends BaseController {
 	 * @param
 	 * @return
 	 */
-    @GetMapping(ResourceControllerMappingURL.RESOURCE)
+    @GetMapping(ResourceControllerMappingUrl.RESOURCE)
 	public String listResourceList(ResourceParam resourceParam){
 		PageInfo pageInfo = resourceService.pageResource(resourceParam);
 		setRequestAttribute("pageInfo", pageInfo);
 		setRequestAttribute("resourceParam", resourceParam);
-		return ResourceControllerMappingURL.PAGE_LIST_RETURN;
+		return ResourceControllerMappingUrl.PAGE_LIST_RETURN;
 	}
 
 	/**
@@ -44,9 +44,9 @@ public class ResourceController extends BaseController {
 	* @return
 	*/
 	@GenerateToken
-	@GetMapping(ResourceControllerMappingURL.PAGE_ADD)
+	@GetMapping(ResourceControllerMappingUrl.PAGE_ADD)
 	public String addPage(){
-		return ResourceControllerMappingURL.PAGE_ADD_RETURN;
+		return ResourceControllerMappingUrl.PAGE_ADD_RETURN;
 	}
 
 	/**
@@ -55,11 +55,11 @@ public class ResourceController extends BaseController {
 	* @return
 	*/
 	@GenerateToken
-	@GetMapping(ResourceControllerMappingURL.PAGE_UPDATE)
+	@GetMapping(ResourceControllerMappingUrl.PAGE_UPDATE)
 	public String updatePage(Integer id){
 		Resource resource = resourceService.getResource(id);
 		setRequestAttribute("resource", resource);
-		return ResourceControllerMappingURL.PAGE_UPDATE_RETURN;
+		return ResourceControllerMappingUrl.PAGE_UPDATE_RETURN;
 
 	}
 	
@@ -68,11 +68,11 @@ public class ResourceController extends BaseController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping(ResourceControllerMappingURL.ONE_RESOURCE)
+	@GetMapping(ResourceControllerMappingUrl.ONE_RESOURCE)
 	public String getResourceDetail(@PathVariable("id") Integer id){
 		Resource resource = resourceService.getResource(id);
 		setRequestAttribute("resource", resource);
-		return ResourceControllerMappingURL.PAGE_DETAIL_RETURN;
+		return ResourceControllerMappingUrl.PAGE_DETAIL_RETURN;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class ResourceController extends BaseController {
 	 * @param resource
 	 */
 	@ValidateToken
-	@PostMapping(ResourceControllerMappingURL.RESOURCE)
+	@PostMapping(ResourceControllerMappingUrl.RESOURCE)
 	@ResponseBody
 	public ResponseData saveResource(Resource resource){
 		ResponseData responseData = resourceService.saveResource(resource);
@@ -92,7 +92,7 @@ public class ResourceController extends BaseController {
 	 * @param resource
 	 */
 	@ValidateToken
-	@PutMapping(ResourceControllerMappingURL.RESOURCE)
+	@PutMapping(ResourceControllerMappingUrl.RESOURCE)
 	@ResponseBody
 	public ResponseData updateResource(Resource resource){
 		ResponseData responseData = resourceService.updateResource(resource);

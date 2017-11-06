@@ -19,7 +19,7 @@
                 </div>
                 <div class="x_content">
                     <!--查询数据-->
-                    <form th:action="@{/${moduleName}s/}" class="form" id="search_form">
+                    <form th:action="@{'/${moduleName}s/'}" class="form" id="search_form">
                         <div class="row">
 							<#if columns??>
                             <#list columns as col>

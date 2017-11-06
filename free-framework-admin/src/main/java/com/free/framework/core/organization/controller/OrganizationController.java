@@ -25,7 +25,7 @@ import java.util.List;
  * @author lipeng
  */
 @Controller
-@RequestMapping(OrganizationControllerMappingURL.ORGANIZATION_CONTROLLER)
+@RequestMapping(OrganizationControllerMappingUrl.ORGANIZATION_CONTROLLER)
 public class OrganizationController extends BaseController {
 	
 	@Autowired
@@ -36,13 +36,13 @@ public class OrganizationController extends BaseController {
 	 * @param
 	 * @return
 	 */
-    @GetMapping(OrganizationControllerMappingURL.ORGANIZATION)
+    @GetMapping(OrganizationControllerMappingUrl.ORGANIZATION)
 	@ApiOperation(value = "查询组织列表信息")
 	public String listOrganizationList(OrganizationParam organizationParam){
 		PageInfo pageInfo = organizationService.pageOrganization(organizationParam);
 		setRequestAttribute("pageInfo", pageInfo);
 		setRequestAttribute("organizationParam", organizationParam);
-		return OrganizationControllerMappingURL.PAGE_LIST_RETURN;
+		return OrganizationControllerMappingUrl.PAGE_LIST_RETURN;
 	}
 
 	/**
@@ -51,10 +51,10 @@ public class OrganizationController extends BaseController {
 	* @return
 	*/
 	@ApiOperation(value = "跳转到组织新增界面")
-	@GetMapping(OrganizationControllerMappingURL.PAGE_ADD)
+	@GetMapping(OrganizationControllerMappingUrl.PAGE_ADD)
 	@GenerateToken
 	public String addPage(){
-		return OrganizationControllerMappingURL.PAGE_ADD_RETURN;
+		return OrganizationControllerMappingUrl.PAGE_ADD_RETURN;
 	}
 
 	/**
@@ -63,11 +63,11 @@ public class OrganizationController extends BaseController {
 	* @return
 	*/
 	@ApiOperation(value = "跳转到组织修改界面")
-	@GetMapping(OrganizationControllerMappingURL.PAGE_UPDATE)
+	@GetMapping(OrganizationControllerMappingUrl.PAGE_UPDATE)
 	public String updatePage(Integer id){
 		Organization organization = organizationService.getOrganization(id);
 		setRequestAttribute("organization", organization);
-		return OrganizationControllerMappingURL.PAGE_UPDATE_RETURN;
+		return OrganizationControllerMappingUrl.PAGE_UPDATE_RETURN;
 
 	}
 	
@@ -77,11 +77,11 @@ public class OrganizationController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "查看组织详情信息")
-	@GetMapping(OrganizationControllerMappingURL.ONE_ORGANIZATION)
+	@GetMapping(OrganizationControllerMappingUrl.ONE_ORGANIZATION)
 	public String getOrganizationDetail(@PathVariable(ID) Integer id, Model model){
 		Organization organization = organizationService.getOrganization(id);
 		setRequestAttribute("organization", organization);
-		return OrganizationControllerMappingURL.PAGE_DETAIL_RETURN;
+		return OrganizationControllerMappingUrl.PAGE_DETAIL_RETURN;
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class OrganizationController extends BaseController {
 	 */
 	@ApiOperation(value = "新增组织信息")
 	@ValidateToken
-	@PostMapping(OrganizationControllerMappingURL.ORGANIZATION)
+	@PostMapping(OrganizationControllerMappingUrl.ORGANIZATION)
 	@ResponseBody
 	public ResponseData saveOrganization(Organization organization){
 		ResponseData responseData = organizationService.saveOrganization(organization);
@@ -102,7 +102,7 @@ public class OrganizationController extends BaseController {
 	 * @param organization
 	 */
 	@ApiOperation(value = "修改组织信息")
-	@PutMapping(OrganizationControllerMappingURL.ONE_ORGANIZATION)
+	@PutMapping(OrganizationControllerMappingUrl.ONE_ORGANIZATION)
 	@ResponseBody
 	public ResponseData updateOrganization(@PathVariable(ID) Integer id, Organization organization){
 		organization.setId(id);
@@ -116,10 +116,10 @@ public class OrganizationController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "跳转到组织树页面")
-	@GetMapping(OrganizationControllerMappingURL.PAGE_ORGANIZATION_TREE)
+	@GetMapping(OrganizationControllerMappingUrl.PAGE_ORGANIZATION_TREE)
 	public String organizationTreePage() {
 		List<OrganizationTreeVO> organizationTreeVOList = organizationService.treeOrganization();
 		setRequestAttribute("organizationTreeVOList", JSON.toJSONString(organizationTreeVOList));
-		return OrganizationControllerMappingURL.PAGE_ORGANIZATION_TREE_RETURN;
+		return OrganizationControllerMappingUrl.PAGE_ORGANIZATION_TREE_RETURN;
 	}
 }

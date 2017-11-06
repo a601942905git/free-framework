@@ -4,7 +4,7 @@ package ${basePackage}.${baseCorePackage}.${moduleName}.${actionPackage};
  * ${remark!}请求映射路径
  *
  */
-public interface ${moduleName?cap_first}ControllerMappingURL {
+public interface ${moduleName?cap_first}ControllerMappingUrl {
 
 	String ${entityName?upper_case}_CONTROLLER = "/${entityParamName}s";
 

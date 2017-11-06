@@ -4,7 +4,7 @@ package com.free.framework.core.organization.controller;
  * 请求映射路径
  *
  */
-public interface OrganizationControllerMappingURL {
+public interface OrganizationControllerMappingUrl {
 
 	String ORGANIZATION_CONTROLLER = "/organizations";
 

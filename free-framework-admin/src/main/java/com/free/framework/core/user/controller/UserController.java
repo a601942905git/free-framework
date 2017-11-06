@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @author lipeng
  */
 @Controller
-@RequestMapping(UserControllerMappingURL.USER_CONTROLLER)
+@RequestMapping(UserControllerMappingUrl.USER_CONTROLLER)
 public class UserController extends BaseController {
 
     @Autowired
@@ -29,12 +29,12 @@ public class UserController extends BaseController {
      * @param userParam 查询请求参数
      * @return
      */
-    @GetMapping(UserControllerMappingURL.USER)
+    @GetMapping(UserControllerMappingUrl.USER)
     public String listUser(UserParam userParam) {
         PageInfo pageInfo = userService.pageUser(userParam);
         setRequestAttribute("pageInfo", pageInfo);
         setRequestAttribute("userParam", userParam);
-        return UserControllerMappingURL.PAGE_LIST_RETURN;
+        return UserControllerMappingUrl.PAGE_LIST_RETURN;
     }
 
     /**
@@ -42,11 +42,11 @@ public class UserController extends BaseController {
      * @param id     用户编号
      * @return
      */
-    @GetMapping(UserControllerMappingURL.ONE_USER)
+    @GetMapping(UserControllerMappingUrl.ONE_USER)
     public String getDetail(@PathVariable(ID) Integer id) {
         User user = userService.getUser(id);
         setRequestAttribute("user", user);
-        return UserControllerMappingURL.PAGE_DETAIL_RETURN;
+        return UserControllerMappingUrl.PAGE_DETAIL_RETURN;
     }
 
     /**
@@ -54,9 +54,9 @@ public class UserController extends BaseController {
      * @return
      */
     @GenerateToken
-    @GetMapping(UserControllerMappingURL.PAGE_ADD)
+    @GetMapping(UserControllerMappingUrl.PAGE_ADD)
     public String addPage() {
-        return UserControllerMappingURL.PAGE_ADD_RETURN;
+        return UserControllerMappingUrl.PAGE_ADD_RETURN;
     }
 
     /**
@@ -65,7 +65,7 @@ public class UserController extends BaseController {
      * @return
      */
     @ValidateToken
-    @PostMapping(UserControllerMappingURL.USER)
+    @PostMapping(UserControllerMappingUrl.USER)
     @ResponseBody
     public ResponseData save(User user) {
         ResponseData responseData = userService.saveUser(user);
@@ -77,11 +77,11 @@ public class UserController extends BaseController {
      * @return
      */
     @GenerateToken
-    @GetMapping(UserControllerMappingURL.PAGE_UPDATE)
+    @GetMapping(UserControllerMappingUrl.PAGE_UPDATE)
     public String updatePage(Integer id) {
         User user = userService.getUser(id);
         setRequestAttribute("user", user);
-        return UserControllerMappingURL.PAGE_UPDATE_RETURN;
+        return UserControllerMappingUrl.PAGE_UPDATE_RETURN;
     }
 
     /**
@@ -90,7 +90,7 @@ public class UserController extends BaseController {
      * @return
      */
     @ValidateToken
-    @PutMapping(UserControllerMappingURL.USER)
+    @PutMapping(UserControllerMappingUrl.USER)
     @ResponseBody
     public ResponseData update(User user) {
         ResponseData responseData = userService.updateUser(user);
