@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 /**
  * web上下文
  * 获取request、response对象
+ * @author lipeng
  */
 public class WebContextUtils {
     /**
