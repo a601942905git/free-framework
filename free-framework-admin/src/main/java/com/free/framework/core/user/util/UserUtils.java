@@ -30,7 +30,7 @@ public class UserUtils {
         try {
             return MD5Utils.encode(result);
         } catch (Exception e) {
-            log.error("【UserUtils中generateEncryptPassword】加密异常:{}", e.getLocalizedMessage());
+            log.error("【UserUtils中generateEncryptPassword】加密异常:{}", e);
             return result;
         }
     }

@@ -273,7 +273,7 @@ public class HttpUtils {
             responseStr = response.body().string();
             log.info("【请求:】{}响应内容:{}", url, getResponseCode(response));
         } catch (IOException e) {
-            log.error("【HttpUtils中的get方法响应异常:】", e.fillInStackTrace());
+            log.error("【HttpUtils中的get方法响应异常:】");
         }
         return responseStr;
     }
@@ -295,17 +295,17 @@ public class HttpUtils {
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    log.error("【HttpUtils中url:{}响应异常:】", url, e.fillInStackTrace());
+                    log.error("【HttpUtils中url:{}响应异常:】", url);
                 }
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     responseStr[0] = response.body().string();
-                    log.info("【请求:】{}响应内容:{}", url, getResponseCode(response));
+                    log.info("【请求:】{}响应内容:{}", url);
                 }
             });
         } catch (IOException e) {
-            log.error("【HttpUtils中请求url:{}响应异常:】", url, e.fillInStackTrace());
+            log.error("【HttpUtils中请求url:{}响应异常:】", url, e);
         }
         return responseStr[0];
     }

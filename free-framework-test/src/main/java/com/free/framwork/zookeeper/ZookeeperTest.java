@@ -64,11 +64,11 @@ public class ZookeeperTest {
                 System.out.println("配置信息===============>" + obj.toString());
             }
         } catch (IOException e) {
-           log.error("异常:", e.fillInStackTrace());
+           log.error("异常:", e);
         } catch (InterruptedException e) {
-            log.error("异常:", e.fillInStackTrace());
+            log.error("异常:", e);
         } catch (KeeperException e) {
-            log.error("异常:", e.fillInStackTrace());
+            log.error("异常:", e);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
