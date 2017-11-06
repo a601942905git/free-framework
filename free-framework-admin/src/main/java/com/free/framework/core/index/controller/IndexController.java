@@ -1,4 +1,4 @@
-package com.free.framework.core.index;
+package com.free.framework.core.index.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
