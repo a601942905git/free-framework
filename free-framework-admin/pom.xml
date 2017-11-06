@@ -70,6 +70,18 @@
             <artifactId>shiro-spring</artifactId>
         </dependency>
 
+        <!-- swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+
+        <!-- swagger-ui -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>free-framework</groupId>
             <artifactId>free-framework-util</artifactId>

@@ -40,6 +40,8 @@
         <shiro.spring.version>1.4.0</shiro.spring.version>
         <logback.version>1.2.3</logback.version>
         <jwt.version>0.9.0</jwt.version>
+        <swagger.version>2.7.0</swagger.version>
+        <swagger.ui.version>2.7.0</swagger.ui.version>
     </properties>
 
     <!--manage dependency-->
@@ -131,6 +133,21 @@
                 <artifactId>jjwt</artifactId>
                 <version>${jwt.version}</version>
             </dependency>
+
+            <!-- swagger2 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+            <!-- swagger-ui -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.ui.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

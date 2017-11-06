@@ -5,6 +5,7 @@ import com.free.framework.code.tools.param.GenerateCodeParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,7 +41,7 @@ public class CodeToolController {
     @Value("${spring.datasource.driverClassName}")
     private String dbDriver;
 
-    @RequestMapping(CodeToolControllerMappingURL.CODE_TOOL)
+    @GetMapping(CodeToolControllerMappingURL.CODE_TOOL)
     @ResponseBody
     public int generateCodeTool() {
         int count = 0;
@@ -50,15 +51,19 @@ public class CodeToolController {
             dataBase2File.generateFiles();
             count = 1;
         } catch (IOException e) {
-            log.error("【CodeToolController中generateCodeTool,IO异常】{}", e.getLocalizedMessage());
+            log.error("【CodeToolController中generateCodeTool,IO异常】{}", e);
         } catch (ClassNotFoundException e) {
-            log.error("【CodeToolController中generateCodeTool,ClassNotFoundException异常】{}", e.getLocalizedMessage());
+            log.error("【CodeToolController中generateCodeTool,ClassNotFoundException异常】{}", e);
         } catch (SQLException e) {
-            log.error("【CodeToolController中generateCodeTool,SQLException异常】{}", e.getLocalizedMessage());
+            log.error("【CodeToolController中generateCodeTool,SQLException异常】{}", e);
         }
         return count;
     }
 
+    /**
+     * 构建生成参数
+     * @return
+     */
     private GenerateCodeParam buildGenerateCodeParam() {
         GenerateCodeParam generateCodeParam =
                 GenerateCodeParam.builder()
