@@ -23,7 +23,7 @@ public class WebLogAspect {
     /**
      * 存放时间戳本地线程
      */
-    private static ThreadLocal<Long> SYSTEM_MILLIES_THREAD_LOCAL = new ThreadLocal<>();
+    private static ThreadLocal<Long> SYSTEM_MILLIS_THREAD_LOCAL = new ThreadLocal<>();
 
     @Pointcut("execution(* com.free.framework.core.*.controller.*.*(..))")
     public void WebLogAspect() {
@@ -36,7 +36,7 @@ public class WebLogAspect {
      */
     @Before("WebLogAspect()")
     public void doBefore(JoinPoint joinPoint) {
-        SYSTEM_MILLIES_THREAD_LOCAL.set(DateUtils.getSystemMillis());
+        SYSTEM_MILLIS_THREAD_LOCAL.set(DateUtils.getSystemMillis());
         Signature signature = joinPoint.getSignature();
         HttpServletRequest request = WebContextUtils.getRequest();
 
@@ -72,7 +72,8 @@ public class WebLogAspect {
      */
     @AfterReturning("WebLogAspect()")
     public void doAfterReturning(JoinPoint joinPoint) {
-        Long diffSystemMillis = DateUtils.getSystemMillis() - SYSTEM_MILLIES_THREAD_LOCAL.get();
+        Long diffSystemMillis = DateUtils.getSystemMillis() - SYSTEM_MILLIS_THREAD_LOCAL.get();
+        SYSTEM_MILLIS_THREAD_LOCAL.remove();
         log.info("Request Execute Time:{}", diffSystemMillis);
         log.info("==================请求结束=====================\n");
     }
