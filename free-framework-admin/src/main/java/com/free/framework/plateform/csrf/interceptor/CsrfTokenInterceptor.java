@@ -46,10 +46,11 @@ public class CsrfTokenInterceptor implements HandlerInterceptor{
             if (!validateTokenFlag) {
                 return false;
             }
+
+            // 验证通过移除csrfToken
+            WebContextUtils.removeSessionAttribute(CSRF_TOKEN);
         }
 
-        // 移除csrfToken
-        WebContextUtils.removeSessionAttribute(CSRF_TOKEN);
         return true;
     }
 
