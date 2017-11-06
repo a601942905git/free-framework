@@ -6,6 +6,8 @@ import com.free.framework.core.user.entity.User;
 import com.free.framework.core.user.service.UserService;
 import com.free.framework.plateform.common.controller.BaseController;
 import com.free.framework.plateform.common.response.ResponseData;
+import com.free.framework.plateform.csrf.annotation.GenerateToken;
+import com.free.framework.plateform.csrf.annotation.ValidateToken;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Administrator on 2017/6/3.
+ * @author lipeng
  */
 @Controller
 @RequestMapping(UserControllerMappingURL.USER_CONTROLLER)
@@ -22,7 +25,7 @@ public class UserController extends BaseController {
     private UserService userService;
 
     /**
-     * 获取用户列表信息
+     * 查询用户列表信息
      * @param userParam 查询请求参数
      * @return
      */
@@ -50,6 +53,7 @@ public class UserController extends BaseController {
      * 新增用户界面
      * @return
      */
+    @GenerateToken
     @GetMapping(UserControllerMappingURL.PAGE_ADD)
     public String addPage() {
         return UserControllerMappingURL.PAGE_ADD_RETURN;
@@ -60,6 +64,7 @@ public class UserController extends BaseController {
      s* @param user  用户对象
      * @return
      */
+    @ValidateToken
     @PostMapping(UserControllerMappingURL.USER)
     @ResponseBody
     public ResponseData save(User user) {
@@ -71,6 +76,7 @@ public class UserController extends BaseController {
      * 修改用户界面
      * @return
      */
+    @GenerateToken
     @GetMapping(UserControllerMappingURL.PAGE_UPDATE)
     public String updatePage(Integer id) {
         User user = userService.getUser(id);
@@ -83,6 +89,7 @@ public class UserController extends BaseController {
      * @param user  用户对象
      * @return
      */
+    @ValidateToken
     @PutMapping(UserControllerMappingURL.USER)
     @ResponseBody
     public ResponseData update(User user) {

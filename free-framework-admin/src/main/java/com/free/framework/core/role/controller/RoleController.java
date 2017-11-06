@@ -5,6 +5,8 @@ import com.free.framework.core.role.entity.Role;
 import com.free.framework.core.role.service.RoleService;
 import com.free.framework.plateform.common.controller.BaseController;
 import com.free.framework.plateform.common.response.ResponseData;
+import com.free.framework.plateform.csrf.annotation.GenerateToken;
+import com.free.framework.plateform.csrf.annotation.ValidateToken;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,6 +53,7 @@ public class RoleController extends BaseController {
      * 新增角色界面
      * @return
      */
+    @GenerateToken
     @GetMapping(RoleControllerMappingURL.PAGE_ADD)
     public String addPage() {
         return RoleControllerMappingURL.PAGE_ADD_RETURN;
@@ -61,6 +64,7 @@ public class RoleController extends BaseController {
      s* @param user  用户对象
      * @return
      */
+    @ValidateToken
     @PostMapping(RoleControllerMappingURL.ROLE)
     @ResponseBody
     public ResponseData save(Role role) {
@@ -72,6 +76,7 @@ public class RoleController extends BaseController {
      * 修改用户界面
      * @return
      */
+    @GenerateToken
     @GetMapping(RoleControllerMappingURL.PAGE_UPDATE)
     public String updatePage(Integer id) {
         Role role = roleService.getRole(id);
@@ -84,6 +89,7 @@ public class RoleController extends BaseController {
      * @param role  用户对象
      * @return
      */
+    @ValidateToken
     @PutMapping(RoleControllerMappingURL.ROLE)
     @ResponseBody
     public ResponseData update(Role role) {

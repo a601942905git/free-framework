@@ -2,10 +2,10 @@ package com.free.framework.plateform.csrf.interceptor;
 
 
 import com.free.framework.plateform.csrf.annotation.GenerateToken;
-import com.free.framework.plateform.csrf.annotation.RefreshToken;
 import com.free.framework.plateform.csrf.annotation.ValidateToken;
 import com.free.framework.plateform.util.web.WebContextUtils;
 import com.free.framework.util.csrf.CsrfTokenUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +19,7 @@ import java.util.Objects;
  * csrfToken拦截器
  * @author lipeng
  */
+@Slf4j
 public class CsrfTokenInterceptor implements HandlerInterceptor{
 
     public static final String CSRF_TOKEN = "csrfToken";
@@ -40,13 +41,15 @@ public class CsrfTokenInterceptor implements HandlerInterceptor{
         if (null != validateToken && validateToken.vlidate()) {
             String requestToken = request.getParameter(CSRF_TOKEN);
             boolean validateTokenFlag = validateToken(requestToken);
-            System.out.println("CsrfToken验证结果======>" + validateTokenFlag);
+            log.info("CsrfToken验证结果======>" + validateTokenFlag);
             // 验证失败
             if (!validateTokenFlag) {
                 return false;
             }
         }
 
+        // 移除csrfToken
+        WebContextUtils.removeSessionAttribute(CSRF_TOKEN);
         return true;
     }
 
@@ -76,12 +79,6 @@ public class CsrfTokenInterceptor implements HandlerInterceptor{
         // 生成token
         GenerateToken generateToken = method.getAnnotation(GenerateToken.class);
         if (null != generateToken && generateToken.generate()) {
-            WebContextUtils.setSessionAttribute(CSRF_TOKEN, CsrfTokenUtils.generateToken());
-        }
-
-        // 刷新token
-        RefreshToken refreshToken = method.getAnnotation(RefreshToken.class);
-        if (null != refreshToken && refreshToken.refresh()) {
             WebContextUtils.setSessionAttribute(CSRF_TOKEN, CsrfTokenUtils.generateToken());
         }
     }

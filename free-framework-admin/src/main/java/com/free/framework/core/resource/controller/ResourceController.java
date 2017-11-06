@@ -6,6 +6,8 @@ import com.free.framework.core.resource.entity.Resource;
 import com.free.framework.core.resource.service.ResourceService;
 import com.free.framework.plateform.common.controller.BaseController;
 import com.free.framework.plateform.common.response.ResponseData;
+import com.free.framework.plateform.csrf.annotation.GenerateToken;
+import com.free.framework.plateform.csrf.annotation.ValidateToken;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +43,7 @@ public class ResourceController extends BaseController {
 	* @param
 	* @return
 	*/
+	@GenerateToken
 	@GetMapping(ResourceControllerMappingURL.PAGE_ADD)
 	public String addPage(){
 		return ResourceControllerMappingURL.PAGE_ADD_RETURN;
@@ -51,6 +54,7 @@ public class ResourceController extends BaseController {
 	* @param id
 	* @return
 	*/
+	@GenerateToken
 	@GetMapping(ResourceControllerMappingURL.PAGE_UPDATE)
 	public String updatePage(Integer id){
 		Resource resource = resourceService.getResource(id);
@@ -75,6 +79,7 @@ public class ResourceController extends BaseController {
 	 * 新增保存
 	 * @param resource
 	 */
+	@ValidateToken
 	@PostMapping(ResourceControllerMappingURL.RESOURCE)
 	@ResponseBody
 	public ResponseData saveResource(Resource resource){
@@ -86,6 +91,7 @@ public class ResourceController extends BaseController {
 	 * 修改
 	 * @param resource
 	 */
+	@ValidateToken
 	@PutMapping(ResourceControllerMappingURL.RESOURCE)
 	@ResponseBody
 	public ResponseData updateResource(Resource resource){

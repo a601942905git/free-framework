@@ -9,7 +9,6 @@ import com.free.framework.core.organization.vo.OrganizationTreeVO;
 import com.free.framework.plateform.common.controller.BaseController;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.csrf.annotation.GenerateToken;
-import com.free.framework.plateform.csrf.annotation.RefreshToken;
 import com.free.framework.plateform.csrf.annotation.ValidateToken;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
@@ -91,7 +90,6 @@ public class OrganizationController extends BaseController {
 	 */
 	@ApiOperation(value = "新增组织信息")
 	@ValidateToken
-	@RefreshToken
 	@PostMapping(OrganizationControllerMappingURL.ORGANIZATION)
 	@ResponseBody
 	public ResponseData saveOrganization(Organization organization){

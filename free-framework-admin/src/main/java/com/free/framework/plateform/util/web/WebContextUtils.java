@@ -50,6 +50,14 @@ public class WebContextUtils {
     }
 
     /**
+     * 删除指定key的session
+     * @param key   session的key
+     */
+    public static void removeSessionAttribute(String key) {
+        getSession().removeAttribute(key);
+    }
+
+    /**
      * 获取response对象
      * @return  response对象
      */
