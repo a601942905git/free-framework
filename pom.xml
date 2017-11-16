@@ -30,6 +30,7 @@
         <spring.boot.version>1.5.8.RELEASE</spring.boot.version>
         <java.version>1.8</java.version>
         <druid.version>1.0.29</druid.version>
+        <druid.starter.version>1.1.5</druid.starter.version>
         <mybatis.version>1.3.0</mybatis.version>
         <mybatis.handler.version>1.0.2</mybatis.handler.version>
         <mybatis.page.helper.version>1.2.1</mybatis.page.helper.version>
@@ -68,11 +69,18 @@
                 <scope>import</scope>
             </dependency>
 
+
             <!-- druid -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <!-- druid starter-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.starter.version}</version>
             </dependency>
             <!-- mybatis -->
             <dependency>
