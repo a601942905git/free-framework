@@ -2,7 +2,7 @@ package com.free.framework.oss.utils;
 
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
-import com.free.framework.oss.Oss;
+import com.free.framework.oss.OssConfig;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -19,7 +19,7 @@ public class AliyunOssUtils {
      */
     public static OSSClient createOssClient() {
         AliyunOssUtils.validateOss();
-        return new OSSClient(Oss.endPoint, Oss.accessKeyId, Oss.accessKeySecret);
+        return new OSSClient(OssConfig.endPoint, OssConfig.accessKeyId, OssConfig.accessKeySecret);
     }
 
     /**
@@ -34,15 +34,15 @@ public class AliyunOssUtils {
      * 校验Oss信息
      */
     public static void validateOss() {
-        if (StringUtils.isEmpty(Oss.endPoint)) {
+        if (StringUtils.isEmpty(OssConfig.endPoint)) {
             throw new OSSException("请调用Oss.init()方法初始化endPoint");
         }
 
-        if (StringUtils.isEmpty(Oss.accessKeyId)) {
+        if (StringUtils.isEmpty(OssConfig.accessKeyId)) {
             throw new OSSException("请调用Oss.init()方法初始化accessKeyId");
         }
 
-        if (StringUtils.isEmpty(Oss.accessKeySecret)) {
+        if (StringUtils.isEmpty(OssConfig.accessKeySecret)) {
             throw new OSSException("请调用Oss.init()方法初始化accessKeySecret");
         }
     }
