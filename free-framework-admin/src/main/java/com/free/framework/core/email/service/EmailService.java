@@ -1,7 +1,6 @@
 package com.free.framework.core.email.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -21,13 +20,13 @@ import java.io.File;
  * @dateTime 2017/11/6 23:34
  */
 @Service
+@Slf4j
 public class EmailService {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private JavaMailSender sender;
 
-    @Value("${spring.mail.username}")
+    @Value("${spring.mail.from}")
     private String from;
 
     /**
@@ -45,9 +44,9 @@ public class EmailService {
 
         try {
             sender.send(message);
-            logger.info("简单邮件已经发送。");
+            log.info("简单邮件已经发送。");
         } catch (Exception e) {
-            logger.error("发送简单邮件时发生异常！", e);
+            log.error("发送简单邮件时发生异常！", e);
         }
     }
 
@@ -69,9 +68,9 @@ public class EmailService {
             helper.setText(content, true);
 
             sender.send(message);
-            logger.info("html邮件已经发送。");
+            log.info("html邮件已经发送。");
         } catch (MessagingException e) {
-            logger.error("发送html邮件时发生异常！", e);
+            log.error("发送html邮件时发生异常！", e);
         }
     }
 
@@ -98,9 +97,9 @@ public class EmailService {
             helper.addAttachment(fileName, file);
 
             sender.send(message);
-            logger.info("带附件的邮件已经发送。");
+            log.info("带附件的邮件已经发送。");
         } catch (MessagingException e) {
-            logger.error("发送带附件的邮件时发生异常！", e);
+            log.error("发送带附件的邮件时发生异常！", e);
         }
     }
 
@@ -127,9 +126,9 @@ public class EmailService {
             helper.addInline(rscId, res);
 
             sender.send(message);
-            logger.info("嵌入静态资源的邮件已经发送。");
+            log.info("嵌入静态资源的邮件已经发送。");
         } catch (MessagingException e) {
-            logger.error("发送嵌入静态资源的邮件时发生异常！", e);
+            log.error("发送嵌入静态资源的邮件时发生异常！", e);
         }
     }
 }
