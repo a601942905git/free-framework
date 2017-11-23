@@ -11,12 +11,12 @@ import javax.jms.Message;
 @Slf4j
 public class ActiveMQReceiver {
 
-    @JmsListener(destination = "${spring.activemq.admin.destination}")
+    @JmsListener(destination = "${spring.activemq.admin.destination}", containerFactory = "myFactory")
     public void receive(Message message) {
         try {
             System.out.println("监听消息为===========>" + message.getStringProperty("text"));
         } catch (JMSException e) {
-           log.error("ActiveMQReceiver中receive方法异常:{}", e);
+            log.error("ActiveMQReceiver中receive方法异常:{}", e);
         }
     }
 }
