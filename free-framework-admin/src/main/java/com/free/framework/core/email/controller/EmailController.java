@@ -1,6 +1,6 @@
 package com.free.framework.core.email.controller;
 
-import com.free.framework.core.email.service.EmailService;
+import com.free.framework.email.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

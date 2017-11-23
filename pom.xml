@@ -17,6 +17,7 @@
         <module>free-framework-cache</module>
         <module>free-framework-test</module>
         <module>free-framework-codetool</module>
+        <module>free-framework-email</module>
     </modules>
 
     <!--version properties-->

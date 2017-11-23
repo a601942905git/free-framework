@@ -1,4 +1,5 @@
-package com.free.framework.core.email.service;
+package com.free.framework.email;
+
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 
-/**
- * com.free.framework.core.email.service.EmailService
- *
- * @author lipeng
- * @dateTime 2017/11/6 23:34
- */
 @Service
 @Slf4j
 public class EmailService {

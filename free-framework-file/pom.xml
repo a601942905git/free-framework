@@ -24,11 +24,23 @@
         <dependency>
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-lang</groupId>
+                    <artifactId>commons-lang</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+            <exclusions>
+               <exclusion>
+                   <groupId>commons-lang</groupId>
+                   <artifactId>commons-lang</artifactId>
+               </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>
