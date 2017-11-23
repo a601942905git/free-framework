@@ -18,6 +18,8 @@
         <module>free-framework-test</module>
         <module>free-framework-codetool</module>
         <module>free-framework-email</module>
+        <module>free-framework-mq-sender</module>
+        <module>free-framework-mq-receiver</module>
     </modules>
 
     <!--version properties-->

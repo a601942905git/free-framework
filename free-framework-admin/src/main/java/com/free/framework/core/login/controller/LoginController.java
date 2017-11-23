@@ -2,16 +2,20 @@ package com.free.framework.core.login.controller;
 
 import com.free.framework.core.login.param.LoginParam;
 import com.free.framework.core.login.service.LoginService;
+import com.free.framework.mq.sender.ActiveMQSender;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.constant.SystemConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * com.free.framework.core.login.LoginController
@@ -26,12 +30,21 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    @Autowired
+    private ActiveMQSender activeMQSender;
+
+    @Value("${spring.activemq.admin.destination}")
+    private String destination;
+
     /**
      * 请求登陆页面
      * @return  登陆页面
      */
     @GetMapping(LoginControllerMappingUrl.LOGIN_CONTROLLER)
     public String loginPage() {
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("text", "测试");
+        activeMQSender.send(destination, map);
         return LoginControllerMappingUrl.LOGIN_RETURN_PAGE;
     }
 

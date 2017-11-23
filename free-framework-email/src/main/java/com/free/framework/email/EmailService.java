@@ -14,6 +14,9 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 
+/**
+ * @author smile
+ */
 @Service
 @Slf4j
 public class EmailService {

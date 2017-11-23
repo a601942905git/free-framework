@@ -271,7 +271,7 @@ public class HttpUtils {
         try {
             Response response = call.execute();
             responseStr = response.body().string();
-            log.info("【请求:】{}响应内容:{}", url, getResponseCode(response));
+            log.info("【请求:】{}响应内容:{}", url, responseStr);
         } catch (IOException e) {
             log.error("【HttpUtils中的get方法响应异常:】");
         }
@@ -301,7 +301,7 @@ public class HttpUtils {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     responseStr[0] = response.body().string();
-                    log.info("【请求:】{}响应内容:{}", url);
+                    log.info("【请求:】{}响应内容:{}", url, responseStr[0]);
                 }
             });
         } catch (IOException e) {
