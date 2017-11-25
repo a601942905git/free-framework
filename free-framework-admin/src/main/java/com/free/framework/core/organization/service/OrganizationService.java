@@ -12,6 +12,7 @@ import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class OrganizationService extends CommonService<Organization> {
 	 * @param organizationParam
 	 * @return
 	 */
+	@Cacheable
 	public PageInfo<Organization> pageOrganization(OrganizationParam organizationParam){
 		// 分页
 		startPage(organizationParam);
