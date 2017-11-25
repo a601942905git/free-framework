@@ -2,6 +2,7 @@ package com.free.framework.core.login.controller;
 
 import com.free.framework.core.login.param.LoginParam;
 import com.free.framework.core.login.service.LoginService;
+import com.free.framework.mq.constants.ReceiverConstants;
 import com.free.framework.mq.sender.ActiveMQSender;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.constant.SystemConstants;
@@ -44,6 +45,7 @@ public class LoginController {
     public String loginPage() {
         Map<String, Object> map = new HashMap<>(16);
         map.put("text", "测试");
+        map.put(ReceiverConstants.HANDLER_TYPE, "test_receiver_handler");
         activeMQSender.send(destination, map);
         return LoginControllerMappingUrl.LOGIN_RETURN_PAGE;
     }

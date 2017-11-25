@@ -94,6 +94,7 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!-- 自定义工具集 -->
         <dependency>
             <groupId>free-framework</groupId>
             <artifactId>free-framework-util</artifactId>
@@ -110,6 +111,7 @@
             </exclusions>
         </dependency>
 
+        <!-- 代码生成 -->
         <dependency>
             <groupId>free-framework</groupId>
             <artifactId>free-framework-codetool</artifactId>
@@ -126,6 +128,7 @@
             </exclusions>
         </dependency>
 
+        <!-- 发送邮件 -->
         <dependency>
             <groupId>free-framework</groupId>
             <artifactId>free-framework-email</artifactId>
@@ -142,11 +145,13 @@
             </exclusions>
         </dependency>
 
+        <!-- 消息发送者 -->
         <dependency>
             <groupId>free-framework</groupId>
             <artifactId>free-framework-mq-sender</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- 消息接受者 -->
         <dependency>
             <groupId>free-framework</groupId>
             <artifactId>free-framework-mq-receiver</artifactId>
