@@ -11,6 +11,7 @@ import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class UserService extends CommonService<User> {
      * @param userParam  查询条件
      * @return
      */
+    @Cacheable
     public PageInfo<User> pageUser(UserParam userParam) {
         // 分页
         startPage(userParam);

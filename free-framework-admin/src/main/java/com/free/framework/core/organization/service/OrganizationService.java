@@ -34,7 +34,7 @@ public class OrganizationService extends CommonService<Organization> {
 	 * @param organizationParam
 	 * @return
 	 */
-	@Cacheable
+	@Cacheable(value = "test")
 	public PageInfo<Organization> pageOrganization(OrganizationParam organizationParam){
 		// 分页
 		startPage(organizationParam);
