@@ -34,6 +34,9 @@ function getSearchFormUrl() {
 function searchForm() {
     pageNo = 1;
     pageSize = $("#pageSize").val();
+    if (!pageSize) {
+        pageSize = 10;
+    }
     refresh();
 }
 

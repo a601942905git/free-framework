@@ -31,7 +31,7 @@ public class UserService extends CommonService<User> {
      * @param userParam  查询条件
      * @return
      */
-    @Cacheable
+    @Cacheable("user-key")
     public PageInfo<User> pageUser(UserParam userParam) {
         // 分页
         startPage(userParam);

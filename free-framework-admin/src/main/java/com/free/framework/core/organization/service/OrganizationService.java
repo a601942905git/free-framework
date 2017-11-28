@@ -12,7 +12,8 @@ import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.ListOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,47 +29,59 @@ public class OrganizationService extends CommonService<Organization> {
 
 	@Autowired
 	private OrganizationMapper organizationMapper;
-	
+
+	@Autowired
+	private RedisTemplate redisTemplate;
+
+	public static final String PAGE_ORGANIZATION_REDIS_KEY = "free-framework:pageOrganization";
+
 	/**
 	 * 查询列表信息
 	 * @param organizationParam
 	 * @return
 	 */
-	@Cacheable(value = "test")
-	public PageInfo<Organization> pageOrganization(OrganizationParam organizationParam){
+	public PageInfo<Organization> pageOrganization(OrganizationParam organizationParam) {
+		ListOperations listOperations = redisTemplate.opsForList();
+		if (listOperations.getOperations().hasKey(PAGE_ORGANIZATION_REDIS_KEY)) {
+			return getPageInfo(listOperations.range(PAGE_ORGANIZATION_REDIS_KEY, 0, listOperations.size(PAGE_ORGANIZATION_REDIS_KEY)));
+		}
 		// 分页
 		startPage(organizationParam);
 		// 用户列表
 		List<Organization> organizationList = organizationMapper.listOrganization(organizationParam);
-        return getPageInfo(organizationList);
+		listOperations.leftPushAll(PAGE_ORGANIZATION_REDIS_KEY, organizationList);
+		return getPageInfo(organizationList);
 	}
-	
+
 	/**
 	 * 查询详情信息
-	 * @param ID
+	 *
+	 * @param id
 	 * @return
 	 */
-	public Organization getOrganization(Integer ID){
-		return organizationMapper.getOrganization(ID);
+	public Organization getOrganization(Integer id) {
+		return organizationMapper.getOrganization(id);
 	}
 
 	/**
 	 * 新增保存
+	 *
 	 * @param organization
 	 */
-	public ResponseData saveOrganization(Organization organization){
+	public ResponseData saveOrganization(Organization organization) {
 		organization.setSavePerson(UserUtils.getUserLoginCode());
 		organization.setSaveDate(DateUtils.getCurrentDate());
 		organization.setStatus(StatusEnum.ENABLE_STATUS.getId());
 		int count = organizationMapper.saveOrganization(organization);
 		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}
-	
+
 	/**
 	 * 修改
+	 *
 	 * @param organization
 	 */
-	public ResponseData updateOrganization(Organization organization){
+	public ResponseData updateOrganization(Organization organization) {
 		organization.setUpdatePerson(UserUtils.getUserLoginCode());
 		organization.setUpdateDate(DateUtils.getCurrentDate());
 		int count = organizationMapper.updateOrganization(organization);
@@ -77,6 +90,7 @@ public class OrganizationService extends CommonService<Organization> {
 
 	/**
 	 * 查询组织列表,提供给前台select展示
+	 *
 	 * @return
 	 */
 	public List<OrganizationTreeVO> treeOrganization() {
@@ -87,6 +101,7 @@ public class OrganizationService extends CommonService<Organization> {
 
 	/**
 	 * 添加根节点
+	 *
 	 * @param organizationTreeVOList
 	 * @return
 	 */
