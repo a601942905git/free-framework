@@ -49,24 +49,6 @@ public class WebLogAspect {
     }
 
     /**
-     * 在切入点方法执行前后加入逻辑
-     * @param joinPoint
-     */
-    /*@Around("WebLogAspect()")
-    public void doAround(JoinPoint joinPoint) {
-        log.info("执行doAround方法======>");
-    }*/
-
-    /**
-     * 切入点方法执行完毕返回之前执行
-     * @param joinPoint
-     */
-   /* @After("WebLogAspect()")
-    public void doAfter(JoinPoint joinPoint) {
-
-    }*/
-
-    /**
      * 切入点方法返回之后执行
      * @param joinPoint
      */

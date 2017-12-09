@@ -141,18 +141,3 @@ var fullscreen = function () {
         //浏览器不支持全屏API或已被禁用
     }
 }
-
-if(ajaxmockjax == 1){
-    $.mockjax({
-        url: 'Ajax/Login',
-        status: 200,
-        responseTime: 50,
-        responseText: {"Status":"ok","Text":"登陆成功<br /><br />欢迎回来"}
-    });
-    $.mockjax({
-        url: 'Ajax/LoginFalse',
-        status: 200,
-        responseTime: 50,
-        responseText: {"Status":"Erro","Erro":"账号名或密码或验证码有误"}
-    });
-}

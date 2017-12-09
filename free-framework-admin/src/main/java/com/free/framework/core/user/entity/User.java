@@ -1,19 +1,21 @@
 package com.free.framework.core.user.entity;
 
+import com.free.framework.core.role.entity.Role;
 import com.free.framework.plateform.common.entity.BaseEntity;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
- * Created by smile on 2017/7/18.
+ * @author smile
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @ToString
-public class User extends BaseEntity implements Serializable{
+public class User extends BaseEntity implements Serializable {
     /**
      * 编号
      */
@@ -58,4 +60,9 @@ public class User extends BaseEntity implements Serializable{
      * 登录密码
      */
     private String loginPassword;
+
+    /**
+     * 用户角色
+     */
+    private List<Role> roleList;
 }

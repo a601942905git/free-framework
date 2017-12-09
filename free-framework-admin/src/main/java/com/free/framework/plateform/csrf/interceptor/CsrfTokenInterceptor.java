@@ -33,22 +33,25 @@ public class CsrfTokenInterceptor implements HandlerInterceptor{
      * @throws Exception
      */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        Method method = handlerMethod.getMethod();
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        // 此处一定要对类型判断,次handler并非一定是HandlerMethod
+        if (handler instanceof HandlerMethod) {
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            Method method = handlerMethod.getMethod();
 
-        ValidateToken validateToken = method.getAnnotation(ValidateToken.class);
-        if (null != validateToken && validateToken.vlidate()) {
-            String requestToken = request.getParameter(CSRF_TOKEN);
-            boolean validateTokenFlag = validateToken(requestToken);
-            log.info("CsrfToken验证结果======>" + validateTokenFlag);
-            // 验证失败
-            if (!validateTokenFlag) {
-                return false;
+            ValidateToken validateToken = method.getAnnotation(ValidateToken.class);
+            if (null != validateToken && validateToken.vlidate()) {
+                String requestToken = request.getParameter(CSRF_TOKEN);
+                boolean validateTokenFlag = validateToken(requestToken);
+                log.info("CsrfToken验证结果======>" + validateTokenFlag);
+                // 验证失败
+                if (!validateTokenFlag) {
+                    return false;
+                }
+
+                // 验证通过移除csrfToken
+                WebContextUtils.removeSessionAttribute(CSRF_TOKEN);
             }
-
-            // 验证通过移除csrfToken
-            WebContextUtils.removeSessionAttribute(CSRF_TOKEN);
         }
 
         return true;
@@ -74,13 +77,15 @@ public class CsrfTokenInterceptor implements HandlerInterceptor{
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        Method method = handlerMethod.getMethod();
+        if (handler instanceof HandlerMethod) {
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            Method method = handlerMethod.getMethod();
 
-        // 生成token
-        GenerateToken generateToken = method.getAnnotation(GenerateToken.class);
-        if (null != generateToken && generateToken.generate()) {
-            WebContextUtils.setSessionAttribute(CSRF_TOKEN, CsrfTokenUtils.generateToken());
+            // 生成token
+            GenerateToken generateToken = method.getAnnotation(GenerateToken.class);
+            if (null != generateToken && generateToken.generate()) {
+                WebContextUtils.setSessionAttribute(CSRF_TOKEN, CsrfTokenUtils.generateToken());
+            }
         }
     }
 
