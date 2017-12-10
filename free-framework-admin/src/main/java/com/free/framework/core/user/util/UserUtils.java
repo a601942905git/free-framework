@@ -36,6 +36,24 @@ public class UserUtils {
     }
 
     /**
+     * 生成加密密码
+     * @param loginPassword     登陆密码
+     * @return
+     */
+    public static String generateEncryptPassword(String loginPassword) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(loginPassword);
+        sb.append(UserConstants.USER_ENCRYPT_KEY);
+        String result = sb.toString();
+        try {
+            return MD5Utils.encode(result);
+        } catch (Exception e) {
+            log.error("【UserUtils中generateEncryptPassword】加密异常:{}", e);
+            return result;
+        }
+    }
+
+    /**
      * 获取当前登陆用户账号
      * @return  登陆账号
      */
