@@ -12,8 +12,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * Created by Administrator on 2017/6/3.
+ * com.free.framework.Application
+ * 系统启动类
  * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @SpringBootApplication
 @Slf4j
