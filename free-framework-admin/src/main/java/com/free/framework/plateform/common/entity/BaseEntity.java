@@ -6,7 +6,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2017/6/3.
+ * com.free.framework.plateform.common.entity.BaseEntity
+ * 公用实体类
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Data
 public class BaseEntity implements Serializable{

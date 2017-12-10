@@ -8,7 +8,10 @@ import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/6/4.
+ * com.free.framework.plateform.common.service.CommonService
+ * 公用业务操作
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 public class CommonService<T> {
 

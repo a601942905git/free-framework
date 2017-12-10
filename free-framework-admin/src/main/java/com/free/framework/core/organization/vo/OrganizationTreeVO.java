@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * com.free.framework.core.organization.vo.OrganizationTreeVO
- *
+ * 组织实体类
  * @author lipeng
  * @dateTime 2017/9/22 23:40
  */

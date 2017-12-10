@@ -2,7 +2,7 @@ package com.free.framework.core.role.controller;
 
 /**
  * com.free.framework.core.role.controller.RoleControllerMappingUrl
- * 角色控制器url映射
+ * 角色请求控制器映射路径
  * @author lipeng
  * @dateTime 2017/9/9 23:05
  */

@@ -17,7 +17,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/6/3.
+ * com.free.framework.core.user.service.UserService
+ * 用户业务操作
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Service
 @Slf4j

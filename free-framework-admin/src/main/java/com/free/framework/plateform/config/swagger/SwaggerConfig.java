@@ -12,8 +12,10 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * swagger-ui配置
+ * com.free.framework.plateform.config.swagger.SwaggerConfig
+ * swagger配置
  * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Configuration
 @EnableSwagger2

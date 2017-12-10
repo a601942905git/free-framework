@@ -1,7 +1,10 @@
 package com.free.framework.core.user.controller;
 
 /**
- * Created by Administrator on 2017/6/3.
+ * com.free.framework.core.user.controller.UserControllerMappingUrl
+ * 用户请求控制器映射路径
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 public interface UserControllerMappingUrl {
 

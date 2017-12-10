@@ -1,7 +1,10 @@
 package com.free.framework.plateform.constant;
 
 /**
+ * com.free.framework.plateform.constant.NumberConstants
  * 阿拉伯数字常量
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 public interface NumberConstants {
 

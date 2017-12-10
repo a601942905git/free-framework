@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * com.free.framework.core.user.util.UserUtils
- *
+ * 用户操作工具类
  * @author lipeng
  * @dateTime 2017/9/17 3:28
  */

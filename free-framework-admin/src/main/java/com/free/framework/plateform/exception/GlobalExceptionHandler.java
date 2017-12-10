@@ -7,8 +7,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 全局异常处理
- * @author
+ * com.free.framework.plateform.exception.GlobalExceptionHandler
+ * 系统全局异常
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {

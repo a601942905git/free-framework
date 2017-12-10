@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 /**
+ * com.free.framework.plateform.log.WebLogAspect
  * 系统日志切面
  * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Slf4j
 @Aspect

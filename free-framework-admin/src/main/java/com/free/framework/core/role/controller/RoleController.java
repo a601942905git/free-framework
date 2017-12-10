@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * com.free.framework.core.role.controller.RoleController
- * 角色控制器
+ * 角色请求控制器
  * @author lipeng
  * @dateTime 2017/9/9 23:04
  */

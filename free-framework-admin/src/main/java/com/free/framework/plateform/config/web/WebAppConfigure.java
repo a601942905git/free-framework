@@ -9,8 +9,10 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * web配置
+ * com.free.framework.plateform.config.web.WebAppConfigure
+ * web mvc配置
  * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Configuration
 public class WebAppConfigure extends WebMvcConfigurerAdapter{

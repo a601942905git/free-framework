@@ -14,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Created by Administrator on 2017/6/3.
+ * com.free.framework.core.user.controller.UserController
+ * 用户请求控制器
  * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Controller
 @RequestMapping(UserControllerMappingUrl.USER_CONTROLLER)

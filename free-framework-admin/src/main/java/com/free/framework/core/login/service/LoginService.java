@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * com.free.framework.core.login.service.LoginService
- *
+ * 登录请求业务
  * @author lipeng
  * @dateTime 2017/9/17 3:33
  */

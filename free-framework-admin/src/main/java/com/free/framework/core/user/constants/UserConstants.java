@@ -2,7 +2,7 @@ package com.free.framework.core.user.constants;
 
 /**
  * com.free.framework.core.user.constants.UserConstants
- *
+ * 用户常量操作
  * @author lipeng
  * @dateTime 2017/9/17 3:19
  */

@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * com.free.framework.core.role.service.RoleService
- * 角色业务实现类
+ * 角色业务操作
  * @author lipeng
  * @dateTime 2017/9/9 23:04
  */

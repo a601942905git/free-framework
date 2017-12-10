@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * com.free.framework.core.role.mapper.RoleMapper
- * 角色mapper
+ * 角色数据库操作
  * @author lipeng
  * @dateTime 2017/9/9 23:04
  */

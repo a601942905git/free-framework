@@ -8,7 +8,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author smile
+ * com.free.framework.core.user.entity.User
+ * 用户实体类
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Data
 @NoArgsConstructor

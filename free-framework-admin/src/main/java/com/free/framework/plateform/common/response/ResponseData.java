@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * com.free.framework.plateform.common.response.ResponseData
- *
+ * 响应实体类
  * @author lipeng
  * @dateTime 2017/9/17 3:40
  */

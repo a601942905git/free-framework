@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * com.free.framework.core.role.controller.param.RoleParam
- *
+ * 角色请求参数
  * @author lipeng
  * @dateTime 2017/9/9 23:40
  */

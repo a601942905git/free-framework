@@ -22,7 +22,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * 操作相关
+ * com.free.framework.core.resource.service.ResourceService
+ * 资源业务操作
+ * @author lipeng
+ * @dateTime 2017/9/22 23:40
  */
 @Service
 @Slf4j

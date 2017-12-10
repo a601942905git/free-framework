@@ -1,9 +1,10 @@
 package com.free.framework.core.resource.controller;
 
 /**
- * 请求映射路径
+ * com.free.framework.core.resource.controller.ResourceControllerMappingUrl
+ * 资源请求控制器映射路径
  * @author lipeng
- *
+ * @dateTime 2017/9/22 23:40
  */
 public interface ResourceControllerMappingUrl {
 

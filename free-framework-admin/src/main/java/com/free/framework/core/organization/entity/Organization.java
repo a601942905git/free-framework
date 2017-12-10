@@ -6,7 +6,10 @@ import lombok.*;
 import java.io.Serializable;
 
 /**
- * 
+ * com.free.framework.core.organization.entity.Organization
+ * 组织实体类
+ * @author lipeng
+ * @dateTime 2017/9/17 3:33
  */
 @Data
 @NoArgsConstructor

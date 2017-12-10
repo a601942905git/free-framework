@@ -8,7 +8,10 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * 操作相关
+ * com.free.framework.core.resource.mapper.ResourceMapper
+ * 资源数据库操作
+ * @author lipeng
+ * @dateTime 2017/9/22 23:40
  */
 @Mapper
 public interface ResourceMapper {

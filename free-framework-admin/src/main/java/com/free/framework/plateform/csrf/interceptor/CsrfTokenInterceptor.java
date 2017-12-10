@@ -16,8 +16,10 @@ import java.lang.reflect.Method;
 import java.util.Objects;
 
 /**
- * csrfToken拦截器
+ * com.free.framework.plateform.csrf.interceptor.CsrfTokenInterceptor
+ * csrf token拦截器
  * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Slf4j
 public class CsrfTokenInterceptor implements HandlerInterceptor{

@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by Administrator on 2017/6/4.
+ * com.free.framework.plateform.common.controller.BaseController
+ * 公用请求控制器
  * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 public class BaseController {
 

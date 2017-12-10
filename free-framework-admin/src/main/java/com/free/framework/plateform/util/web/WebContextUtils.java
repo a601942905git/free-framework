@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * web上下文
- * 获取request、response对象
+ * com.free.framework.plateform.util.web.WebContextUtils
+ * web请求响应工具类
  * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 public class WebContextUtils {
     /**

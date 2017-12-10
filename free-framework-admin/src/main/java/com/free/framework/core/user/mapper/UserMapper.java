@@ -7,7 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/6/3.
+ * com.free.framework.core.user.mapper.UserMapper
+ * 用户数据库操作
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Mapper
 public interface UserMapper {

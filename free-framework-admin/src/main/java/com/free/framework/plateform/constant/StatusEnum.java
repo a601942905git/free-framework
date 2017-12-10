@@ -1,11 +1,14 @@
 package com.free.framework.plateform.constant;
 
 /**
- * Created by Administrator on 2017/6/12.
+ * com.free.framework.plateform.constant.StatusEnum
+ * 状态枚举
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 public enum StatusEnum {
     ENABLE_STATUS("1", "启用"),
-    DISENABLE_STATUS("2", "停用");
+    DISABLE_STATUS("2", "停用");
 
     private String id;
 

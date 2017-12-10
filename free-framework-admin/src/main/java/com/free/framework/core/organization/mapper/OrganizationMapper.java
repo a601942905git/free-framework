@@ -8,7 +8,10 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * 操作相关
+ * com.free.framework.core.organization.mapper.OrganizationMapper
+ * 组织数据库操作
+ * @author lipeng
+ * @dateTime 2017/9/17 3:33
  */
 @Mapper
 public interface OrganizationMapper {

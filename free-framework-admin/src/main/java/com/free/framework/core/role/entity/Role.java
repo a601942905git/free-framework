@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * com.free.framework.core.role.entity.Role
- * 角色
+ * 角色实体类
  * @author lipeng
  * @dateTime 2017/9/9 22:54
  */

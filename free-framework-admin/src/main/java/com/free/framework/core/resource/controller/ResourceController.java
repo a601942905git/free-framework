@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
- * 
- *
+ * com.free.framework.core.resource.controller.ResourceController
+ * 资源请求控制器
+ * @author lipeng
+ * @dateTime 2017/9/22 23:40
  */
 @Controller
 @RequestMapping(ResourceControllerMappingUrl.RESOURCE_CONTROLLER)

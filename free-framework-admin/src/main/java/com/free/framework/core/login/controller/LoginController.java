@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * com.free.framework.core.login.LoginController
- *
+ * 登录控制器
  * @author lipeng
  * @dateTime 2017/9/9 10:54
  */

@@ -1,7 +1,10 @@
 package com.free.framework.plateform.constant;
 
 /**
- * 系统级别的常量
+ * com.free.framework.plateform.constant.SystemConstants
+ * 系统常量类
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 public interface SystemConstants {
 

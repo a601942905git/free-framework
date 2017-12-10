@@ -2,7 +2,7 @@ package com.free.framework.core.email.controller;
 
 /**
  * com.free.framework.core.email.EmailControllerMappingUrl
- *
+ * 邮箱控制器请求映射路径
  * @author lipeng
  * @dateTime 2017/11/6 22:54
  */

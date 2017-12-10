@@ -3,6 +3,12 @@ package com.free.framework.core.resource.controller.param;
 import com.free.framework.plateform.common.controller.param.BaseParam;
 import lombok.Data;
 
+/**
+ * com.free.framework.core.resource.controller.param.ResourceParam
+ * 资源请求参数
+ * @author lipeng
+ * @dateTime 2017/9/22 23:40
+ */
 @Data
 public class ResourceParam extends BaseParam {
 

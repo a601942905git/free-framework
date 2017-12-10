@@ -9,8 +9,10 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 
 /**
- * 测试消费者handler
- * @author smile
+ * com.free.framework.plateform.mq.handler.TestReceiverHandler
+ * 消费者测试处理器
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Component
 @Slf4j

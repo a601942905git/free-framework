@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * com.free.framework.core.resource.vo.ResourceTreeVO
- *
+ * 资源实体类
  * @author lipeng
  * @dateTime 2017/9/22 23:52
  */

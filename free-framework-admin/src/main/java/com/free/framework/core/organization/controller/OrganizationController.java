@@ -21,8 +21,10 @@ import java.util.List;
 
 
 /**
- * 组织管理
+ * com.free.framework.core.organization.controller.param.OrganizationController
+ * 组织请求控制器
  * @author lipeng
+ * @dateTime 2017/9/17 3:33
  */
 @Controller
 @RequestMapping(OrganizationControllerMappingUrl.ORGANIZATION_CONTROLLER)

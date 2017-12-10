@@ -4,8 +4,10 @@ import com.free.framework.plateform.common.controller.param.BaseParam;
 import lombok.Data;
 
 /**
- * Created by Administrator on 2017/6/5.
- * @author smile
+ * com.free.framework.core.user.controller.param.UserParam
+ * 用户请求参数
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Data
 public class UserParam extends BaseParam {

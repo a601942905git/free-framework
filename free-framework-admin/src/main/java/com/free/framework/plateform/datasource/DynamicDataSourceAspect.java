@@ -15,8 +15,10 @@ import java.util.concurrent.atomic.LongAdder;
 
 
 /**
- * @author smile
+ * com.free.framework.plateform.datasource.DynamicDataSourceAspect
  * 动态数据源切面
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 @Slf4j
 @Aspect

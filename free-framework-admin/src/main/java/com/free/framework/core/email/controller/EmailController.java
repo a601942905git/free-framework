@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * com.free.framework.core.email.EmailController
- *
+ * 邮箱请求控制器
  * @author lipeng
  * @dateTime 2017/11/6 22:53
  */

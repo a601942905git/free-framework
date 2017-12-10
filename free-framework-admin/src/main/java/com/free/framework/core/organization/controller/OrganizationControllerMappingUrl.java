@@ -1,8 +1,10 @@
 package com.free.framework.core.organization.controller;
 
 /**
- * 请求映射路径
- *
+ * com.free.framework.core.organization.controller.param.OrganizationControllerMappingUrl
+ * 组织请求控制器映射路径
+ * @author lipeng
+ * @dateTime 2017/9/17 3:33
  */
 public interface OrganizationControllerMappingUrl {
 

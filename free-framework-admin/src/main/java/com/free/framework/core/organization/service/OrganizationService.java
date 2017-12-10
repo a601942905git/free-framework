@@ -21,7 +21,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 操作相关
+ * com.free.framework.core.organization.service.OrganizationService
+ * 组织业务
+ * @author lipeng
+ * @dateTime 2017/9/17 3:33
  */
 @Service
 @Slf4j
