@@ -8,6 +8,7 @@
                     <div class="x_content">
                         <br/>
                         <form th:action="@{'/resources/'}" id="form" type="post" class="form-horizontal form-label-left">
+                            <input type="hidden" name="csrfToken" id="csrfToken" th:value="${session.csrfToken}"/>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">名称: <span>*</span>
                                 </label>

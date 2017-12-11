@@ -1,14 +1,16 @@
 package com.free.framework.plateform.config.security;
 
+import com.free.framework.core.resource.controller.param.ResourceParam;
 import com.free.framework.core.resource.entity.Resource;
+import com.free.framework.core.resource.service.ResourceService;
+import com.free.framework.util.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -20,43 +22,44 @@ import java.util.*;
 @Component
 public class CustomerInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
 
+    private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
+
+    @Autowired
+    private ResourceService resourceService;
+
     /**
      * 加载权限表中所有权限
      */
-    public Map<String, Collection<ConfigAttribute>> loadResourceDefine(){
-        HashMap<String, Collection<ConfigAttribute>> map = new HashMap<>(16);
-        Collection<ConfigAttribute> array;
-        ConfigAttribute cfg;
-        List<Resource> resourceList = new ArrayList<>();
-        resourceList.add(new Resource(10001, "查询组织列表", -1, 1, "/organizations/", "1"));
-        resourceList.add(new Resource(10001, "新增组织信息", -1, 2, "/organizations/page/add", "1"));
-        resourceList.add(new Resource(10001, "修改组织信息", -1, 3, "/organizations/page/update", "1"));
-        for(Resource resource : resourceList) {
-            array = new ArrayList<>();
-            cfg = new SecurityConfig(resource.getName());
-            // 此处只添加了用户的名字，其实还可以添加更多权限的信息，例如请求方法到ConfigAttribute的集合中去。此处添加的信息将会作为MyAccessDecisionManager类的decide的第三个参数。
-            array.add(cfg);
-            // 用权限的getUrl() 作为map的key，用ConfigAttribute的集合作为 value，
-            map.put(resource.getPath(), array);
+    public void  loadResourceDefine(){
+        resourceMap = new HashMap<>();
+        // 得所有角色并且得到这些角色各自拥有什么功能权限
+        List<Resource> resourceList = resourceService.pageResource(new ResourceParam()).getList();
+
+        if (CollectionUtils.isNotEmpty(resourceList)) {
+            for (Resource resource : resourceList) {
+                // 先检查该角色是否已加入过权限列表，如果是，只需要读取出来，然后继续添加功能权限；如果否，新增该角色的权限列表
+                Collection<ConfigAttribute> configAttributes = resourceMap.get(resource.getPath());
+                if(configAttributes == null){
+                    configAttributes = new ArrayList<>();
+                }
+
+                ConfigAttribute configAttribute = new SecurityConfig(resource.getName());
+                configAttributes.add(configAttribute);
+
+                resourceMap.put(resource.getPath(), configAttributes);
+            }
         }
-        return map;
     }
 
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-        Map<String, Collection<ConfigAttribute>> map = loadResourceDefine();
-        // object 中包含用户请求的request 信息
-        HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
-        AntPathRequestMatcher matcher;
-        String resUrl;
-        for(Iterator<String> iter = map.keySet().iterator(); iter.hasNext(); ) {
-            resUrl = iter.next();
-            matcher = new AntPathRequestMatcher(resUrl);
-            if(matcher.matches(request)) {
-                return map.get(resUrl);
-            }
+        loadResourceDefine();
+        String requestUrl = ((FilterInvocation) object).getRequestUrl();
+        // 判断请求是否有明文参数，如果是，截取参数前的url，不是则直接利用请求url
+        if(requestUrl.indexOf("?") != -1){
+            requestUrl = requestUrl.substring(0, requestUrl.indexOf("?"));
         }
-        return null;
+        return resourceMap.get(requestUrl);
     }
 
     @Override

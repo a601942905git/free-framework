@@ -82,15 +82,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .anyRequest().authenticated() //任何请求,登录后可以访问
-            .and()
+                    .and()
                 .formLogin()
+                .usernameParameter("loginCode") // 设置登录表单用户名参数,默认为UsernamePasswordAuthenticationFilter中提供的username
+                .passwordParameter("loginPassword")
                 .loginPage("/")
                 .failureUrl("/?error")
                 .defaultSuccessUrl("/index")
                 .permitAll() //登录页面用户任意访问
-            .and()
+                    .and()
                 .logout()
                 .permitAll(); //注销行为任意访问
-
     }
 }

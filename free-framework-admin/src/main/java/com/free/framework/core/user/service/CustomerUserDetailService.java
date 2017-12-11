@@ -1,6 +1,8 @@
 package com.free.framework.core.user.service;
 
-import com.free.framework.core.role.entity.Role;
+import com.free.framework.core.resource.controller.param.ResourceParam;
+import com.free.framework.core.resource.entity.Resource;
+import com.free.framework.core.resource.service.ResourceService;
 import com.free.framework.core.user.entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class CustomerUserDetailService implements UserDetailsService{
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ResourceService resourceService;
+
     @Override
     public UserDetails loadUserByUsername(String username) {
         if (StringUtils.isEmpty(username)) {
@@ -33,15 +38,12 @@ public class CustomerUserDetailService implements UserDetailsService{
 
         User user = userService.getUserByLoginCode(username).orElseThrow(() -> new UsernameNotFoundException("登录账号不存在"));
 
-        List<Role> roleList = new ArrayList<>();
-        roleList.add(new Role(100001, "admin"));
-        roleList.add(new Role(100002, "user"));
-        user.setRoleList(roleList);
+        List<Resource> resources = resourceService.pageResource(new ResourceParam()).getList();
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         // 用于添加用户的权限,只要把用户权限添加到authorities 就万事大吉。
-        for(Role role:user.getRoleList()) {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        for(Resource resource : resources) {
+            authorities.add(new SimpleGrantedAuthority(resource.getName()));
         }
 
         return new org.springframework.security.core.userdetails.User(

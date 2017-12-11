@@ -28,7 +28,7 @@ public class CustomerAccessDecisionManager implements AccessDecisionManager {
         }
         ConfigAttribute c;
         String needRole;
-        for(Iterator<ConfigAttribute> iter = configAttributes.iterator(); iter.hasNext(); ) {
+        for(Iterator<ConfigAttribute> iter = configAttributes.iterator(); iter.hasNext();) {
             c = iter.next();
             needRole = c.getAttribute();
             // authentication 为在注释1 中循环添加到 GrantedAuthority 对象中的权限信息集合
