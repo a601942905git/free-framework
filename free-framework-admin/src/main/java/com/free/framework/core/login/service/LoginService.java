@@ -33,7 +33,7 @@ public class LoginService {
         String loginCode = loginParam.getLoginCode();
         String loginPassword = loginParam.getLoginPassword();
 
-        User user = userService.getUserByLoginCode(loginCode);
+        User user = userService.getUserByLoginCode(loginCode).orElse(null);
         //  账号不存在
         if (null == user) {
             return ResponseData.builder()

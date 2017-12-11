@@ -15,6 +15,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * com.free.framework.core.user.service.UserService
@@ -48,8 +49,9 @@ public class UserService extends CommonService<User> {
      * @param id    用户编号
      * @return
      */
-    public User getUser(Integer id) {
-        return userMapper.getUser(id);
+    public Optional<User> getUser(Integer id) {
+        User user = userMapper.getUser(id);
+        return getOptional(user);
     }
 
     /**
@@ -57,8 +59,9 @@ public class UserService extends CommonService<User> {
      * @param loginCode 登陆账号
      * @return
      */
-    public User getUserByLoginCode(String loginCode) {
-        return userMapper.getUserByLoginCode(loginCode);
+    public Optional<User> getUserByLoginCode(String loginCode) {
+        User user = userMapper.getUserByLoginCode(loginCode);
+        return getOptional(user);
     }
 
     /**

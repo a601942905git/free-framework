@@ -46,7 +46,7 @@ public class UserController extends BaseController {
      */
     @GetMapping(UserControllerMappingUrl.ONE_USER)
     public String getDetail(@PathVariable(ID) Integer id) {
-        User user = userService.getUser(id);
+        User user = userService.getUser(id).orElseGet(User::new);
         setRequestAttribute("user", user);
         return UserControllerMappingUrl.PAGE_DETAIL_RETURN;
     }
@@ -81,7 +81,7 @@ public class UserController extends BaseController {
     @GenerateToken
     @GetMapping(UserControllerMappingUrl.PAGE_UPDATE)
     public String updatePage(Integer id) {
-        User user = userService.getUser(id);
+        User user = userService.getUser(id).orElseGet(User::new);
         setRequestAttribute("user", user);
         return UserControllerMappingUrl.PAGE_UPDATE_RETURN;
     }

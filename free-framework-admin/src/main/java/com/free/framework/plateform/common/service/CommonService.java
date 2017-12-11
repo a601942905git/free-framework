@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * com.free.framework.plateform.common.service.CommonService
@@ -34,5 +35,14 @@ public class CommonService<T> {
      */
     public PageInfo<T> getPageInfo(List<T> t) {
         return new PageInfo<>(t, SystemConstants.navigatePages);
+    }
+
+    /**
+     * 包裹对象
+     * @param t
+     * @return
+     */
+    public Optional<T> getOptional(T t) {
+        return Optional.ofNullable(t);
     }
 }

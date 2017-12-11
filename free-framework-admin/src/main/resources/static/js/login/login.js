@@ -94,7 +94,7 @@ $('input[type="button"]').click(function () {
         //登陆
         var JsonData = { loginCode: login, loginPassword: pwd, code: code };
         //此处做为ajax内部判断
-        var url = "login";
+        var url = "/";
         AjaxPost(url, JsonData,
             function () {
                 //ajax加载中

@@ -2,6 +2,7 @@ package com.free.framework.core.user.service;
 
 import com.free.framework.core.role.entity.Role;
 import com.free.framework.core.user.entity.User;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,19 +26,35 @@ public class CustomerUserDetailService implements UserDetailsService{
     private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userService.getUserByLoginCode(s);
-        if (null == user) {
-            String message = String.format("userName:%s,not found", s);
-            throw new UsernameNotFoundException(message);
+    public UserDetails loadUserByUsername(String username) {
+        if (StringUtils.isEmpty(username)) {
+            throw new UsernameNotFoundException("登录账号为空");
         }
+
+        User user = userService.getUserByLoginCode(username).orElseThrow(() -> new UsernameNotFoundException("登录账号不存在"));
+
+        List<Role> roleList = new ArrayList<>();
+        roleList.add(new Role(100001, "admin"));
+        roleList.add(new Role(100002, "user"));
+        user.setRoleList(roleList);
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         // 用于添加用户的权限,只要把用户权限添加到authorities 就万事大吉。
         for(Role role:user.getRoleList()) {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
-        return new org.springframework.security.core.userdetails.User(user.getLoginCode(),
-                user.getLoginPassword(), authorities);
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getLoginCode(),
+                user.getLoginPassword(),
+                // 是否可用
+                true,
+                // 是否过期
+                true,
+                // 证书不过期为true
+                true,
+                // 账户未锁定为true
+                true,
+                authorities);
     }
 }

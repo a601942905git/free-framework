@@ -35,6 +35,6 @@ public class WebAppConfigure extends WebMvcConfigurerAdapter{
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         // 登录页面
-        registry.addViewController(LoginControllerMappingUrl.LOGIN_CONTROLLER).setViewName(LoginControllerMappingUrl.LOGIN_RETURN_PAGE);
+        registry.addViewController(LoginControllerMappingUrl.LOGIN_CONTROLLER).setViewName(LoginControllerMappingUrl.LOGIN_RETURN_PAGE1);
     }
 }

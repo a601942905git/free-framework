@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,6 +28,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomerUserDetailService();
     }
 
+    /**
+     * web层面安全配置,一般用来配置无须安全检查的路径
+     * @param web
+     */
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/component/**", "/fonts/**");
+    }
+
+    /**
+     * 身份验证配置，用于注入自定义身份验证Bean和密码校验规则
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // user Details Service验证
@@ -50,24 +65,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
              */
             @Override
             public boolean matches(CharSequence password, String encodedPassword) {
-                return encodedPassword.equals(UserUtils.generateEncryptPassword((String)password));
+                return encodedPassword.equals(UserUtils.generateEncryptPassword("admin123", (String)password));
             }
         });
 
     }
 
+    /**
+     * request层面的配置
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .csrf().disable()
+                .authorizeRequests()
                 .anyRequest().authenticated() //任何请求,登录后可以访问
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .failureUrl("/login?error")
-                    .permitAll() //登录页面用户任意访问
-                .and()
-                    .logout().permitAll(); //注销行为任意访问
-
+            .and()
+                .formLogin()
+                .loginPage("/")
+                .failureUrl("/?error")
+                .defaultSuccessUrl("/index")
+                .permitAll() //登录页面用户任意访问
+            .and()
+                .logout()
+                .permitAll(); //注销行为任意访问
 
     }
 }
