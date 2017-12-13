@@ -10,11 +10,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * com.free.framework.plateform.config.security.CustomerAccessDecisionManager
- *
+ * 决策类,当用户请求一个url地址,根据url地址查询可以访问该url地址的角色
+ * 然后判断用户时候拥有该角色,如果拥有该角色,那么就放行
  * @author lipeng
  * @dateTime 2017/12/11 14:15
  */
@@ -26,12 +26,12 @@ public class CustomerAccessDecisionManager implements AccessDecisionManager {
         if(CollectionUtils.isEmpty(configAttributes)) {
             return;
         }
-        ConfigAttribute c;
+
         String needRole;
-        for(Iterator<ConfigAttribute> iter = configAttributes.iterator(); iter.hasNext();) {
-            c = iter.next();
+        for (ConfigAttribute c : configAttributes) {
+            // 当前访问url需要的角色
             needRole = c.getAttribute();
-            // authentication 为在注释1 中循环添加到 GrantedAuthority 对象中的权限信息集合
+            // 遍历当前用户拥有的角色
             for(GrantedAuthority ga : authentication.getAuthorities()) {
                 if(needRole.trim().equals(ga.getAuthority())) {
                     return;
