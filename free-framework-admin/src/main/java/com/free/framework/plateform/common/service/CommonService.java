@@ -34,7 +34,7 @@ public class CommonService<T> {
      * @return
      */
     public PageInfo<T> getPageInfo(List<T> t) {
-        return new PageInfo<>(t, SystemConstants.navigatePages);
+        return new PageInfo<>(t, SystemConstants.NAVIGATE_PAGES);
     }
 
     /**

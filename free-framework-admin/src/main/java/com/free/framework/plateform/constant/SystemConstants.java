@@ -31,5 +31,10 @@ public interface SystemConstants {
     /**
      * 分页导航显示数量
      */
-    int navigatePages = 10;
+    Integer NAVIGATE_PAGES = 10;
+
+    /**
+     * map默认容量大小
+     */
+    Integer DEFAULT_MAP_CAPACITY = 16;
 }
