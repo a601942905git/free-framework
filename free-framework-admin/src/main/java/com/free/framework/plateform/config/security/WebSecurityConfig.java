@@ -1,6 +1,5 @@
 package com.free.framework.plateform.config.security;
 
-import com.free.framework.core.user.service.CustomerUserDetailService;
 import com.free.framework.core.user.util.UserUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

@@ -64,12 +64,6 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
-        <!--shiro spring-->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-        </dependency>
-
         <!-- swagger2 -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -98,6 +92,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- spring-boot-starter-test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
         <!-- 自定义工具集 -->

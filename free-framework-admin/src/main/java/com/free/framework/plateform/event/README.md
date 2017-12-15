@@ -1,0 +1,9 @@
+spring事件驱动模型:也被称为目标/观察者,发布/订阅
+核心:
+    1.事件
+        定义事件,继承ApplicationEvent
+    2.事件监听者
+        如果对事件监听者执行顺序无要求,可以实现ApplicationListener
+        如果对事件监听者执行顺序有要求,可是实现SmartApplicationListener
+    3.事件发布者
+        通过注入ApplicationContext,调用publishEvent
