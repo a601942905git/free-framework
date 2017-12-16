@@ -1,5 +1,6 @@
 package com.free.framework.util.jwt.constants;
 
+import com.free.framework.util.date.DateUtils;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
 
@@ -25,7 +26,7 @@ public interface JwtConsts {
     /**
      * 默认的签发时间
      */
-    Date DEFAULT_ISSUED_At = new Date(System.currentTimeMillis());
+    Date DEFAULT_ISSUED_At = new Date(DateUtils.getSystemMillis());
 
     /**
      *  默认时长30天
@@ -35,6 +36,6 @@ public interface JwtConsts {
     /**
      * 默认失效时间
      */
-   Date DEFAULT_EXPIRATION = new Date(System.currentTimeMillis() + DEFAULT_TIME);
+   Date DEFAULT_EXPIRATION = new Date(DateUtils.getSystemMillis() + DEFAULT_TIME);
 
 }
