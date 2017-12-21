@@ -16,6 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @ToString
+@EqualsAndHashCode
 public class Organization extends BaseEntity implements Serializable {
 
 	/**

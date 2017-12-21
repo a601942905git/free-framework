@@ -2,6 +2,7 @@ package com.free.framework.core.resource.controller.param;
 
 import com.free.framework.plateform.common.controller.param.BaseParam;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * com.free.framework.core.resource.controller.param.ResourceParam
@@ -10,6 +11,7 @@ import lombok.Data;
  * @dateTime 2017/9/22 23:40
  */
 @Data
+@EqualsAndHashCode
 public class ResourceParam extends BaseParam {
 
     /**

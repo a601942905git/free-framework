@@ -2,6 +2,7 @@ package com.free.framework.core.user.controller.param;
 
 import com.free.framework.plateform.common.controller.param.BaseParam;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * com.free.framework.core.user.controller.param.UserParam
@@ -10,6 +11,7 @@ import lombok.Data;
  * @dateTime 2017/9/17 3:19
  */
 @Data
+@EqualsAndHashCode
 public class UserParam extends BaseParam {
 
     /**

@@ -16,6 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @ToString
+@EqualsAndHashCode
 public class Resource extends BaseEntity implements Serializable {
 
 	/**
