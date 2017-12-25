@@ -1,9 +1,9 @@
-package com.free.framework.chain;
+package com.free.framework.mode.chain;
 
 import java.math.BigDecimal;
 
 /**
- * com.free.framework.chain.Handler
+ * com.free.framework.mode.chain.Handler
  *
  * @author lipeng
  * @dateTime 2017/12/25 21:41
