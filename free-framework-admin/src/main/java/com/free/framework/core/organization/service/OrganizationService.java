@@ -73,7 +73,7 @@ public class OrganizationService extends CommonService<Organization> {
 	 */
 	public ResponseData saveOrganization(Organization organization) {
 		organization.setSavePerson(UserUtils.getUserLoginCode());
-		organization.setSaveDate(DateUtils.getCurrentDate());
+		organization.setSaveDate(DateUtils.getDate());
 		organization.setStatus(StatusEnum.ENABLE_STATUS.getId());
 		int count = organizationMapper.saveOrganization(organization);
 		return count == 1 ? ResponseData.success() : ResponseData.fail();
@@ -86,7 +86,7 @@ public class OrganizationService extends CommonService<Organization> {
 	 */
 	public ResponseData updateOrganization(Organization organization) {
 		organization.setUpdatePerson(UserUtils.getUserLoginCode());
-		organization.setUpdateDate(DateUtils.getCurrentDate());
+		organization.setUpdateDate(DateUtils.getDate());
 		int count = organizationMapper.updateOrganization(organization);
 		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}

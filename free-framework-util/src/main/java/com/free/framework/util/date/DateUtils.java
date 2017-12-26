@@ -9,7 +9,10 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * Created by Administrator on 2017/6/12.
+ * com.free.framework.util.date.DateUtils
+ * 日期工具类
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 public class DateUtils {
 
@@ -31,6 +34,16 @@ public class DateUtils {
         return date;
     }
 
+    /**
+     * @author lipeng
+     * @description         获取当前系统时间,格式为yyyy-MM-dd
+     * @return              格式化后的当前系统时间
+     * @dateTime 2017/8/6 9:33
+     */
+    public static String getCurrentDate() {
+        return getCurrentDate("");
+    }
+
 
     /**
      * @author lipeng
@@ -41,12 +54,22 @@ public class DateUtils {
      */
     public static String getCurrentDateTime(String formatPattern) {
         String dateTime;
-        LocalDateTime localDate = LocalDateTime.now();
+        LocalDateTime localDateTime = LocalDateTime.now();
         formatPattern = StringUtils.isNotEmpty(formatPattern)
                 ? formatPattern : FormatterPatternConstants.DATE_TIME_FORMAT_PATTERN;
         DateTimeFormatter dateTimeFormatter = getDateTimeFormatter(formatPattern);
-        dateTime = dateTimeFormatter.format(localDate);
+        dateTime = dateTimeFormatter.format(localDateTime);
         return dateTime;
+    }
+
+    /**
+     * @author lipeng
+     * @description             获取当前系统时间,格式为yyyy-MM-dd HH:mm:ss
+     * @return                  格式化后的当前系统时间
+     * @dateTime 2017/8/6 9:34
+     */
+    public static String getCurrentDateTime() {
+        return getCurrentDateTime("");
     }
 
 
@@ -155,7 +178,7 @@ public class DateUtils {
      * 获取当前系统时间
      * @return  返回当前系统时间
      */
-    public static Date getCurrentDate() {
+    public static Date getDate() {
         return new Date();
     }
 }

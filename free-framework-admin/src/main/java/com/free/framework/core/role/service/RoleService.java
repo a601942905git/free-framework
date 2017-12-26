@@ -57,7 +57,7 @@ public class RoleService extends CommonService<Role> {
      */
     public ResponseData saveRole(Role role) {
         role.setSavePerson(UserUtils.getUserLoginCode());
-        role.setSaveDate(DateUtils.getCurrentDate());
+        role.setSaveDate(DateUtils.getDate());
         role.setStatus(StatusEnum.ENABLE_STATUS.getId());
         int count = roleMapper.saveRole(role);
         return count == 1 ? ResponseData.success() : ResponseData.fail();
@@ -70,7 +70,7 @@ public class RoleService extends CommonService<Role> {
      */
     public ResponseData updateRole(Role role) {
         role.setUpdatePerson(UserUtils.getUserLoginCode());
-        role.setUpdateDate(DateUtils.getCurrentDate());
+        role.setUpdateDate(DateUtils.getDate());
         int count = roleMapper.updateRole(role);
         return count == 1 ? ResponseData.success() : ResponseData.fail();
     }

@@ -75,7 +75,7 @@ public class UserService extends CommonService<User> {
         String encryptPassword = UserUtils.generateEncryptPassword(loginCode, loginPassword);
         user.setLoginPassword(encryptPassword);
         user.setSavePerson(UserUtils.getUserLoginCode());
-        user.setSaveDate(DateUtils.getCurrentDate());
+        user.setSaveDate(DateUtils.getDate());
         user.setStatus(StatusEnum.ENABLE_STATUS.getId());
         int count = userMapper.saveUser(user);
         return count == 1 ? ResponseData.success() : ResponseData.fail();
@@ -88,7 +88,7 @@ public class UserService extends CommonService<User> {
      */
     public ResponseData updateUser(User user) {
         user.setUpdatePerson(UserUtils.getUserLoginCode());
-        user.setUpdateDate(DateUtils.getCurrentDate());
+        user.setUpdateDate(DateUtils.getDate());
         int count = userMapper.updateUser(user);
         return count == 1 ? ResponseData.success() : ResponseData.fail();
     }

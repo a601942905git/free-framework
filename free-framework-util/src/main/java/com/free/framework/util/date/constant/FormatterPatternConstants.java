@@ -1,7 +1,10 @@
 package com.free.framework.util.date.constant;
 
 /**
- * Created by Administrator on 2017/6/12.
+ * com.free.framework.util.date.constant.FormatterPatternConstants
+ * 日期格式化常量类
+ * @author lipeng
+ * @dateTime 2017/9/17 3:19
  */
 public interface FormatterPatternConstants {
 

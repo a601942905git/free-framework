@@ -62,7 +62,7 @@ public class ResourceService extends CommonService<Resource> {
 	 */
 	public ResponseData saveResource(Resource resource){
 		resource.setSavePerson(UserUtils.getUserLoginCode());
-		resource.setSaveDate(DateUtils.getCurrentDate());
+		resource.setSaveDate(DateUtils.getDate());
 		resource.setStatus(StatusEnum.ENABLE_STATUS.getId());
 		int count = resourceMapper.saveResource(resource);
 		return count == 1 ? ResponseData.success() : ResponseData.fail();
@@ -74,7 +74,7 @@ public class ResourceService extends CommonService<Resource> {
 	 */
 	public ResponseData updateResource(Resource resource){
 		resource.setUpdatePerson(UserUtils.getUserLoginCode());
-		resource.setUpdateDate(DateUtils.getCurrentDate());
+		resource.setUpdateDate(DateUtils.getDate());
 		int count = resourceMapper.updateResource(resource);
 		return count == 1 ? ResponseData.success() : ResponseData.fail();
 	}
