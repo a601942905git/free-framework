@@ -100,6 +100,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
+        <!-- spring-stateMachine-core -->
+        <dependency>
+            <groupId>org.springframework.statemachine</groupId>
+            <artifactId>spring-statemachine-core</artifactId>
+        </dependency>
+
         <!-- 自定义工具集 -->
         <dependency>
             <groupId>free-framework</groupId>
