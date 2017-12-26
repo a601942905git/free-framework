@@ -26,7 +26,7 @@ public class ProxyFactory implements MethodInterceptor{
         Enhancer enhancer = new Enhancer();
         // 设置父类
         enhancer.setSuperclass(target.getClass());
-        // 设置回到
+        // 设置回调
         enhancer.setCallback(this);
         // 创建子类代理对象
         return enhancer.create();

@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * com.java.state.machine.StateMachineTest
- *
+ * spring状态机测试
  * @author lipeng
  * @dateTime 2017/12/26 21:47
  */
