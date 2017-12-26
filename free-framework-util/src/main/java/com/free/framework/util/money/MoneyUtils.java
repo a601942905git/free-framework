@@ -150,7 +150,7 @@ public class MoneyUtils {
     public static BigDecimal divide(BigDecimal bigDecimal1, BigDecimal bigDecimal2, int scale, int roundingMode) {
         commonRequireNonNull(bigDecimal1, bigDecimal2);
         BigDecimal defaultBigDecimal;
-        defaultBigDecimal = divideOne(bigDecimal1.divide(bigDecimal2), scale, BigDecimal.ROUND_HALF_UP);
+        defaultBigDecimal = divideOne(bigDecimal1.divide(bigDecimal2), scale, roundingMode);
         return defaultBigDecimal;
     }
 
