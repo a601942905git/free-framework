@@ -1,9 +1,9 @@
 package com.free.framework.plateform.listener;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
-import org.springframework.context.ApplicationListener;
 
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 /**
@@ -14,10 +14,15 @@ import javax.servlet.annotation.WebListener;
  */
 @Slf4j
 @WebListener
-public class WebInitListener implements ApplicationListener<EmbeddedServletContainerInitializedEvent>{
+public class WebInitListener implements ServletContextListener{
 
     @Override
-    public void onApplicationEvent(EmbeddedServletContainerInitializedEvent event) {
+    public void contextInitialized(ServletContextEvent servletContextEvent) {
+        System.out.println("===================");
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent servletContextEvent) {
 
     }
 }

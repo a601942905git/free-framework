@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationListener;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
@@ -26,6 +27,7 @@ import java.util.Set;
  * @dateTime 2017/9/17 3:19
  */
 @SpringBootApplication
+@ServletComponentScan
 @Slf4j
 public class Application implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
 

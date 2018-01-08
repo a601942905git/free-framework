@@ -11,14 +11,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * com.free.framework.plateform.config.web.WebAppConfigure
  * web mvc配置
+ *
  * @author lipeng
  * @dateTime 2017/9/17 3:19
  */
 @Configuration
-public class WebAppConfigure extends WebMvcConfigurerAdapter{
+public class WebAppConfigure extends WebMvcConfigurerAdapter {
 
     /**
      * 配置拦截器
+     *
      * @param registry
      */
     @Override
@@ -30,6 +32,7 @@ public class WebAppConfigure extends WebMvcConfigurerAdapter{
     /**
      * 添加跳转视图控制
      * 以前跳转一个界面,需要在controller中写一个方法,然后进行跳转,现在可以再此处进行配置
+     *
      * @param registry
      */
     @Override
