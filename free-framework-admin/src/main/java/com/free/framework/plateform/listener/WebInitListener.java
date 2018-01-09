@@ -1,10 +1,8 @@
 package com.free.framework.plateform.listener;
 
 import lombok.extern.slf4j.Slf4j;
-
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 
 /**
  * com.free.framework.plateform.listener.WebInitListener
@@ -13,16 +11,12 @@ import javax.servlet.annotation.WebListener;
  * @dateTime 2017/9/17 3:19
  */
 @Slf4j
-@WebListener
-public class WebInitListener implements ServletContextListener{
+public class WebInitListener implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
-    public void contextInitialized(ServletContextEvent servletContextEvent) {
-        System.out.println("===================");
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent servletContextEvent) {
-
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        if (null == event.getApplicationContext().getParent()) {
+            System.out.println("=======监听器开启监听======");
+        }
     }
 }

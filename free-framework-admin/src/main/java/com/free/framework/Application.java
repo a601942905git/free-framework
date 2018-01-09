@@ -27,7 +27,6 @@ import java.util.Set;
  * @dateTime 2017/9/17 3:19
  */
 @SpringBootApplication
-@ServletComponentScan
 @Slf4j
 public class Application implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
 
