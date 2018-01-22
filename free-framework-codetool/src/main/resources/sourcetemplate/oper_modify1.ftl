@@ -7,7 +7,7 @@
                 <div class="x_panel" style="border:none">
                     <div class="x_content">
                         <br/>
-                        <form th:action="@{'/${moduleName}s/' + ${r"${"}${moduleName.id}${r"}"}}" th:object="${r"${"}${moduleName}${r"}"}" id="form" type="post" class="form-horizontal form-label-left">
+                        <form th:action="@{'/${moduleName}s/' + ${r"${"}${moduleName}${r"."}${primaryProperty}${r"}"}}" th:object="${r"${"}${moduleName}${r"}"}" id="form" type="post" class="form-horizontal form-label-left">
                             <input type="hidden" id="_method" name="_method" value="PUT"/>
                             <#if columns??>
                             <#list columns as col>

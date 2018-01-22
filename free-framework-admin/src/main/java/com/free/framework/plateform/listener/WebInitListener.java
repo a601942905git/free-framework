@@ -1,10 +1,9 @@
 package com.free.framework.plateform.listener;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
 import org.springframework.context.ApplicationListener;
-
-import javax.servlet.annotation.WebListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
 /**
  * com.free.framework.plateform.listener.WebInitListener
@@ -13,11 +12,13 @@ import javax.servlet.annotation.WebListener;
  * @dateTime 2017/9/17 3:19
  */
 @Slf4j
-@WebListener
-public class WebInitListener implements ApplicationListener<EmbeddedServletContainerInitializedEvent>{
+@Component
+public class WebInitListener implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
-    public void onApplicationEvent(EmbeddedServletContainerInitializedEvent event) {
-
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        if (null == event.getApplicationContext().getParent()) {
+            System.out.println("=======监听器开启监听======");
+        }
     }
 }

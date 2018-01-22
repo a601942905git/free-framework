@@ -1,5 +1,6 @@
 package com.free.framework.core.codetool.controller;
 
+import com.alibaba.druid.filter.config.ConfigTools;
 import com.free.framework.code.tools.DataBase2File;
 import com.free.framework.code.tools.param.GenerateCodeParam;
 import lombok.extern.slf4j.Slf4j;
@@ -41,9 +42,12 @@ public class CodeToolController {
     @Value("${spring.datasource.driverClassName}")
     private String dbDriver;
 
+    @Value("${publicKey}")
+    private String publicKey;
+
     @GetMapping(CodeToolControllerMappingURL.CODE_TOOL)
     @ResponseBody
-    public int generateCodeTool() {
+    public int generateCodeTool() throws Exception {
         int count = 0;
         GenerateCodeParam generateCodeParam = buildGenerateCodeParam();
         DataBase2File dataBase2File = new DataBase2File(generateCodeParam);
@@ -64,7 +68,7 @@ public class CodeToolController {
      * 构建生成参数
      * @return
      */
-    private GenerateCodeParam buildGenerateCodeParam() {
+    private GenerateCodeParam buildGenerateCodeParam() throws Exception {
         GenerateCodeParam generateCodeParam =
                 GenerateCodeParam.builder()
                         .baseDir("D://free-framework")
@@ -73,7 +77,7 @@ public class CodeToolController {
                         .baseWebPackage("")
                         .dbType(dbType)
                         .dbUser(dbUserName)
-                        .dbPwd(dbPassword)
+                        .dbPwd(ConfigTools.decrypt(publicKey, dbPassword))
                         .dbName(dbName)
                         .dbUrl(dbUrl)
                         .dbDriver(dbDriver)
