@@ -13,9 +13,9 @@ public class MyCallable implements Callable<String>{
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         MyCallable myCallable = new MyCallable();
 
-        /*Future<String> future = executorService.submit(myCallable);
+        Future<String> future = executorService.submit(myCallable);
         String result = future.get();
-        System.out.println(result);*/
+        System.out.println(result);
 
         /**
          * 如果将任务放入futureTask,那么返回值直接从futureTask中获取
