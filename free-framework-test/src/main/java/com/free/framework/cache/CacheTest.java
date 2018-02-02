@@ -3,10 +3,10 @@ package com.free.framework.cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.google.common.collect.Lists;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * com.free.framework.cache.CacheTest
@@ -19,12 +19,13 @@ public class CacheTest {
     public static final String CACHE_ENTITY_KEY = "cacheEntityList";
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        CacheTest cacheTest = new CacheTest();
+        CacheData cacheData = new CacheData();
         LoadingCache<String, List<CacheEntity>> cacheBuilder = CacheBuilder.newBuilder()
+                .expireAfterAccess(1, TimeUnit.SECONDS)
                 .build(new CacheLoader<String, List<CacheEntity>>() {
                     @Override
                     public List<CacheEntity> load(String key) {
-                        return cacheTest.getCacheList();
+                        return cacheData.getCacheList();
                     }
                 });
 
@@ -32,36 +33,25 @@ public class CacheTest {
         List<CacheEntity> cacheEntityList = cacheBuilder.get(CACHE_ENTITY_KEY);
         cacheEntityList.stream().forEach(System.out::println);
         System.out.println("沉睡2s");
-        Thread.sleep(10000);
+        Thread.sleep(800);
         System.out.println("苏醒");
+
+        Long time1 = System.currentTimeMillis();
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("========================");
+            // 第二次命中缓存直接从缓存中获取数据,不进行数据库查询
+            cacheEntityList = cacheBuilder.get(CACHE_ENTITY_KEY);
+            cacheEntityList.stream().forEach(System.out::println);
+            System.out.println("========================\n");
+        }
+        Long time2 = System.currentTimeMillis();
+        System.out.println("耗时：" + (time2 - time1));
+
+        Thread.sleep(500);
+        System.out.println("===========2222=============");
         // 第二次命中缓存直接从缓存中获取数据,不进行数据库查询
         cacheEntityList = cacheBuilder.get(CACHE_ENTITY_KEY);
         cacheEntityList.stream().forEach(System.out::println);
-    }
-
-    private List<CacheEntity> getCacheList() {
-        System.out.println("模拟从数据库中读取数据......");
-        List<CacheEntity> cacheEntityList = Lists.newArrayList();
-        CacheEntity cacheEntity = CacheEntity.builder()
-                .id(10001)
-                .name("测试1")
-                .age(22)
-                .build();
-        cacheEntityList.add(cacheEntity);
-
-        cacheEntity = CacheEntity.builder()
-                .id(10002)
-                .name("测试2")
-                .age(24)
-                .build();
-        cacheEntityList.add(cacheEntity);
-
-        cacheEntity = CacheEntity.builder()
-                .id(10003)
-                .name("测试3")
-                .age(26)
-                .build();
-        cacheEntityList.add(cacheEntity);
-        return cacheEntityList;
+        System.out.println("============22222============\n");
     }
 }
