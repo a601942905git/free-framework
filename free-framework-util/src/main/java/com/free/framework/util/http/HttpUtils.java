@@ -273,7 +273,7 @@ public class HttpUtils {
             responseStr = response.body().string();
             log.info("【请求:】{}响应内容:{}", url, responseStr);
         } catch (IOException e) {
-            log.error("【HttpUtils中的get方法响应异常:】");
+            log.error("【HttpUtils中的get方法响应异常:】", e);
         }
         return responseStr;
     }
@@ -295,7 +295,7 @@ public class HttpUtils {
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    log.error("【HttpUtils中url:{}响应异常:】", url);
+                    log.error("【HttpUtils中url:{}响应异常:】{}", url, e);
                 }
 
                 @Override
