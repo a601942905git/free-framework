@@ -1,4 +1,4 @@
-package com.free.framework.cache;
+package com.free.framework.guava.cache;
 
 import com.google.common.collect.Lists;
 

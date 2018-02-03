@@ -1,4 +1,4 @@
-package com.free.framework.cache;
+package com.free.framework.guava.cache;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
