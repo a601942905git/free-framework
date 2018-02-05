@@ -1,3 +1,4 @@
+/*
 package com.free.framework.plateform.config.security;
 
 import com.free.framework.core.role.controller.param.RoleParam;
@@ -18,12 +19,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * com.free.framework.core.user.service.CustomerUserDetailService
  * 自定义用户详情业务
  * @author lipeng
  * @dateTime 2017/12/10 20:13
- */
+ *//*
+
 @Service
 @Slf4j
 public class CustomerUserDetailService implements UserDetailsService{
@@ -48,9 +51,11 @@ public class CustomerUserDetailService implements UserDetailsService{
         roleParam.setPageSize(1000);
         List<Role> roleList = roleService.pageRole(roleParam).getList();
 
-        /**
+        */
+/**
          * 存放用户拥有的角色编号
-         */
+         *//*
+
         List<GrantedAuthority> authorities = new ArrayList<>();
         for(Role role : roleList) {
             authorities.add(new SimpleGrantedAuthority(String.valueOf(role.getId())));
@@ -70,3 +75,4 @@ public class CustomerUserDetailService implements UserDetailsService{
                 authorities);
     }
 }
+*/

@@ -12,8 +12,6 @@ import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,26 +31,16 @@ public class OrganizationService extends CommonService<Organization> {
 	@Autowired
 	private OrganizationMapper organizationMapper;
 
-	@Autowired
-	private RedisTemplate redisTemplate;
-
-	public static final String PAGE_ORGANIZATION_REDIS_KEY = "free-framework:pageOrganization";
-
 	/**
 	 * 查询列表信息
 	 * @param organizationParam
 	 * @return
 	 */
 	public PageInfo<Organization> pageOrganization(OrganizationParam organizationParam) {
-		ListOperations listOperations = redisTemplate.opsForList();
-		if (listOperations.getOperations().hasKey(PAGE_ORGANIZATION_REDIS_KEY)) {
-			return getPageInfo(listOperations.range(PAGE_ORGANIZATION_REDIS_KEY, 0, listOperations.size(PAGE_ORGANIZATION_REDIS_KEY)));
-		}
 		// 分页
 		startPage(organizationParam);
 		// 用户列表
 		List<Organization> organizationList = organizationMapper.listOrganization(organizationParam);
-		listOperations.leftPushAll(PAGE_ORGANIZATION_REDIS_KEY, organizationList);
 		return getPageInfo(organizationList);
 	}
 

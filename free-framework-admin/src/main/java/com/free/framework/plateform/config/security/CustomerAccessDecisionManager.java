@@ -1,3 +1,4 @@
+/*
 package com.free.framework.plateform.config.security;
 
 import com.free.framework.util.CollectionUtils;
@@ -11,13 +12,15 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+*/
 /**
  * com.free.framework.plateform.config.security.CustomerAccessDecisionManager
  * 决策类,当用户请求一个url地址,根据url地址查询可以访问该url地址的角色
  * 然后判断用户时候拥有该角色,如果拥有该角色,那么就放行
  * @author lipeng
  * @dateTime 2017/12/11 14:15
- */
+ *//*
+
 @Component
 public class CustomerAccessDecisionManager implements AccessDecisionManager {
 
@@ -51,3 +54,4 @@ public class CustomerAccessDecisionManager implements AccessDecisionManager {
         return true;
     }
 }
+*/

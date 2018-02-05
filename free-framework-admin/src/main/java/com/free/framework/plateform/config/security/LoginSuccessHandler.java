@@ -1,3 +1,4 @@
+/*
 package com.free.framework.plateform.config.security;
 
 import com.free.framework.plateform.util.web.AddressUtils;
@@ -11,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+*/
 /**
  * com.free.framework.plateform.config.security.LoginSuccessHandler
  * 用户登录成功之后回调
  * @author lipeng
  * @dateTime 2017/12/14 11:08
- */
+ *//*
+
 @Slf4j
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
@@ -31,3 +34,4 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         super.onAuthenticationSuccess(request, response, authentication);
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.free.framework.plateform.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,14 @@ import org.springframework.stereotype.Component;
 import javax.servlet.*;
 import java.io.IOException;
 
+*/
 /**
  * com.free.framework.plateform.config.security.CustomerFilterSecurityInterceptor
  *
  * @author lipeng
  * @dateTime 2017/12/11 14:17
- */
+ *//*
+
 @Component
 public class CustomerFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter{
 
@@ -69,3 +72,4 @@ public class CustomerFilterSecurityInterceptor extends AbstractSecurityIntercept
         return this.filterInvocationSecurityMetadataSource;
     }
 }
+*/

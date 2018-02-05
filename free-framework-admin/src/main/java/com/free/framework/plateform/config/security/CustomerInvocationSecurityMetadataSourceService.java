@@ -1,3 +1,4 @@
+/*
 package com.free.framework.plateform.config.security;
 
 import com.free.framework.plateform.constant.SystemConstants;
@@ -12,28 +13,34 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+*/
 /**
  * com.free.framework.plateform.config.security.CustomerInvocationSecurityMetadataSourceService
  *
  * @author lipeng
  * @dateTime 2017/12/11 14:20
- */
+ *//*
+
 @Component
 public class CustomerInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
 
     public static final String QUESTION_MARK = "?";
 
-    /**
+    */
+/**
      * 存放资源、角色
      * key为资源的url,value为持有当前url的角色列表
-     */
+     *//*
+
     private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
 
-    /**
+    */
+/**
      * 加载所有的角色资源
      * 加载所有的资源,以及资源对应的角色
      *
-     */
+     *//*
+
     public void  loadResourceDefine(){
         resourceMap = new HashMap<>(SystemConstants.DEFAULT_MAP_CAPACITY);
         resourceMap.put("/organizations/", new ArrayList<ConfigAttribute>(){{
@@ -50,12 +57,14 @@ public class CustomerInvocationSecurityMetadataSourceService implements FilterIn
             add(new SecurityConfig(String.valueOf(600000)));}});
     }
 
-    /**
+    */
+/**
      * 返回可以访问当前url的角色列表
      * @param object
      * @return
      * @throws IllegalArgumentException
-     */
+     *//*
+
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         // 加载所有的角色资源信息
@@ -79,3 +88,4 @@ public class CustomerInvocationSecurityMetadataSourceService implements FilterIn
         return true;
     }
 }
+*/

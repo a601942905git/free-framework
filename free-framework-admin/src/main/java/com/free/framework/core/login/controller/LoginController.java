@@ -35,6 +35,15 @@ public class LoginController {
     private String destination;
 
     /**
+     * 请求登陆页面
+     * @return  登陆页面
+     */
+    @GetMapping(LoginControllerMappingUrl.LOGIN_CONTROLLER)
+    public String loginPage(){
+        return LoginControllerMappingUrl.LOGIN_RETURN_PAGE;
+    }
+
+    /**
      * 登陆
      * @param loginParam    登陆信息
      * @return  是否登陆成功
