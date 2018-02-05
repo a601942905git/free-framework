@@ -3,20 +3,20 @@
 <mapper namespace="com.free.framework.core.user.mapper.UserMapper">
 
     <sql id="BASE_SELECT_COLUMN">
-        ID,
-        NAME,
-        AGE,
-        MOBILE,
-        FACE,
-        TYPE,
-        SEX,
-        LOGIN_CODE,
-        LOGIN_PASSWORD,
-        SAVE_DATE,
-        SAVE_PERSON,
-        UPDATE_DATE,
-        UPDATE_PERSON,
-        STATUS
+        id,
+        name,
+        age,
+        mobile,
+        face,
+        type,
+        sex,
+        login_code,
+        login_password,
+        save_date,
+        save_person,
+        update_date,
+        update_person,
+        status
     </sql>
 
     <!--查询用户列表信息-->
@@ -27,21 +27,21 @@
             free_user
         WHERE 1 = 1
         <if test="null != id and id != ''">
-            AND ID = #{id}
+            AND id = #{id}
         </if>
         <if test="null != loginCode and loginCode != ''">
-            AND LOGIN_CODE = #{loginCode}
+            AND login_code = #{loginCode}
         </if>
         <if test="null != name and name != ''">
-            AND LOCATE(#{name}, NAME) > 0
+            AND LOCATE(#{name}, name) > 0
         </if>
         <if test="null != type and type != '' and type != 0">
-            AND TYPE = #{type}
+            AND type = #{type}
         </if>
         <if test="null != status and status != '' and status != 0">
-            AND STATUS = #{status}
+            AND status = #{status}
         </if>
-        ORDER BY ID DESC
+        ORDER BY id DESC
     </select>
 
     <!--查询用户详情-->
@@ -51,7 +51,7 @@
         FROM
             free_user
         WHERE
-            ID = #{id}
+            id = #{id}
         LIMIT 1
     </select>
 
@@ -62,27 +62,27 @@
         FROM
             free_user
         WHERE
-            LOGIN_CODE = #{loginCode}
+            login_code = #{loginCode}
         LIMIT 1
     </select>
 
     <!--新增用户-->
     <insert id="saveUser" parameterType="com.free.framework.core.user.entity.User">
         INSERT INTO free_user(
-            ID,
-            NAME,
-            AGE,
-            MOBILE,
-            FACE,
-            TYPE,
-            SEX,
-            LOGIN_CODE,
-            LOGIN_PASSWORD,
-            SAVE_DATE,
-            SAVE_PERSON,
-            UPDATE_DATE,
-            UPDATE_PERSON,
-            STATUS
+            id,
+            name,
+            age,
+            mobile,
+            face,
+            type,
+            sex,
+            login_code,
+            login_password,
+            save_date,
+            save_person,
+            update_date,
+            update_person,
+            status
         ) VALUES (
             #{id},
             #{name},
@@ -107,37 +107,37 @@
             free_user
         <trim prefix="SET" suffixOverrides=",">
             <if test="null != name and name != ''">
-                NAME = #{name},
+                name = #{name},
             </if>
             <if test="null != age and age != ''">
-                AGE = #{age},
+                age = #{age},
             </if>
             <if test="null != mobile and mobile != ''">
-                MOBILE = #{mobile},
+                mobile = #{mobile},
             </if>
             <if test="null != face and face != ''">
-                FACE = #{face},
+                face = #{face},
             </if>
             <if test="null != type and type != ''">
-                TYPE = #{type},
+                type = #{type},
             </if>
             <if test="null != sex and sex != ''">
-                SEX = #{sex},
+                sex = #{sex},
             </if>
             <if test="null != loginCode and loginCode != ''">
-                LOGIN_CODE = #{loginCode},
+                login_code = #{loginCode},
             </if>
             <if test="null != updateDate">
-                UPDATE_DATE = #{updateDate},
+                update_date = #{updateDate},
             </if>
             <if test="null != updatePerson and updatePerson != ''">
-                UPDATE_PERSON = #{updatePerson},
+                update_person = #{updatePerson},
             </if>
             <if test="null != status and status != ''">
-                STATUS = #{status},
+                status = #{status},
             </if>
         </trim>
-        WHERE ID = #{id}
+        WHERE id = #{id}
     </update>
 
 </mapper>

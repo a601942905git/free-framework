@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.free.framework.core.organization.mapper.OrganizationMapper">
 	<sql id="BASE_SELECT_COLUMN">
-		organization.ID,
-		organization.NAME,
-		organization.PID,
-		organization.ORDER_NUM,
-		organization.ICON,
-		organization.STATUS,
-		organization.SAVE_DATE,
-		organization.SAVE_PERSON,
-		organization.UPDATE_DATE,
-		organization.UPDATE_PERSON
+		organization.id,
+		organization.name,
+		organization.pid,
+		organization.order_num,
+		organization.icon,
+		organization.status,
+		organization.save_date,
+		organization.save_person,
+		organization.update_date,
+		organization.update_person
   	</sql>
   	
   	<select id="getOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="Integer">
@@ -20,56 +20,56 @@
 			organization1.NAME pName
   		FROM
   			free_organization organization
-  				LEFT JOIN free_organization organization1 ON organization.PID = organization1.ID
-  		WHERE organization.ID = #{id} LIMIT 1
+  				LEFT JOIN free_organization organization1 ON organization.pid = organization1.id
+  		WHERE organization.id = #{id} LIMIT 1
   	</select>
   
   	<select id="listOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="com.free.framework.core.organization.controller.param.OrganizationParam">
   		SELECT
 			<include refid="BASE_SELECT_COLUMN"/>,
-			organization1.NAME pName
+			organization1.name pName
 		FROM
 			free_organization organization
-			LEFT JOIN free_organization organization1 ON organization.PID = organization1.ID
+			LEFT JOIN free_organization organization1 ON organization.pid = organization1.id
 		WHERE 1=1
   		<if test="id!=null and id!=''">
-  			AND ID = #{id}
+  			AND id = #{id}
   		</if>
   		<if test="name!=null and name!=''">
-  			AND NAME = #{name}
+  			AND name = #{name}
   		</if>
   		<if test="pid!=null and pid!=''">
-  			AND PID = #{pid}
+  			AND pid = #{pid}
   		</if>
   		<if test="status != null and status != '' and status != 0">
-  			AND STATUS = #{status}
+  			AND status = #{status}
   		</if>
   	</select>
 
 	<!--查询组织列表树-->
     <select id="treeOrganization" resultType="com.free.framework.core.organization.vo.OrganizationTreeVO">
 		SELECT
-			ID,
-			NAME,
-			PID pId,
-			ORDER_NUM
+			id,
+			name,
+			pid pid,
+			order_num
 		FROM
 			free_organization
-		WHERE STATUS = '1'
+		WHERE status = '1'
 	</select>
 
     <insert id="saveOrganization" parameterType="com.free.framework.core.organization.entity.Organization">
   		INSERT INTO free_organization 
   		(
-			NAME,
-			PID,
-			ORDER_NUM,
-			ICON,
-			STATUS,
-			SAVE_DATE,
-			SAVE_PERSON,
-			UPDATE_DATE,
-			UPDATE_PERSON
+			name,
+			pid,
+			order_num,
+			icon,
+			status,
+			save_date,
+			save_person,
+			update_date,
+			update_person
 		) 
   		VALUES 
   		(
@@ -89,36 +89,36 @@
   		UPDATE free_organization SET 
   		<trim suffixOverrides=",">
 				<if test="null != id">
-					ID = #{id},
+					id = #{id},
 				</if>
 	    		<if test="null != name and name != ''">
-					NAME = #{name},
+					name = #{name},
 				</if>
 				<if test="null != pid">
-					PID = #{pid},
+					pid = #{pid},
 				</if>
 				<if test="null != orderNum">
-					ORDER_NUM = #{orderNum},
+					order_num = #{orderNum},
 				</if>
 	    		<if test="null != icon and icon != ''">
-					ICON = #{icon},
+					icon = #{icon},
 				</if>
 				<if test="null != status">
-					STATUS = #{status},
+					status = #{status},
 				</if>
 				<if test="null != saveDate">
-					SAVE_DATE = #{saveDate},
+					save_date = #{saveDate},
 				</if>
 	    		<if test="null != savePerson and savePerson != ''">
-					SAVE_PERSON=#{savePerson},
+					save_person = #{savePerson},
 				</if>
 				<if test="null != updateDate">
-					UPDATE_DATE = #{updateDate},
+					update_date = #{updateDate},
 				</if>
 	    		<if test="null != updatePerson and updatePerson != ''">
-					UPDATE_PERSON = #{updatePerson},
+					update_person = #{updatePerson},
 				</if>
   		</trim>
-  		WHERE ID=#{id}
+  		WHERE id = #{id}
   	</update>
 </mapper>

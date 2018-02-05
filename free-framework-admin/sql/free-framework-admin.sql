@@ -20,17 +20,17 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `free_organization`;
 CREATE TABLE `free_organization` (
-  `ID` int(8) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(10) NOT NULL,
-  `PID` int(8) NOT NULL,
-  `ORDER_NUM` int(2) NOT NULL,
-  `ICON` varchar(10) DEFAULT NULL,
-  `STATUS` enum('1','-1') NOT NULL COMMENT '1启用-1停用',
-  `SAVE_DATE` datetime NOT NULL,
-  `SAVE_PERSON` varchar(15) NOT NULL,
-  `UPDATE_DATE` datetime DEFAULT NULL,
-  `UPDATE_PERSON` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL,
+  `pid` int(8) NOT NULL,
+  `order_num` int(2) NOT NULL,
+  `icon` varchar(10) DEFAULT NULL,
+  `status` enum('1','-1') NOT NULL COMMENT '1启用-1停用',
+  `save_date` datetime NOT NULL,
+  `save_person` varchar(15) NOT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_person` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -49,18 +49,18 @@ INSERT INTO `free_organization` VALUES ('7', 'bbvv', '123', '12', null, '-1', '2
 -- ----------------------------
 DROP TABLE IF EXISTS `free_resource`;
 CREATE TABLE `free_resource` (
-  `ID` int(8) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(10) NOT NULL,
-  `PID` int(8) NOT NULL,
-  `ORDER_NUM` int(2) NOT NULL,
-  `PATH` varchar(50) DEFAULT NULL,
-  `TYPE` enum('1','2') NOT NULL COMMENT '1菜单2操作',
-  `STATUS` enum('1','-1') NOT NULL COMMENT '1启用-1停用',
-  `SAVE_DATE` datetime NOT NULL,
-  `SAVE_PERSON` varchar(15) NOT NULL,
-  `UPDATE_DATE` datetime DEFAULT NULL,
-  `UPDATE_PERSON` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL,
+  `order_num` int(2) NOT NULL,
+  `pid` int(8) NOT NULL,
+  `path` varchar(50) DEFAULT NULL,
+  `type` enum('1','2') NOT NULL COMMENT '1菜单2操作',
+  `status` enum('1','-1') NOT NULL COMMENT '1启用-1停用',
+  `save_date` datetime NOT NULL,
+  `save_person` varchar(15) NOT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_person` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -77,14 +77,14 @@ INSERT INTO `free_resource` VALUES ('5', 'aa', '2', '2', '2', '1', '1', '2017-09
 -- ----------------------------
 DROP TABLE IF EXISTS `free_role`;
 CREATE TABLE `free_role` (
-  `ID` int(8) NOT NULL AUTO_INCREMENT COMMENT '角色主鍵',
-  `NAME` varchar(10) NOT NULL COMMENT '角色名称',
-  `SAVE_DATE` datetime NOT NULL,
-  `SAVE_PERSON` varchar(15) NOT NULL,
-  `UPDATE_DATE` datetime DEFAULT NULL,
-  `UPDATE_PERSON` varchar(15) DEFAULT NULL,
-  `STATUS` enum('1','-1') NOT NULL COMMENT '1启用-1停用',
-  PRIMARY KEY (`ID`)
+  `id` int(8) NOT NULL AUTO_INCREMENT COMMENT '角色主鍵',
+  `name` varchar(10) NOT NULL COMMENT '角色名称',
+  `save_date` datetime NOT NULL,
+  `save_person` varchar(15) NOT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_person` varchar(15) DEFAULT NULL,
+  `status` enum('1','-1') NOT NULL COMMENT '1启用-1停用',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10006 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -101,14 +101,14 @@ INSERT INTO `free_role` VALUES ('10005', 'nn12', '2017-09-17 11:37:59', 'admin12
 -- ----------------------------
 DROP TABLE IF EXISTS `free_role_resource`;
 CREATE TABLE `free_role_resource` (
-  `ID` int(8) NOT NULL AUTO_INCREMENT,
-  `ROLE_ID` int(8) NOT NULL,
-  `AUTH_ID` int(8) NOT NULL COMMENT '权限编号,可以是菜单编号也可以是资源编号',
-  `SAVE_DATE` datetime NOT NULL,
-  `SAVE_PERSON` varchar(15) NOT NULL,
-  `UPDATE_DATE` datetime DEFAULT NULL,
-  `UPDATE_PERSON` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `role_id` int(8) NOT NULL,
+  `auth_id` int(8) NOT NULL COMMENT '权限编号,可以是菜单编号也可以是资源编号',
+  `save_date` datetime NOT NULL,
+  `save_person` varchar(15) NOT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_person` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -120,21 +120,21 @@ CREATE TABLE `free_role_resource` (
 -- ----------------------------
 DROP TABLE IF EXISTS `free_user`;
 CREATE TABLE `free_user` (
-  `ID` int(8) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(10) NOT NULL,
-  `AGE` int(3) DEFAULT NULL,
-  `FACE` varchar(50) NOT NULL,
-  `MOBILE` varchar(11) NOT NULL,
-  `TYPE` enum('1','2') NOT NULL,
-  `LOGIN_CODE` varchar(15) NOT NULL,
-  `LOGIN_PASSWORD` varchar(32) NOT NULL,
-  `SEX` enum('1','2') NOT NULL,
-  `SAVE_DATE` datetime NOT NULL,
-  `SAVE_PERSON` varchar(15) NOT NULL,
-  `UPDATE_DATE` datetime DEFAULT NULL,
-  `UPDATE_PERSON` varchar(15) DEFAULT NULL,
-  `STATUS` enum('1','-1') NOT NULL COMMENT '1启用-1停用',
-  PRIMARY KEY (`ID`)
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL,
+  `age` int(3) DEFAULT NULL,
+  `face` varchar(50) NOT NULL,
+  `mobile` varchar(11) NOT NULL,
+  `type` enum('1','2') NOT NULL,
+  `login_code` varchar(15) NOT NULL,
+  `login_password` varchar(32) NOT NULL,
+  `sex` enum('1','2') NOT NULL,
+  `save_date` datetime NOT NULL,
+  `save_person` varchar(15) NOT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_person` varchar(15) DEFAULT NULL,
+  `status` enum('1','-1') NOT NULL COMMENT '1启用-1停用',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10005 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -151,14 +151,14 @@ INSERT INTO `free_user` VALUES ('10004', 'aa22', '22', 'baidu.com', '13260803856
 -- ----------------------------
 DROP TABLE IF EXISTS `free_user_role`;
 CREATE TABLE `free_user_role` (
-  `ID` int(8) NOT NULL AUTO_INCREMENT,
-  `USER_ID` int(8) NOT NULL,
-  `ROLE_ID` int(8) NOT NULL,
-  `SAVE_DATE` datetime NOT NULL,
-  `SAVE_PERSON` varchar(15) NOT NULL,
-  `UPDATE_DATE` datetime DEFAULT NULL,
-  `UPDATE_PERSON` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `user_id` int(8) NOT NULL,
+  `role_id` int(8) NOT NULL,
+  `save_date` datetime NOT NULL,
+  `save_person` varchar(15) NOT NULL,
+  `update_date` datetime DEFAULT NULL,
+  `update_person` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

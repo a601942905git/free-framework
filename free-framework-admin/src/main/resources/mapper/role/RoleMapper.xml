@@ -3,13 +3,13 @@
 <mapper namespace="com.free.framework.core.role.mapper.RoleMapper">
 
     <sql id="BASE_SELECT_COLUMN">
-        ID,
-        NAME,
-        SAVE_DATE,
-        SAVE_PERSON,
-        UPDATE_DATE,
-        UPDATE_PERSON,
-        STATUS
+        id,
+        name,
+        save_date,
+        save_person,
+        update_date,
+        update_person,
+        status
     </sql>
 
     <!--查询角色列表信息-->
@@ -20,15 +20,15 @@
             free_role
         WHERE 1 = 1
         <if test="null != id and id != ''">
-            AND ID = #{id}
+            AND id = #{id}
         </if>
         <if test="null != name and name != ''">
-            AND LOCATE(#{name}, NAME) > 0
+            AND LOCATE(#{name}, name) > 0
         </if>
         <if test="status != null and status != '' and status != 0">
-            AND STATUS = #{status}
+            AND status = #{status}
         </if>
-        ORDER BY ID DESC
+        ORDER BY id DESC
     </select>
 
     <!--查询角色详情-->
@@ -38,20 +38,20 @@
         FROM
             free_role
         WHERE
-            ID = #{id}
+            id = #{id}
         LIMIT 1
     </select>
 
     <!--新增角色-->
     <insert id="saveRole" parameterType="com.free.framework.core.role.entity.Role">
         INSERT INTO free_role(
-            ID,
-            NAME,
-            SAVE_DATE,
-            SAVE_PERSON,
-            UPDATE_DATE,
-            UPDATE_PERSON,
-            STATUS
+            id,
+            name,
+            save_date,
+            save_person,
+            update_date,
+            update_person,
+            status
         ) VALUES (
             #{id},
             #{name},
@@ -69,19 +69,19 @@
             free_role
         <trim prefix="SET" suffixOverrides=",">
             <if test="null != name and name != ''">
-                NAME = #{name},
+                name = #{name},
             </if>
             <if test="null != updateDate">
-                UPDATE_DATE = #{updateDate},
+                update_date = #{updateDate},
             </if>
             <if test="null != updatePerson and updatePerson != ''">
-                UPDATE_PERSON = #{updatePerson},
+                update_person = #{updatePerson},
             </if>
             <if test="null != status and status != ''">
-                STATUS = #{status},
+                status = #{status},
             </if>
         </trim>
-        WHERE ID = #{id}
+        WHERE id = #{id}
     </update>
 
 </mapper>
