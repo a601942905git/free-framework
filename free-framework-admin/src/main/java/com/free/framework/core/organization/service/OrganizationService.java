@@ -8,6 +8,8 @@ import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
 import com.free.framework.plateform.constant.StatusEnum;
+import com.free.framework.plateform.constant.SystemConstants;
+import com.free.framework.util.CollectionUtils;
 import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * com.free.framework.core.organization.service.OrganizationService
@@ -111,26 +114,26 @@ public class OrganizationService extends CommonService<Organization> {
 
 	/**
 	 * 组装组织树
-	 * @param organizationTreeVOList
+	 * @param organizationList
 	 * @return
 	 */
-	/*private Optional<List<OrganizationTreeVO>> organizeResourceTreeVOList(List<OrganizationTreeVO> organizationTreeVOList) {
-		if (CollectionUtils.isEmpty(organizationTreeVOList)) {
+	private Optional<List<Organization>> treeOrganizationList(List<Organization> organizationList) {
+		if (CollectionUtils.isEmpty(organizationList)) {
 			return Optional.empty();
 		}
 
-		List<OrganizationTreeVO> organizationTreeVOList1 = organizationTreeVOList.stream()
-				.map(organizationTreeVO -> {
+		List<Organization> treeOrganizationList = organizationList.stream()
+				.map(treeOrganization -> {
 					// 查找当前节点下面所有的子节点
-					organizationTreeVO.getOrganizationTreeVOList().addAll(organizationTreeVOList.stream()
-							.filter(organizationTreeVO1 -> organizationTreeVO.getId().equals(organizationTreeVO1.getPid()))
+					treeOrganization.getOrganizationList().addAll(organizationList.stream()
+							.filter(organizationTreeVO1 -> treeOrganization.getId().equals(organizationTreeVO1.getPid()))
 							.collect(Collectors.toList()));
-					return organizationTreeVO;
+					return treeOrganization;
 				})
 				// 过滤的到所有的一级节点
-				.filter(resourceTreeVO -> SystemConstants.PARENT_ID.equals(resourceTreeVO.getPid()))
+				.filter(treeOrganization -> SystemConstants.PARENT_ID.equals(treeOrganization.getPid()))
 				.collect(Collectors.toList());
 
-		return Optional.of(organizationTreeVOList1);
-	}*/
+		return Optional.of(treeOrganizationList);
+	}
 }

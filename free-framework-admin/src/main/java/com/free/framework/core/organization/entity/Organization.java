@@ -4,6 +4,8 @@ import com.free.framework.plateform.common.entity.BaseEntity;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * com.free.framework.core.organization.entity.Organization
@@ -53,4 +55,6 @@ public class Organization extends BaseEntity implements Serializable {
 	 */
 
 	private String icon;
+
+	private List<Organization> organizationList = new ArrayList<>();
 }

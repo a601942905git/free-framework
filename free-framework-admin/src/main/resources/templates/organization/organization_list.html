@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+    <style>
+        .table th, .table td {
+            text-align: left;
+            vertical-align: middle!important;
+        }
+    </style>
 <div>
     <div class="row">
         <div class="col-md-12">
@@ -63,18 +69,18 @@
                     <!--列表数据-->
                     <table class="table tree">
                         <thead>
-                        <tr>
-                            <th>名称</th>
-                            <th>上级组织</th>
-                            <th>图标</th>
-                            <th>状态</th>
-                            <th>操作</th>
-                        </tr>
+                            <tr>
+                                <th>名称</th>
+                                <th>上级组织</th>
+                                <th>图标</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
                         </thead>
                         <tbody>
 							<tr th:each="organization,organizationStat : ${pageInfo.list}"
                                 th:class="${organization.pid == -1} ?
-                                    'treegrid-' + ${organization.id} :
+                                    'treegrid-' + ${organizationStat.index + 1} :
                                     'treegrid-' + ${organization.id} + ' treegrid-parent-' + ${organization.pid}">
                                 <td th:text="${organization.name}"></td>
                                 <td th:text="${organization.pid == -1} ? '公司' : ${organization.pName}"></td>
