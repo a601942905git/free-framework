@@ -38,11 +38,11 @@ public class Worker implements Runnable{
         while (true) {
             // 从队列中获取任务
             Object input = queue.poll();
-            if (null == input) {continue;}
-            // 执行任务
+            if (null == input) {break;}
+            //            // 执行任务
             Object result = handler(input);
             // 执行结果放入结果集中
-            resultMap.put(String.valueOf(input.hashCode()), input);
+            resultMap.put(String.valueOf(input.hashCode()), result);
         }
     }
 }
