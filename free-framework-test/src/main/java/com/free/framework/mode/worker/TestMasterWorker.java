@@ -1,45 +1,38 @@
 package com.free.framework.mode.worker;
 
 import java.util.Map;
-import java.util.Set;
 
 /**
  * com.free.framework.mode.worker.TestMasterWorker
  *
  * @author lipeng
- * @dateTime 2018/2/7 22:33
+ * @dateTime 2018/2/26 17:04
  */
 public class TestMasterWorker {
 
     public static void main(String[] args) {
         Worker worker = new PlusWorker();
         Master master = new Master(worker, 4);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             master.submit(i);
         }
+
         master.execute();
 
         Map<String, Object> resultMap = master.getResultMap();
+        int plusNumberSum = 0;
+        while (true) {
+            for (Map.Entry<String, Object> entry : resultMap.entrySet()) {
+                Integer result = (Integer) entry.getValue();
+                plusNumberSum += result;
+                resultMap.remove(entry.getKey());
+            }
 
-        int re = 0;  //最终计算结果保存在此
-        //不需要等待所有Worker都执行完即可
-        while(true) {
-            Set<String> keys = resultMap.keySet();  //开始计算最终结果
-            String key = null;
-            for(String k : keys) {
-                key = k;
+            if (master.isComplete()) {
                 break;
             }
-            Integer i = null;
-            if(key != null)
-                i = (Integer)resultMap.get(key);
-            if(i != null)
-                re += i; //最终结果
-            if(key != null)
-                resultMap.remove(key); //移除已被计算过的项目
-            if(master.isComplete() && resultMap.size()==0)
-                break;
         }
-        System.out.println(re);
+
+        System.out.println("执行的结果:============>" + plusNumberSum);
     }
 }

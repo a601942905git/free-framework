@@ -2,15 +2,20 @@ package com.free.framework.mode.worker;
 
 /**
  * com.free.framework.mode.worker.PlusWorker
- *
+ * 具体任务Worker
  * @author lipeng
- * @dateTime 2018/2/7 22:32
+ * @dateTime 2018/2/26 16:55
  */
 public class PlusWorker extends Worker{
 
+    /**
+     * 重写执行队列中任务的具体实现
+     * @param input
+     * @return
+     */
     @Override
-    public Object handler(Object input) {
-        Integer i = (Integer) input;
-        return i * i * i;
+    public Object handlerQueue(Object input) {
+        Integer plusNumber = (Integer) input;
+        return plusNumber;
     }
 }

@@ -8,9 +8,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * com.free.framework.mode.worker.Master
+ * Master-Worker中的Master,负责提交任务,并且汇总结果
  *
  * @author lipeng
- * @dateTime 2018/2/7 22:26
+ * @dateTime 2018/2/26 16:57
  */
 public class Master {
 
@@ -20,12 +21,12 @@ public class Master {
     private Queue<Object> queue = new ConcurrentLinkedQueue<>();
 
     /**
-     * 任务执行结果集
+     * 执行任务的结果集
      */
     private Map<String, Object> resultMap = new ConcurrentHashMap<>();
 
     /**
-     * 子任务
+     * Worker集合
      */
     private Map<String, Thread> threadMap = new HashMap<>();
 
@@ -33,24 +34,37 @@ public class Master {
         return resultMap;
     }
 
-    public Master(Worker worker, int countWorker) {
-        worker.setQueue(queue);
+    public Master(Worker worker, int workerCount) {
+        worker.setWorkerQueue(queue);
         worker.setResultMap(resultMap);
-        for (int i = 0; i < countWorker; i++) {
+        for (int i = 0; i < workerCount; i++) {
             threadMap.put(String.valueOf(i), new Thread(worker, String.valueOf(i)));
         }
     }
 
-    public void submit(Object input) {
-        queue.add(input);
+    /**
+     * 添加任务
+     *
+     * @param worker
+     */
+    public void submit(Object worker) {
+        queue.add(worker);
     }
 
+    /**
+     * worker开始工作
+     */
     public void execute() {
         for (Map.Entry<String, Thread> entry : threadMap.entrySet()) {
             entry.getValue().start();
         }
     }
 
+    /**
+     * 是否执行完成
+     *
+     * @return
+     */
     public boolean isComplete() {
         for (Map.Entry<String, Thread> entry : threadMap.entrySet()) {
             if (entry.getValue().getState() != Thread.State.TERMINATED) {
