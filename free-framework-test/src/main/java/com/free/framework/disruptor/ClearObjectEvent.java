@@ -4,13 +4,13 @@ package com.free.framework.disruptor;
  * com.free.framework.disruptor.ClearObjectEvent
  *
  * @author lipeng
- * @dateTime 2018/3/2 16:57
+ * @dateTime 2018/3/3 10:58
  */
 public class ClearObjectEvent<T> {
 
-    T val;
+    T value;
 
     void clear() {
-        val = null;
+        value = null;
     }
 }

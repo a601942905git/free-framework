@@ -13,8 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @ToString
-public class LongEvent {
+public class LongEvent<T> extends ClearObjectEvent<T>{
 
     private Long value;
-
 }
