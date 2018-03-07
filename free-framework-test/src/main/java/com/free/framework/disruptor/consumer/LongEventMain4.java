@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 /**
  * com.free.framework.disruptor.LongEventMain1
- * 使用Lamda表达式实现
+ * 多消费者,每个
  * @author lipeng
  * @dateTime 2018/3/2 16:32
  */
@@ -39,11 +39,14 @@ public class LongEventMain4 {
 
         RingBuffer<LongEvent> ringBuffer = disruptor.getRingBuffer();
 
+        System.out.println("开始执行.....");
         ByteBuffer byteBuffer = ByteBuffer.allocate(8);
-        for (int i = 0; true; i++) {
+        for (int i = 0; i < 100; i++) {
             byteBuffer.putLong(0, i);
             ringBuffer.publishEvent((event, sequence) -> event.setValue(byteBuffer.getLong(0)));
             Thread.sleep(1000);
         }
+
+        System.out.println("结束执行......");
     }
 }
