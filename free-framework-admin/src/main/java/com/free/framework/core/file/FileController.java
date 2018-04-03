@@ -1,4 +1,4 @@
-package com.free.framework.plateform.file;
+package com.free.framework.core.file;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 
 /**
- * com.free.framework.plateform.file.FileController
+ * com.free.framework.core.file.FileController
  *
  * @author lipeng
  * @dateTime 2018/4/3 17:35

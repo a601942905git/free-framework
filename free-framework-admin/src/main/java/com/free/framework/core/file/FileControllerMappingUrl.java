@@ -1,7 +1,7 @@
-package com.free.framework.plateform.file;
+package com.free.framework.core.file;
 
 /**
- * com.free.framework.plateform.file.FileControllerMappingUrl
+ * com.free.framework.core.file.FileControllerMappingUrl
  *
  * @author lipeng
  * @dateTime 2018/4/3 17:48
