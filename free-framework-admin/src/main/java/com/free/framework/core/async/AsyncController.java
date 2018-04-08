@@ -3,6 +3,7 @@ package com.free.framework.core.async;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * com.free.framework.core.async.AsyncController
@@ -28,7 +26,7 @@ public class AsyncController {
     private static ThreadPoolExecutor executor = new ThreadPoolExecutor(100, 200, 50000L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(100));
 
     @RequestMapping("/testAsync1")
-    public void testAsync1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void testAsync1(HttpServletRequest request, HttpServletResponse response) {
         AsyncContext asyncContext = request.startAsync();
         executor.submit(() -> {
             // 请求1
@@ -96,5 +94,48 @@ public class AsyncController {
             });
         });
         System.out.println("主线程执行完毕");
+    }
+
+    @RequestMapping("/testCallable")
+    @ResponseBody
+    public Callable<List<Integer>> testCallable() {
+        System.out.println("主线程开始执行");
+        Callable<List<Integer>> listCallable = () -> {
+            Thread.sleep(1000);
+            System.out.println("子线程异步处理......");
+            return new ArrayList<Integer>() {{
+                add(1);
+                add(2);
+                add(3);
+                add(4);
+                add(5);
+            }};
+        };
+        System.out.println("主线程结束执行");
+        return listCallable;
+    }
+
+    @RequestMapping("/testCompletableFuture")
+    @ResponseBody
+    public CompletableFuture<List<Integer>> testCompletableFuture() {
+        System.out.println("主线程开始执行");
+        CompletableFuture<List<Integer>> completableFuture = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("子线程异步处理......");
+            return new ArrayList<Integer>() {{
+                add(100);
+                add(200);
+                add(300);
+                add(400);
+                add(500);
+            }};
+        });
+        System.out.println("主线程结束执行");
+
+        return completableFuture;
     }
 }

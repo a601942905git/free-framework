@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
-import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationListener;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
@@ -61,7 +60,8 @@ public class Application implements ApplicationListener<EmbeddedServletContainer
 
     /**
      * 扫描URL，如果数据库中不存在，则保存入数据库
-     * 这个注解很重要，可以在每次启动的时候检查是否有URL更新，RequestMappingHandlerMapping只能在controller层用。这里我们放在主类中
+     * 这个注解很重要，可以在每次启动的时候检查是否有URL更新，
+     * RequestMappingHandlerMapping只能在controller层用。这里我们放在主类中
      */
     @PostConstruct
     public void detectHandlerMethods() {

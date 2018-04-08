@@ -1,9 +1,9 @@
 package com.free.framework.plateform.config.web;
 
 
+import com.free.framework.core.file.controller.FileControllerMappingUrl;
 import com.free.framework.core.login.controller.LoginControllerMappingUrl;
 import com.free.framework.plateform.csrf.interceptor.CsrfTokenInterceptor;
-import com.free.framework.core.file.FileControllerMappingUrl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
