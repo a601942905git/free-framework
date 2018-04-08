@@ -49,6 +49,7 @@
         <logback.version>1.2.3</logback.version>
         <jackson.databind.version>2.8.8</jackson.databind.version>
         <spring.statemachine.core.version>1.2.7.RELEASE</spring.statemachine.core.version>
+        <log4j2.version>2.0.0.RELEASE</log4j2.version>
     </properties>
 
     <!--manage dependency-->
@@ -61,8 +62,19 @@
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-log4j2</artifactId>
+                <version>${log4j2.version}</version>
+            </dependency>
 
             <!-- druid -->
             <dependency>
