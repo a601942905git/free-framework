@@ -36,13 +36,18 @@ CREATE TABLE `free_organization` (
 -- ----------------------------
 -- Records of free_organization
 -- ----------------------------
-INSERT INTO `free_organization` VALUES ('1', '2234', '2', '1', null, '1', '2017-09-10 18:15:34', '111111', '2017-09-17 14:41:58', 'admin123');
-INSERT INTO `free_organization` VALUES ('2', '测试哈哈', '121', '1', null, '1', '2017-09-14 20:57:10', '111111', '2017-09-14 20:59:58', '111111');
-INSERT INTO `free_organization` VALUES ('3', '第三方', '1', '1', null, '1', '2017-09-14 21:26:30', '111111', '2017-09-14 21:30:22', '111111');
-INSERT INTO `free_organization` VALUES ('4', 'hah', '1', '1', null, '1', '2017-09-17 04:59:28', 'admin123', null, null);
-INSERT INTO `free_organization` VALUES ('5', 'ddd', '1', '1', null, '1', '2017-09-17 11:31:48', 'admin123', null, null);
-INSERT INTO `free_organization` VALUES ('6', 'bb22', '1', '1', null, '1', '2017-09-17 11:37:06', 'admin123', '2017-09-17 11:37:18', 'admin123');
-INSERT INTO `free_organization` VALUES ('7', 'bbvv', '123', '12', null, '-1', '2017-09-17 11:42:54', 'admin123', '2017-09-17 11:43:08', 'admin123');
+INSERT INTO `free_organization` VALUES ('16', '技术研发部门', '0', '1', null, '1', '2018-04-11 22:06:09', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('17', '后端工程师', '16', '1', null, '1', '2018-04-11 22:06:30', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('18', '前端工程师', '16', '2', null, '1', '2018-04-11 22:06:54', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('19', 'JAVA工程师', '17', '1', null, '1', '2018-04-11 22:07:10', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('20', 'Python工程师', '17', '2', null, '1', '2018-04-11 22:07:34', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('21', 'Vue工程师', '18', '1', null, '1', '2018-04-11 22:07:49', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('22', 'React工程师', '18', '2', null, '1', '2018-04-11 22:08:06', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('23', '运营部门', '0', '2', null, '1', '2018-04-11 22:08:33', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('24', '财务部门', '0', '3', null, '1', '2018-04-11 22:08:46', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('25', '市场营销部门', '0', '4', null, '1', '2018-04-11 22:09:01', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('26', '产品', '16', '3', null, '1', '2018-04-11 22:09:23', 'admin123', null, null);
+INSERT INTO `free_organization` VALUES ('27', '运营1部', '23', '1', null, '1', '2018-04-11 22:09:41', 'admin123', null, null);
 
 -- ----------------------------
 -- Table structure for free_resource
