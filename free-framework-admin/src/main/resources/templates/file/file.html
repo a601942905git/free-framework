@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-middle">
+            <div class="text-center text-center">
+                <form th:action="@{'/files/upload'}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file"/>
+                    <button type="submit" class="btn btn-primary">上传</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

@@ -54,6 +54,19 @@ public class ResponseData <T> {
                 .build();
     }
 
+    /**
+     * 统一响应
+     * @param code      响应的编码
+     * @param message   响应消息
+     * @return
+     */
+    public static ResponseData response(String code, String message) {
+        return ResponseData.builder()
+                .code(code)
+                .message(message)
+                .build();
+    }
+
     public enum RESULT_CODE {
         ;
         public static final String SUCCESS_CODE = "1";

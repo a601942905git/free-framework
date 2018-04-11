@@ -18,7 +18,7 @@ public class WebInitListener implements ApplicationListener<ContextRefreshedEven
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (null == event.getApplicationContext().getParent()) {
-            System.out.println("=======监听器开启监听======");
+           log.info("=======监听器开启监听======");
         }
     }
 }

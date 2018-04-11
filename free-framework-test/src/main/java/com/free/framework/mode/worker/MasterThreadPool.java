@@ -5,15 +5,18 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
- * com.free.framework.mode.worker.Master
- * Master-Worker中的Master,负责提交任务,并且汇总结果
+ * com.free.framework.mode.worker.MasterThreadPool
  *
  * @author lipeng
- * @dateTime 2018/2/26 16:57
+ * @dateTime 2018/2/27 14:28
  */
-public class Master {
+public class MasterThreadPool {
+
+    private ExecutorService executors = Executors.newFixedThreadPool(20);
 
     /**
      * 任务队列
@@ -34,12 +37,9 @@ public class Master {
         return resultMap;
     }
 
-    public Master(Worker worker, int workerCount) {
+    public MasterThreadPool(Worker worker) {
         worker.setWorkerQueue(queue);
         worker.setResultMap(resultMap);
-        for (int i = 0; i < workerCount; i++) {
-            threadMap.put(String.valueOf(i), new Thread(worker, String.valueOf(i)));
-        }
     }
 
     /**
@@ -73,4 +73,5 @@ public class Master {
         }
         return true;
     }
+
 }

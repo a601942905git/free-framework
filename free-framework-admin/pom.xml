@@ -29,6 +29,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
         <!--mysql-->
@@ -106,6 +117,12 @@
             <artifactId>spring-statemachine-core</artifactId>
         </dependency>
 
+        <!-- disruptor -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+        </dependency>
+
         <!-- 自定义工具集 -->
         <dependency>
             <groupId>free-framework</groupId>
@@ -119,6 +136,10 @@
                 <exclusion>
                     <groupId>org.apache.commons</groupId>
                     <artifactId>commons-lang3</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

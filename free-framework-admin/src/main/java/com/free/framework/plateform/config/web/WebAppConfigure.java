@@ -1,6 +1,7 @@
 package com.free.framework.plateform.config.web;
 
 
+import com.free.framework.core.file.controller.FileControllerMappingUrl;
 import com.free.framework.core.login.controller.LoginControllerMappingUrl;
 import com.free.framework.plateform.csrf.interceptor.CsrfTokenInterceptor;
 import org.springframework.context.annotation.Configuration;
@@ -41,5 +42,9 @@ public class WebAppConfigure extends WebMvcConfigurerAdapter {
         // 登录页面
         registry.addViewController(LoginControllerMappingUrl.LOGIN_CONTROLLER)
                 .setViewName(LoginControllerMappingUrl.LOGIN_RETURN_PAGE1);
+
+        // 文件上传页面
+        registry.addViewController(FileControllerMappingUrl.FILE_CONTROLLER + FileControllerMappingUrl.FILE)
+                .setViewName(FileControllerMappingUrl.FILE_RETURN_PAGE);
     }
 }

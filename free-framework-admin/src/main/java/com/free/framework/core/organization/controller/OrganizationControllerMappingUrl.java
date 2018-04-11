@@ -16,6 +16,11 @@ public interface OrganizationControllerMappingUrl {
 	String ORGANIZATION = "/";
 
 	/**
+	 * 组织列表树数据
+	 */
+	String ORGANIZATION_TREE = "/tree";
+
+	/**
 	* 详情请求映射路径
 	*/
 	String ONE_ORGANIZATION = "/{id}";
