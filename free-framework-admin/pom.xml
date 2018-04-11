@@ -117,6 +117,12 @@
             <artifactId>spring-statemachine-core</artifactId>
         </dependency>
 
+        <!-- disruptor -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+        </dependency>
+
         <!-- 自定义工具集 -->
         <dependency>
             <groupId>free-framework</groupId>

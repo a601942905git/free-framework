@@ -33,18 +33,23 @@ public class OrganizationController extends BaseController {
 	@Autowired
 	private OrganizationService organizationService;
 
+	@GetMapping(OrganizationControllerMappingUrl.ORGANIZATION)
+	public String organization() {
+		return OrganizationControllerMappingUrl.PAGE_LIST_RETURN;
+	}
+
 	/**
-	 * 查询列表信息
+	 * 查询列表树信息
 	 * @param
 	 * @return
 	 */
-    @GetMapping(OrganizationControllerMappingUrl.ORGANIZATION)
-	@ApiOperation(value = "查询组织列表信息")
-	public String listOrganizationList(OrganizationParam organizationParam){
+    @GetMapping(OrganizationControllerMappingUrl.ORGANIZATION_TREE)
+	@ResponseBody
+	public List<Organization> treeOrganization(OrganizationParam organizationParam){
 		PageInfo pageInfo = organizationService.pageOrganization(organizationParam);
 		setRequestAttribute("pageInfo", pageInfo);
 		setRequestAttribute("organizationParam", organizationParam);
-		return OrganizationControllerMappingUrl.PAGE_LIST_RETURN;
+		return pageInfo.getList();
 	}
 
 	/**

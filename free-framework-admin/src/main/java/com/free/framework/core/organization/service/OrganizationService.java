@@ -102,7 +102,7 @@ public class OrganizationService extends CommonService<Organization> {
 		}
 
 		OrganizationTreeVO organizationTreeVO =
-				OrganizationTreeVO.builder().id(-1).pId(-1).name("公司").open("true").build();
+				OrganizationTreeVO.builder().id(0).pId(0).name("公司").open("true").build();
 		organizationTreeVOList.add(organizationTreeVO);
 
 		return Optional.of(organizationTreeVOList);
