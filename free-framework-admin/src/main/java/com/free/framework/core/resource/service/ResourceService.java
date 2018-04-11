@@ -7,6 +7,7 @@ import com.free.framework.core.resource.vo.ResourceTreeVO;
 import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
+import com.free.framework.plateform.constant.NumberConstants;
 import com.free.framework.plateform.constant.StatusEnum;
 import com.free.framework.plateform.constant.SystemConstants;
 import com.free.framework.util.date.DateUtils;
@@ -65,7 +66,7 @@ public class ResourceService extends CommonService<Resource> {
 		resource.setSaveDate(DateUtils.getDate());
 		resource.setStatus(StatusEnum.ENABLE_STATUS.getId());
 		int count = resourceMapper.saveResource(resource);
-		return count == 1 ? ResponseData.success() : ResponseData.fail();
+		return count == NumberConstants.ONE ? ResponseData.success() : ResponseData.fail();
 	}
 	
 	/**
@@ -76,7 +77,7 @@ public class ResourceService extends CommonService<Resource> {
 		resource.setUpdatePerson(UserUtils.getUserLoginCode());
 		resource.setUpdateDate(DateUtils.getDate());
 		int count = resourceMapper.updateResource(resource);
-		return count == 1 ? ResponseData.success() : ResponseData.fail();
+		return count == NumberConstants.ONE ? ResponseData.success() : ResponseData.fail();
 	}
 
 	/**

@@ -1,6 +1,5 @@
 package com.free.framework.core.organization.mapper;
 
-import com.free.framework.core.organization.controller.param.OrganizationParam;
 import com.free.framework.core.organization.entity.Organization;
 import com.free.framework.core.organization.vo.OrganizationTreeVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -37,10 +36,9 @@ public interface OrganizationMapper {
 	
 	/**
 	 * 查询列表信息
-	 * @param organizationParam
 	 * @return
 	 */
-	List<Organization> listOrganization(OrganizationParam organizationParam);
+	List<Organization> listOrganization();
 
 	/**
 	 * 查询组织树

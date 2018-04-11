@@ -30,20 +30,8 @@
 			organization1.name pName
 		FROM
 			free_organization organization
-			LEFT JOIN free_organization organization1 ON organization.pid = organization1.id
-		WHERE 1=1
-  		<if test="id!=null and id!=''">
-  			AND id = #{id}
-  		</if>
-  		<if test="name!=null and name!=''">
-  			AND name = #{name}
-  		</if>
-  		<if test="pid!=null and pid!=''">
-  			AND pid = #{pid}
-  		</if>
-  		<if test="status != null and status != '' and status != 0">
-  			AND status = #{status}
-  		</if>
+				LEFT JOIN free_organization organization1 ON organization.pid = organization1.id
+		WHERE 1=1 AND organization.id != 0
   	</select>
 
 	<!--查询组织列表树-->

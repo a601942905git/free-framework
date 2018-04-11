@@ -6,6 +6,7 @@ import com.free.framework.core.role.mapper.RoleMapper;
 import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
+import com.free.framework.plateform.constant.NumberConstants;
 import com.free.framework.plateform.constant.StatusEnum;
 import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
@@ -60,7 +61,7 @@ public class RoleService extends CommonService<Role> {
         role.setSaveDate(DateUtils.getDate());
         role.setStatus(StatusEnum.ENABLE_STATUS.getId());
         int count = roleMapper.saveRole(role);
-        return count == 1 ? ResponseData.success() : ResponseData.fail();
+        return count == NumberConstants.ONE ? ResponseData.success() : ResponseData.fail();
     }
 
     /**
@@ -72,6 +73,6 @@ public class RoleService extends CommonService<Role> {
         role.setUpdatePerson(UserUtils.getUserLoginCode());
         role.setUpdateDate(DateUtils.getDate());
         int count = roleMapper.updateRole(role);
-        return count == 1 ? ResponseData.success() : ResponseData.fail();
+        return count == NumberConstants.ONE ? ResponseData.success() : ResponseData.fail();
     }
 }

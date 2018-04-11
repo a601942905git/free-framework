@@ -2,7 +2,6 @@ package com.free.framework.core.organization.controller;
 
 
 import com.alibaba.fastjson.JSON;
-import com.free.framework.core.organization.controller.param.OrganizationParam;
 import com.free.framework.core.organization.entity.Organization;
 import com.free.framework.core.organization.service.OrganizationService;
 import com.free.framework.core.organization.vo.OrganizationTreeVO;
@@ -10,7 +9,6 @@ import com.free.framework.plateform.common.controller.BaseController;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.csrf.annotation.GenerateToken;
 import com.free.framework.plateform.csrf.annotation.ValidateToken;
-import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,11 +43,9 @@ public class OrganizationController extends BaseController {
 	 */
     @GetMapping(OrganizationControllerMappingUrl.ORGANIZATION_TREE)
 	@ResponseBody
-	public List<Organization> treeOrganization(OrganizationParam organizationParam){
-		PageInfo pageInfo = organizationService.pageOrganization(organizationParam);
-		setRequestAttribute("pageInfo", pageInfo);
-		setRequestAttribute("organizationParam", organizationParam);
-		return pageInfo.getList();
+	public List<Organization> treeOrganization(){
+		List<Organization> organizationList = organizationService.listOrganization();
+		return organizationList;
 	}
 
 	/**

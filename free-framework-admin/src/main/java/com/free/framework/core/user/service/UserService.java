@@ -6,12 +6,12 @@ import com.free.framework.core.user.mapper.UserMapper;
 import com.free.framework.core.user.util.UserUtils;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
+import com.free.framework.plateform.constant.NumberConstants;
 import com.free.framework.plateform.constant.StatusEnum;
 import com.free.framework.util.date.DateUtils;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,7 +35,6 @@ public class UserService extends CommonService<User> {
      * @param userParam  查询条件
      * @return
      */
-    @Cacheable("user-key")
     public PageInfo<User> pageUser(UserParam userParam) {
         // 分页
         startPage(userParam);
@@ -78,7 +77,7 @@ public class UserService extends CommonService<User> {
         user.setSaveDate(DateUtils.getDate());
         user.setStatus(StatusEnum.ENABLE_STATUS.getId());
         int count = userMapper.saveUser(user);
-        return count == 1 ? ResponseData.success() : ResponseData.fail();
+        return count == NumberConstants.ONE ? ResponseData.success() : ResponseData.fail();
     }
 
     /**
@@ -90,6 +89,6 @@ public class UserService extends CommonService<User> {
         user.setUpdatePerson(UserUtils.getUserLoginCode());
         user.setUpdateDate(DateUtils.getDate());
         int count = userMapper.updateUser(user);
-        return count == 1 ? ResponseData.success() : ResponseData.fail();
+        return count == NumberConstants.ONE ? ResponseData.success() : ResponseData.fail();
     }
 }
