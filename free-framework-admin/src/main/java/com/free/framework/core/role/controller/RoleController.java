@@ -90,7 +90,7 @@ public class RoleController extends BaseController {
      * @return
      */
     @ValidateToken
-    @PutMapping(RoleControllerMappingUrl.ROLE)
+    @PutMapping(RoleControllerMappingUrl.ONE_ROLE)
     @ResponseBody
     public ResponseData update(Role role) {
         ResponseData responseData = roleService.updateRole(role);

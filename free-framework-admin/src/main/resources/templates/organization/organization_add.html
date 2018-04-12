@@ -10,24 +10,24 @@
                         <form th:action="@{'/organizations/'}" id="form" type="post" class="form-horizontal form-label-left">
                             <input type="hidden" name="csrfToken" id="csrfToken" th:value="${session.csrfToken}"/>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">名称: <span>*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">名称: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="name" name="name" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pid">上级组织: <span>*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pid">上级组织: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="hidden" id="pid" name="pid" class="form-control col-md-7 col-xs-12"/>
-                                    <input type="text" id="parentName" name="parentName" class="form-control col-md-7 col-xs-12"
+                                    <input type="hidden" dir="selectedTreeNodeId" id="pid" name="pid" class="form-control col-md-7 col-xs-12"/>
+                                    <input type="text" dir="selectedTreeNodeName" id="parentName" name="parentName" class="form-control col-md-7 col-xs-12"
                                            readonly="readonly" placeholder="请点击进行选择"
                                            th:onclick="'dialog(\'organizations/page/organization/tree\', \'\', \'组织信息\', \'600px\')'"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="orderNum">排序: <span>*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="orderNum">排序: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="orderNum" name="orderNum" class="form-control col-md-7 col-xs-12"/>

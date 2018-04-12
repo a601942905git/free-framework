@@ -92,7 +92,7 @@ public class UserController extends BaseController {
      * @return
      */
     @ValidateToken
-    @PutMapping(UserControllerMappingUrl.USER)
+    @PutMapping(UserControllerMappingUrl.ONE_USER)
     @ResponseBody
     public ResponseData update(User user) {
         ResponseData responseData = userService.updateUser(user);

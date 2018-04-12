@@ -52,8 +52,8 @@
                                     <td>状态:</td>
                                     <td th:if="*{status == '1'}" style="color: green;">启用</td>
                                     <td th:if="*{status == '-1'}" style="color: red;">停用</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>所属组织:</td>
+                                    <td th:text="*{organizationName}"></td>
                                 </tr>
                             </tbody>
                         </table>

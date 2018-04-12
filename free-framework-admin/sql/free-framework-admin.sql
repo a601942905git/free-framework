@@ -36,6 +36,7 @@ CREATE TABLE `free_organization` (
 -- ----------------------------
 -- Records of free_organization
 -- ----------------------------
+INSERT INTO `free_organization` VALUES ('0', '公司', '0', '1', null, '1', '2018-04-12 09:33:45', 'admin123', null, null);
 INSERT INTO `free_organization` VALUES ('16', '技术研发部门', '0', '1', null, '1', '2018-04-11 22:06:09', 'admin123', null, null);
 INSERT INTO `free_organization` VALUES ('17', '后端工程师', '16', '1', null, '1', '2018-04-11 22:06:30', 'admin123', null, null);
 INSERT INTO `free_organization` VALUES ('18', '前端工程师', '16', '2', null, '1', '2018-04-11 22:06:54', 'admin123', null, null);
