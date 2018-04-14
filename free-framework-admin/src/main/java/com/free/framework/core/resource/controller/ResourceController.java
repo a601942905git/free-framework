@@ -94,7 +94,7 @@ public class ResourceController extends BaseController {
 	 * @param resource
 	 */
 	@ValidateToken
-	@PutMapping(ResourceControllerMappingUrl.RESOURCE)
+	@PutMapping(ResourceControllerMappingUrl.ONE_RESOURCE)
 	@ResponseBody
 	public ResponseData updateResource(Resource resource){
 		ResponseData responseData = resourceService.updateResource(resource);

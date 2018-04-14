@@ -106,9 +106,9 @@ public class OrganizationController extends BaseController {
 	 */
 	@ApiOperation(value = "修改组织信息")
 	@PutMapping(OrganizationControllerMappingUrl.ONE_ORGANIZATION)
+	@ValidateToken
 	@ResponseBody
-	public ResponseData updateOrganization(@PathVariable(ID) Integer id, Organization organization){
-		organization.setId(id);
+	public ResponseData updateOrganization(Organization organization){
 		ResponseData responseData = organizationService.updateOrganization(organization);
 		return responseData;
 	}

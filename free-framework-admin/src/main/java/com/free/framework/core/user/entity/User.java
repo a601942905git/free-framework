@@ -1,11 +1,9 @@
 package com.free.framework.core.user.entity;
 
-import com.free.framework.core.role.entity.Role;
 import com.free.framework.plateform.common.entity.BaseEntity;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * com.free.framework.core.user.entity.User
@@ -66,7 +64,12 @@ public class User extends BaseEntity implements Serializable {
     private String loginPassword;
 
     /**
-     * 用户角色
+     * 用户所属组织
      */
-    private List<Role> roleList;
+    private Integer organizationId;
+
+    /**
+     * 用户所属组织
+     */
+    private String organizationName;
 }

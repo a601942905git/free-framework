@@ -8,44 +8,44 @@
                     <div class="x_content">
                         <br/>
                         <form th:action="@{'/users/'}" id="form" type="post" class="form-horizontal form-label-left">
-
+                            <input type="hidden" name="csrfToken" id="csrfToken" th:value="${session.csrfToken}"/>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">姓名: <span>*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">姓名: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="name" name="name" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginCode">登录账号: <span>*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginCode">登录账号: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="loginCode" name="loginCode" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginPassword">登录密码: <span>*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginPassword">登录密码: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="password" id="loginPassword" name="loginPassword" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginPassword">确认密码: <span>*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="loginPassword">确认密码: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="password" id="loginRePassword" name="loginRePassword" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">手机号: <span>*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">手机号: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="mobile" name="mobile" class="form-control col-md-7 col-xs-12"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">用户类型: <span>*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">用户类型: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select id="type" name="type" class="form-control col-md-7 col-xs-12">
@@ -82,6 +82,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="organizationId">所属组织: <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="hidden" dir="selectedTreeNodeId" id="organizationId" name="organizationId" class="form-control col-md-7 col-xs-12"/>
+                                    <input type="text" dir="selectedTreeNodeName" id="organizationName" name="organizationName" class="form-control col-md-7 col-xs-12"
+                                           readonly="readonly" placeholder="请点击进行选择"
+                                           th:onclick="'dialog(\'organizations/page/organization/tree\', \'\', \'组织信息\', \'600px\')'"/>
+                                </div>
+                            </div>
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="text-align: center">
@@ -97,6 +107,10 @@
     </div>
     <script>
         $(function(){
+            validateForm();
+        });
+
+        function validateForm() {
             $("#form").validate({
                 // 验证通过之后执行的函数
                 submitHandler: function(form) {
@@ -131,6 +145,9 @@
                     age: {
                         min: 1,
                         max: 150
+                    },
+                    organizationName: {
+                        required: true
                     }
                 },
                 messages: {
@@ -161,9 +178,12 @@
                     age: {
                         min: '最小年龄为1岁',
                         max: '最大年龄为150岁'
+                    },
+                    organizationName: {
+                        required: '请选择所属组织'
                     }
                 }
             });
-        });
+        }
     </script>
 </html>

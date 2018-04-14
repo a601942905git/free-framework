@@ -89,6 +89,7 @@
                                 <th>联系方式</th>
                                 <th>用户类型</th>
                                 <th>状态</th>
+                                <th>所属组织</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -103,6 +104,7 @@
                                 <td th:text="${user.mobile}"></td>
                                 <td th:text="${user.type == '1'} ? '管理员' : '普通用户'" th:style="${user.type == '1'} ? 'color:green' : ''"></td>
                                 <td th:text="${user.status == '1'} ? '启用' : '停用'" th:style="${user.status == '1'} ? 'color:green' : 'color:red'"></td>
+                                <td th:text="${user.organizationName}"></td>
                                 <td>
                                     <a th:onclick="'dialog(\'users/' + ${user.id} + '\', \'\', \'查看用户详情\', \'600px\')'" class="btn btn-primary btn-xs">
                                         <i class="fa fa-folder"></i> 查看

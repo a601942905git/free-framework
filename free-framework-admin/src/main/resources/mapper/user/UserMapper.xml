@@ -3,28 +3,32 @@
 <mapper namespace="com.free.framework.core.user.mapper.UserMapper">
 
     <sql id="BASE_SELECT_COLUMN">
-        id,
-        name,
-        age,
-        mobile,
-        face,
-        type,
-        sex,
-        login_code,
-        login_password,
-        save_date,
-        save_person,
-        update_date,
-        update_person,
-        status
+        ${userAliases}.id,
+        ${userAliases}.name,
+        ${userAliases}.age,
+        ${userAliases}.mobile,
+        ${userAliases}.face,
+        ${userAliases}.type,
+        ${userAliases}.sex,
+        ${userAliases}.login_code,
+        ${userAliases}.login_password,
+        ${userAliases}.save_date,
+        ${userAliases}.save_person,
+        ${userAliases}.update_date,
+        ${userAliases}.update_person,
+        ${userAliases}.status
     </sql>
 
     <!--查询用户列表信息-->
     <select id="listUser" parameterType="com.free.framework.core.user.controller.param.UserParam" resultType="com.free.framework.core.user.entity.User">
         SELECT
-            <include refid="BASE_SELECT_COLUMN"/>
+            <include refid="BASE_SELECT_COLUMN">
+                <property name="userAliases" value="user_info"/>
+            </include>,
+            organization.name organization_name
         FROM
-            free_user
+            free_user user_info
+                INNER JOIN free_organization organization ON user_info.organization_id = organization.id
         WHERE 1 = 1
         <if test="null != id and id != ''">
             AND id = #{id}
@@ -47,20 +51,27 @@
     <!--查询用户详情-->
     <select id="getUser" parameterType="integer" resultType="com.free.framework.core.user.entity.User">
         SELECT
-            <include refid="BASE_SELECT_COLUMN"/>
+            <include refid="BASE_SELECT_COLUMN">
+                <property name="userAliases" value="user_info"/>
+            </include>,
+            organization.id organization_id,
+            organization.name organization_name
         FROM
-            free_user
+            free_user user_info
+                INNER JOIN free_organization organization ON user_info.organization_id = organization.id
         WHERE
-            id = #{id}
+            user_info.id = #{id}
         LIMIT 1
     </select>
 
     <!--根据登陆账号查询用户信息-->
     <select id="getUserByLoginCode" parameterType="string" resultType="com.free.framework.core.user.entity.User">
         SELECT
-            <include refid="BASE_SELECT_COLUMN"/>
+            <include refid="BASE_SELECT_COLUMN">
+                <property name="userAliases" value="user_info"/>
+            </include>
         FROM
-            free_user
+            free_user user_info
         WHERE
             login_code = #{loginCode}
         LIMIT 1
@@ -82,7 +93,8 @@
             save_person,
             update_date,
             update_person,
-            status
+            status,
+            organization_id
         ) VALUES (
             #{id},
             #{name},
@@ -97,7 +109,8 @@
             #{savePerson},
             #{updateDate},
             #{updatePerson},
-            #{status}
+            #{status},
+            #{organizationId}
         )
     </insert>
 
@@ -135,6 +148,9 @@
             </if>
             <if test="null != status and status != ''">
                 status = #{status},
+            </if>
+            <if test="null != organizationId">
+                organization_id = #{organizationId},
             </if>
         </trim>
         WHERE id = #{id}

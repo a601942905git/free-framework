@@ -60,8 +60,8 @@
             if (selectedNode) {
                 let selectedNodeName = selectedNode.name;
                 let selectedNodeId = selectedNode.id;
-                $('#parentName').val(selectedNodeName);
-                $('#pid').val(selectedNodeId);
+                $('input[dir="selectedTreeNodeName"]').val(selectedNodeName);
+                $('input[dir="selectedTreeNodeId"]').val(selectedNodeId);
             }
             closeDialog();
         }
