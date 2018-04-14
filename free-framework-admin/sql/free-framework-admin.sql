@@ -152,6 +152,8 @@ INSERT INTO `free_user` VALUES ('10002', '测试卷哦', '22', '啊哈哈', '132
 INSERT INTO `free_user` VALUES ('10003', 'lp', null, '', '13260803856', '1', 'admin123', 'DAC2AD179E2962F9C3BE51AAD8B34394', '1', '2017-09-17 04:08:38', '111111', null, null, '1');
 INSERT INTO `free_user` VALUES ('10004', 'aa22', '22', 'baidu.com', '13260803856', '2', 'a601942905', '123C3075018E88473B811612A91A3EDC', '1', '2017-09-17 11:37:41', 'admin123', '2017-09-17 14:40:47', 'admin123', '-1');
 
+ALTER TABLE free_user ADD COLUMN organization_id int(8) NOT NULL;
+
 -- ----------------------------
 -- Table structure for free_user_role
 -- ----------------------------
