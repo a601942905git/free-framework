@@ -15,57 +15,11 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h3>资源信息管理(共<span th:text="${pageInfo.total}"></span>条)</h3>
+                    <h3>资源信息管理</h3>
                 </div>
                 <div class="x_content">
                     <!--查询数据-->
-                    <form th:action="@{'/resources/'}" class="form" id="search_form">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-4 col-md-2">
-                                <div class="input-group">
-                                    <span class="input-group-addon">编号</span>
-                                    <input class="form-control" name="id" id="id" th:value="${resourceParam.id}"/>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-2">
-                                <div class="input-group">
-                                    <span class="input-group-addon">名称</span>
-                                    <input class="form-control" name="name" id="name" th:value="${resourceParam.name}"/>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-2">
-                                <div class="input-group">
-                                    <span class="input-group-addon">父级编号</span>
-                                    <input class="form-control" name="pid" id="pid" th:value="${resourceParam.pid}"/>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-2">
-                                <div class="input-group">
-                                    <span class="input-group-addon">类型</span>
-                                    <select class="form-control" name="type" id="type">
-                                        <option th:selected="${resourceParam.type == '0'}" th:value="0">--全部--</option>
-                                        <option th:selected="${resourceParam.type == '1'}" th:value="1">菜单</option>
-                                        <option th:selected="${resourceParam.type == '2'}" th:value="2">功能</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-2">
-                                <div class="input-group">
-                                    <span class="input-group-addon">状态</span>
-                                    <select class="form-control" name="status" id="status">
-                                        <option th:selected="${resourceParam.status == '0'}" th:value="0">--全部--</option>
-                                        <option th:selected="${resourceParam.status == '1'}" th:value="1">启用</option>
-                                        <option th:selected="${resourceParam.status == '-1'}" th:value="-1">停用</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-2">
-                                <button type="button" class="btn btn-info" th:onclick="'searchForm()'">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                    搜索
-                                </button>
-                            </div>
-                        </div>
+                    <form th:action="@{'/resources/page/list'}" class="form" id="search_form">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <button type="button" class="btn btn-primary" th:onclick="'dialog(\'resources/page/add\', \'\', \'新增用户\', \'600px\')'">
@@ -77,50 +31,99 @@
                     </form>
 
                     <!--列表数据-->
-                    <table class="table table-striped table-hover table-condensed">
-                        <thead>
-                        <tr>
-                            <th>编号</th>
-                            <th>名称</th>
-                            <th>父级名称</th>
-                            <th>排序编号</th>
-                            <th>路径 </th>
-                            <th>类型</th>
-                            <th>状态</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-							<tr th:each="resource : ${pageInfo.list}">
-                                <td th:text="${resource.id}"></td>
-                                <td th:text="${resource.name}"></td>
-                                <td th:text="${resource.pid}"></td>
-                                <td th:text="${resource.orderNum}"></td>
-                                <td th:text="${resource.path}"></td>
-                                <td th:text="${resource.type}"></td>
-                                <td th:text="${resource.status == '1'} ? '启用' : '停用'" th:style="${resource.status == '1'} ? 'color:green' : 'color:red'"></td>
-								<td>
-                                    <a th:onclick="'dialog(\'resources/' + ${resource.id} + '\', \'\', \'查看用户详情\', \'600px\')'" class="btn btn-primary btn-xs">
-                                        <i class="fa fa-folder"></i> 查看
-                                    </a>
-                                    <a th:onclick="'dialog(\'resources/page/update\', {id:' + ${resource.id} + '}, \'编辑用户\', \'600px\')'" class="btn btn-info btn-xs">
-                                        <i class="fa fa-pencil"></i> 编辑
-                                    </a>
-                                    <a th:if="${resource.status == '1'}" th:onclick="'updateStatus(\'resources/\', ' + ${resource.id} + ', \'-1\')'" class="btn btn-danger btn-xs">
-                                        <i class="fa fa-folder"></i> 停用
-                                    </a>
-                                    <a th:if="${resource.status == '-1'}" th:onclick="'updateStatus(\'resources/\', ' + ${resource.id} + ', \'1\')'" class="btn btn-danger btn-xs">
-                                        <i class="fa fa-folder"></i> 启用
-                                    </a>
-								</td>
-							</tr>
-                        </tbody>
+                    <table class="table" id="treeTable">
+
                     </table>
-                    <!--分页-->
-                    <div th:replace="common/common_bootstrap_page::bootstrap_page"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        treeTable();
+    });
+
+    function treeTable() {
+        var $table = $('#treeTable');
+        $table.bootstrapTable({
+            url: '/resources/',
+            height: $(window).height(),
+            striped: true,
+            sidePagination: 'server',
+            idField: 'id',
+            columns: [
+                {
+                    field: 'name',
+                    title: '名称',
+                    align: 'left',
+                },
+                {
+                    field: 'pname',
+                    title: '上级组织'
+                },
+                {
+                    field: 'path',
+                    title: '路径'
+                },
+                {
+                    field: 'type',
+                    title: '类型'
+                },
+                {
+                    field: 'status',
+                    title: '状态',
+                    align: 'center',
+                    formatter: 'statusFormatter'
+                },
+                {
+                    field: 'id',
+                    title: '操作',
+                    align: 'center',
+                    formatter: 'operationFormatter'
+                }
+            ],
+            treeShowField: 'name',
+            onLoadSuccess: function(data) {
+                $table.treegrid({
+                    initialState: 'collapsed',
+                    treeColumn: 0,
+                    onChange: function() {
+                        $table.bootstrapTable('resetWidth');
+                    }
+                });
+
+            }
+        });
+    }
+
+    // 格式化状态
+    function statusFormatter(value, row, index) {
+        if (value == 1) {
+            return '<span style="color: green">启用</span>';
+        } else {
+            return '<span style="color: red">停用</span>';
+        }
+    }
+
+    function operationFormatter(value, row, index) {
+        var status = row.status;
+        var template = '<a onclick="dialog(\'resources/' + value +'\', \'\', \'查看资源详情\', \'600px\')" class="btn btn-primary btn-xs">';
+        template += '<i class="fa fa-folder"></i> 查看';
+        template += '</a>';
+        template += '<a onclick="dialog(\'resources/page/update\', {id:' + value + '}, \'编辑资源\', \'600px\')" class="btn btn-info btn-xs">';
+        template += '<i class="fa fa-pencil"></i> 编辑';
+        template += '</a>';
+        if (status == 1) {
+            template += '<a onclick="updateStatus(\'resources/\', \'' + value +'\', \'-1\')" class="btn btn-danger btn-xs">';
+            template += '<i class="fa fa-folder"></i> 停用';
+            template += '</a>';
+        } else {
+            template += '<a onclick="updateStatus(\'resources/\', \''+ value +'\', \'-1\')" class="btn btn-danger btn-xs">';
+            template += '<i class="fa fa-folder"></i> 启用';
+            template += '</a>';
+        }
+        return template;
+    }
+</script>
 </html>

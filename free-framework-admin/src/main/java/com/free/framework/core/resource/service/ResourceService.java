@@ -1,6 +1,5 @@
 package com.free.framework.core.resource.service;
 
-import com.free.framework.core.resource.controller.param.ResourceParam;
 import com.free.framework.core.resource.entity.Resource;
 import com.free.framework.core.resource.mapper.ResourceMapper;
 import com.free.framework.core.resource.vo.ResourceTreeVO;
@@ -9,18 +8,12 @@ import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.common.service.CommonService;
 import com.free.framework.plateform.constant.NumberConstants;
 import com.free.framework.plateform.constant.StatusEnum;
-import com.free.framework.plateform.constant.SystemConstants;
 import com.free.framework.util.date.DateUtils;
-import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * com.free.framework.core.resource.service.ResourceService
@@ -37,24 +30,21 @@ public class ResourceService extends CommonService<Resource> {
 	
 	/**
 	 * 查询列表信息
-	 * @param resourceParam
 	 * @return
 	 */
-	public PageInfo<Resource> pageResource(ResourceParam resourceParam){
-		// 分页
-		startPage(resourceParam);
+	public List<Resource> listResource(){
 		// 用户列表
-		List<Resource> resourceList = resourceMapper.listResource(resourceParam);
-        return getPageInfo(resourceList);
+		List<Resource> resourceList = resourceMapper.listResource();
+        return resourceList;
 	}
 	
 	/**
 	 * 查询详情信息
-	 * @param ID
+	 * @param id
 	 * @return
 	 */
-	public Resource getResource(Integer ID){
-		return resourceMapper.getResource(ID);
+	public Resource getResource(Integer id){
+		return resourceMapper.getResource(id);
 	}
 
 	/**
@@ -81,38 +71,10 @@ public class ResourceService extends CommonService<Resource> {
 	}
 
 	/**
-	 * 查询资源列表信息
+	 * 查询资源树信息
 	 * @return
 	 */
-	public List<ResourceTreeVO> listResourceTree() {
-		List<ResourceTreeVO> resourceTreeVOList = resourceMapper.listResourceTree();
-		// 组装成树
-		Optional<List<ResourceTreeVO>> optional = organizeResourceTreeVOList(resourceTreeVOList);
-		return optional.orElseGet(ArrayList::new);
-	}
-
-	/**
-	 * 组装资源树
-	 * @param resourceTreeVOList
-	 * @return
-	 */
-	private Optional<List<ResourceTreeVO>> organizeResourceTreeVOList(List<ResourceTreeVO> resourceTreeVOList) {
-		if (CollectionUtils.isEmpty(resourceTreeVOList)) {
-			return Optional.empty();
-		}
-
-		List<ResourceTreeVO> resourceTreeVOList1 = resourceTreeVOList.stream()
-				.map(resourceTreeVO -> {
-					// 查找当前节点下面所有的子节点
-					resourceTreeVO.getResourceTreeVOList().addAll(resourceTreeVOList.stream()
-							.filter(resourceTreeVO1 -> resourceTreeVO.getId().equals(resourceTreeVO1.getPid()))
-							.collect(Collectors.toList()));
-					return resourceTreeVO;
-				})
-				// 过滤的到所有的一级节点
-				.filter(resourceTreeVO -> SystemConstants.PARENT_ID.equals(resourceTreeVO.getPid()))
-				.collect(Collectors.toList());
-
-		return Optional.of(resourceTreeVOList1);
+	public List<ResourceTreeVO> treeResource() {
+		return resourceMapper.treeResource();
 	}
 }

@@ -5,9 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * com.free.framework.core.resource.vo.ResourceTreeVO
  * 资源实体类
@@ -33,7 +30,7 @@ public class ResourceTreeVO {
     /**
      * 父级编号
      */
-    private Integer pid;
+    private Integer pId;
 
     /**
      * 排序编号
@@ -41,7 +38,12 @@ public class ResourceTreeVO {
     private Integer orderNum;
 
     /**
-     * 子资源列表信息
+     * 默认不选中
      */
-    private List<ResourceTreeVO> resourceTreeVOList = new ArrayList<>();
+    private String checked = "false";
+
+    /**
+     * 默认不展开
+     */
+    private String open = "false";
 }

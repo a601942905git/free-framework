@@ -18,7 +18,7 @@
                     <h3>组织信息管理</h3>
                 </div>
                 <div class="x_content">
-                    <form th:action="@{'/organizations/'}" class="form" id="search_form"></form>
+                    <form th:action="@{'/organizations/page/list'}" class="form" id="search_form"></form>
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <button type="button" class="btn btn-primary" th:onclick="'dialog(\'organizations/page/add\', \'\', \'新增组织\', \'600px\')'">
@@ -45,7 +45,7 @@
     function treeTable() {
         var $table = $('#treeTable');
         $table.bootstrapTable({
-            url: '/organizations/tree',
+            url: '/organizations/',
             height: $(window).height(),
             striped: true,
             sidePagination: 'server',

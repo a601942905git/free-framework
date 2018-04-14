@@ -38,6 +38,11 @@ public class Resource extends BaseEntity implements Serializable {
 	private Integer pid;
 
 	/**
+	 * 父级名称
+	 */
+	private String pName;
+
+	/**
 	 * 排序编号
 	 */
 

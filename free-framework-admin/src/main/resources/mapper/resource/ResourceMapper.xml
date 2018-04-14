@@ -2,44 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.free.framework.core.resource.mapper.ResourceMapper">
 	<sql id="BASE_SELECT_COLUMN">
-		id,
-		name,
-		pid,
-		order_num,
-		path,
-		type,
-		status,
-		save_date,
-		save_person,
-		update_date,
-		update_person
+		${resourceAliases}.id,
+		${resourceAliases}.name,
+		${resourceAliases}.pid,
+		${resourceAliases}.order_num,
+		${resourceAliases}.path,
+		${resourceAliases}.type,
+		${resourceAliases}.status,
+		${resourceAliases}.save_date,
+		${resourceAliases}.save_person,
+		${resourceAliases}.update_date,
+		${resourceAliases}.update_person
   	</sql>
   	
   	<select id="getResource" resultType="com.free.framework.core.resource.entity.Resource" parameterType="Integer">
-  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_resource WHERE id = #{id} LIMIT 1
+  		SELECT 
+			<include refid="BASE_SELECT_COLUMN">
+				<property name="resourceAliases" value="resource"/>
+			</include>,
+			resource1.name pName
+		FROM 
+			free_resource resource
+				LEFT JOIN free_resource resource1 ON resource.pid = resource1.id
+		WHERE resource.id = #{id}
+		LIMIT 1
   	</select>
   
   	<select id="listResource" resultType="com.free.framework.core.resource.entity.Resource" parameterType="com.free.framework.core.resource.controller.param.ResourceParam">
-  		SELECT <include refid="BASE_SELECT_COLUMN"/> FROM free_resource WHERE 1 = 1
-  		<if test="id!=null and id!=''">
-  			AND id = #{id}
-  		</if>
-  		<if test="name!=null and name!=''">
-  			AND name = #{name}
-  		</if>
-  		<if test="pid!=null and pid!=''">
-  			AND pid = #{pid}
-  		</if>
-  		<if test="type!=null and type!='' and type != 0">
-  			AND type = #{type}
-  		</if>
-		<if test="status != null and status != '' and status != 0">
-			AND status = #{status}
-		</if>
+  		SELECT
+			<include refid="BASE_SELECT_COLUMN">
+				<property name="resourceAliases" value="resource"/>
+			</include>,
+			resource1.name pName
+		FROM
+			free_resource resource
+				LEFT JOIN free_resource resource1 ON resource.pid = resource1.id
+		WHERE 1 = 1 AND resource.id != 0
   	</select>
 
-	<!--查询资源列表信息-->
-	<select id="listResourceTree" resultType="com.free.framework.core.resource.vo.ResourceTreeVO">
+	<!-- 查询资源树信息 -->
+    <select id="treeResource" resultType="com.free.framework.core.resource.vo.ResourceTreeVO">
 		SELECT
 			id,
 			name,
@@ -50,7 +52,7 @@
 		WHERE status = '1'
 	</select>
 
-	<insert id="saveResource" parameterType="com.free.framework.core.resource.entity.Resource">
+    <insert id="saveResource" parameterType="com.free.framework.core.resource.entity.Resource">
   		INSERT INTO free_resource 
   		(
 			name,

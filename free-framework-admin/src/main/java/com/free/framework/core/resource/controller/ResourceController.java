@@ -1,17 +1,19 @@
 package com.free.framework.core.resource.controller;
 
 
-import com.free.framework.core.resource.controller.param.ResourceParam;
+import com.alibaba.fastjson.JSON;
 import com.free.framework.core.resource.entity.Resource;
 import com.free.framework.core.resource.service.ResourceService;
+import com.free.framework.core.resource.vo.ResourceTreeVO;
 import com.free.framework.plateform.common.controller.BaseController;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.csrf.annotation.GenerateToken;
 import com.free.framework.plateform.csrf.annotation.ValidateToken;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -27,17 +29,21 @@ public class ResourceController extends BaseController {
 	@Autowired
 	private ResourceService resourceService;
 
+	@GetMapping(ResourceControllerMappingUrl.PAGE_LIST)
+	public String listPage() {
+		return ResourceControllerMappingUrl.PAGE_LIST_RETURN;
+	}
+
 	/**
 	 * 查询列表信息
 	 * @param
 	 * @return
 	 */
     @GetMapping(ResourceControllerMappingUrl.RESOURCE)
-	public String listResourceList(ResourceParam resourceParam){
-		PageInfo pageInfo = resourceService.pageResource(resourceParam);
-		setRequestAttribute("pageInfo", pageInfo);
-		setRequestAttribute("resourceParam", resourceParam);
-		return ResourceControllerMappingUrl.PAGE_LIST_RETURN;
+	@ResponseBody
+	public List<Resource> listResource(){
+		List<Resource> resourceList = resourceService.listResource();
+		return resourceList;
 	}
 
 	/**
@@ -99,5 +105,16 @@ public class ResourceController extends BaseController {
 	public ResponseData updateResource(Resource resource){
 		ResponseData responseData = resourceService.updateResource(resource);
 		return responseData;
+	}
+
+	/**
+	 * 跳转到组织树页面
+	 * @return
+	 */
+	@GetMapping(ResourceControllerMappingUrl.PAGE_RESOURCE_TREE)
+	public String resourceTreePage() {
+		List<ResourceTreeVO> resourceTreeVOList = resourceService.treeResource();
+		setRequestAttribute("resourceTreeVOList", JSON.toJSONString(resourceTreeVOList));
+		return ResourceControllerMappingUrl.PAGE_RESOURCE_TREE_RETURN;
 	}
 }

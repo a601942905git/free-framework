@@ -31,8 +31,8 @@ public class OrganizationController extends BaseController {
 	@Autowired
 	private OrganizationService organizationService;
 
-	@GetMapping(OrganizationControllerMappingUrl.ORGANIZATION)
-	public String organization() {
+	@GetMapping(OrganizationControllerMappingUrl.PAGE_LIST)
+	public String listPage() {
 		return OrganizationControllerMappingUrl.PAGE_LIST_RETURN;
 	}
 
@@ -41,9 +41,9 @@ public class OrganizationController extends BaseController {
 	 * @param
 	 * @return
 	 */
-    @GetMapping(OrganizationControllerMappingUrl.ORGANIZATION_TREE)
+    @GetMapping(OrganizationControllerMappingUrl.ORGANIZATION)
 	@ResponseBody
-	public List<Organization> treeOrganization(){
+	public List<Organization> listOrganization(){
 		List<Organization> organizationList = organizationService.listOrganization();
 		return organizationList;
 	}

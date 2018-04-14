@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="border:none">
+                    <div class="x_content">
+                        <br/>
+                        <form id="form" type="post" class="form-horizontal form-label-left">
+                            <input type="hidden" th:value="${resourceTreeVOList}" id="tree_data" name="treeData"/>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12" style="height:400px;overflow: auto">
+                                    <ul id="treeDemo" class="ztree"></ul>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="text-align: center">
+                                    <button type="button" class="btn btn-primary" th:onclick="'getCheckNode()'">确定</button>
+                                    <button type="button" class="btn btn-success" th:onclick="'closeDialog()'">关闭</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let zTreeObj;
+
+        $(function () {
+            initTree();
+        });
+
+        function initTree() {
+            let setting = {
+                view: {
+                    addHoverDom: false,
+                    removeHoverDom: false,
+                    selectedMulti: false
+                },
+                data: {
+                    simpleData: {
+                        enable: true
+                    }
+                },
+            };
+
+            let zNodes = JSON.parse($('#tree_data').val());
+            zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        }
+
+        /**
+         * 获取选中的结点信息
+         */
+        function getCheckNode() {
+            let selectedNode = zTreeObj.getSelectedNodes()[0];
+            if (selectedNode) {
+                let selectedNodeName = selectedNode.name;
+                let selectedNodeId = selectedNode.id;
+                $('input[dir="selectedTreeNodeName"]').val(selectedNodeName);
+                $('input[dir="selectedTreeNodeId"]').val(selectedNodeId);
+            }
+            closeDialog();
+        }
+    </script>
+</html>

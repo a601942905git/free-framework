@@ -21,6 +21,11 @@ public interface ResourceControllerMappingUrl {
 	String ONE_RESOURCE = "/{id}";
 
 	/**
+	 * 列表请求映射路径
+	 */
+	String PAGE_LIST = "/page/list";
+
+	/**
 	* 新增请求映射路径
 	*/
 	String PAGE_ADD = "/page/add";
@@ -29,6 +34,11 @@ public interface ResourceControllerMappingUrl {
 	* 修改请求应映射路径
 	*/
 	String PAGE_UPDATE = "/page/update";
+
+	/**
+	 * 资源树请求映射路径
+	 */
+	String PAGE_RESOURCE_TREE = "/page/resource/tree";
 
 	/**
 	* 列表页返回路径
@@ -49,4 +59,9 @@ public interface ResourceControllerMappingUrl {
 	* 修改页面返回路径
 	*/
 	String PAGE_UPDATE_RETURN = "resource/resource_update";
+
+	/**
+	 * 组织树返回路径
+	 */
+	String PAGE_RESOURCE_TREE_RETURN = "resource/resource_tree";
 }

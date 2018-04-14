@@ -2,21 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.free.framework.core.organization.mapper.OrganizationMapper">
 	<sql id="BASE_SELECT_COLUMN">
-		organization.id,
-		organization.name,
-		organization.pid,
-		organization.order_num,
-		organization.icon,
-		organization.status,
-		organization.save_date,
-		organization.save_person,
-		organization.update_date,
-		organization.update_person
+		${organizationAliases}.id,
+		${organizationAliases}.name,
+		${organizationAliases}.pid,
+		${organizationAliases}.order_num,
+		${organizationAliases}.icon,
+		${organizationAliases}.status,
+		${organizationAliases}.save_date,
+		${organizationAliases}.save_person,
+		${organizationAliases}.update_date,
+		${organizationAliases}.update_person
   	</sql>
   	
   	<select id="getOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="Integer">
   		SELECT
-			<include refid="BASE_SELECT_COLUMN"/>,
+			<include refid="BASE_SELECT_COLUMN">
+				<property name="organizationAliases" value="organization"/>
+			</include>,
 			organization1.NAME pName
   		FROM
   			free_organization organization
@@ -26,7 +28,9 @@
   
   	<select id="listOrganization" resultType="com.free.framework.core.organization.entity.Organization" parameterType="com.free.framework.core.organization.controller.param.OrganizationParam">
   		SELECT
-			<include refid="BASE_SELECT_COLUMN"/>,
+			<include refid="BASE_SELECT_COLUMN">
+				<property name="organizationAliases" value="organization"/>
+			</include>,
 			organization1.name pName
 		FROM
 			free_organization organization
@@ -39,7 +43,7 @@
 		SELECT
 			id,
 			name,
-			pid pid,
+			pid,
 			order_num
 		FROM
 			free_organization
