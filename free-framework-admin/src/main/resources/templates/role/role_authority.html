@@ -59,8 +59,25 @@
          * 获取选中的结点信息
          */
         function getCheckNode() {
+            // 定义选中节点数组,里面包含全选中和半选中的节点
+            let checkNodeData = new Array();
+            // 获取节点选中状态
             let checkedNodes = zTreeObj.getCheckedNodes(true);
-            console.log(JSON.stringify(checkedNodes));
+            for(let i = 0,len = checkedNodes.length;i < len;i++){
+                // 获取选中的状态
+                let checkStatus = checkedNodes[i].getCheckStatus();
+                // 如果是全选状态
+                if(!checkStatus.half){
+                    // 全选
+                    let allCheckedData = {"resourceId":checkedNodes[i].id,"authorType":checkedNodes[i].type,checked:"1"};
+                    checkNodeData.push(allCheckedData);
+                }else{
+                    // 半选
+                    let halfCheckedData = {"resourceId":checkedNodes[i].id,"authorType":checkedNodes[i].type,checked:"-1"};
+                    checkNodeData.push(halfCheckedData);
+                }
+            }
+            console.log(JSON.stringify(checkNodeData));
             closeDialog();
         }
     </script>
