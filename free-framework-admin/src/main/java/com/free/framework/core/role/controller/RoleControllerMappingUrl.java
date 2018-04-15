@@ -23,7 +23,7 @@ public interface RoleControllerMappingUrl {
     /**
      * 授权请求映射路径
      */
-    String PAGE_AUTHORITY = "/page/authority";
+    String PAGE_AUTHORITY = "/{id}/page/authority";
 
     /**
      * 新增请求映射路径

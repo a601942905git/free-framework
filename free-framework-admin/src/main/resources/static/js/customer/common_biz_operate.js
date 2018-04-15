@@ -51,7 +51,7 @@ function commonSuccessOperate(data) {
     if (data) {
         layer.closeAll();
         if (data.code == 1){
-            openDailog({
+            openDialog({
                 yes: function () {
                     closeDialog();
                     refresh();
@@ -62,7 +62,7 @@ function commonSuccessOperate(data) {
                 },
             });
         } else {
-            openDailog({
+            openDialog({
                 icon: '2',
                 content: '操作失败!'
             });
