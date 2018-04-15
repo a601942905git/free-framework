@@ -1,5 +1,8 @@
 package com.free.framework.core.role.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.free.framework.core.resource.service.ResourceService;
+import com.free.framework.core.resource.vo.ResourceTreeVO;
 import com.free.framework.core.role.controller.param.RoleParam;
 import com.free.framework.core.role.entity.Role;
 import com.free.framework.core.role.service.RoleService;
@@ -11,6 +14,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * com.free.framework.core.role.controller.RoleController
@@ -24,6 +29,9 @@ public class RoleController extends BaseController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private ResourceService resourceService;
 
     /**
      * 获取角色列表信息
@@ -95,5 +103,16 @@ public class RoleController extends BaseController {
     public ResponseData update(Role role) {
         ResponseData responseData = roleService.updateRole(role);
         return responseData;
+    }
+
+    /**
+     * 角色授权页面
+     * @return
+     */
+    @GetMapping(RoleControllerMappingUrl.PAGE_AUTHORITY)
+    public String authorityPage() {
+        List<ResourceTreeVO> resourceTreeVOList = resourceService.treeResource();
+        setRequestAttribute("resourceTreeVOList", JSON.toJSONString(resourceTreeVOList));
+        return RoleControllerMappingUrl.PAGE_AUTHORITY_RETURN;
     }
 }

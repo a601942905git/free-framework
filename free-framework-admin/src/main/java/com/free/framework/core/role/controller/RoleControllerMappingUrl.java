@@ -21,6 +21,11 @@ public interface RoleControllerMappingUrl {
     String ONE_ROLE = "/{id}";
 
     /**
+     * 授权请求映射路径
+     */
+    String PAGE_AUTHORITY = "/page/authority";
+
+    /**
      * 新增请求映射路径
      */
     String PAGE_ADD = "/page/add";
@@ -49,4 +54,9 @@ public interface RoleControllerMappingUrl {
      * 修改页面返回路径
      */
     String PAGE_UPDATE_RETURN = "role/role_update";
+
+    /**
+     * 授权页面返回路径
+     */
+    String PAGE_AUTHORITY_RETURN = "role/role_authority";
 }

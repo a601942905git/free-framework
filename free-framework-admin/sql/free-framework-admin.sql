@@ -117,6 +117,7 @@ CREATE TABLE `free_role_resource` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE free_role_resource CHANGE COLUMN auth_id resource_id int(8) NOT NULL;
 -- ----------------------------
 -- Records of free_role_resource
 -- ----------------------------
