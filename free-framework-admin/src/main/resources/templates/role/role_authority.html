@@ -59,7 +59,8 @@
          * 获取选中的结点信息
          */
         function getCheckNode() {
-
+            let checkedNodes = zTreeObj.getCheckedNodes(true);
+            console.log(JSON.stringify(checkedNodes));
             closeDialog();
         }
     </script>
