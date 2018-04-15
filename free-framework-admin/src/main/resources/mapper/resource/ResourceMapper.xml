@@ -40,13 +40,21 @@
 		WHERE 1 = 1 AND resource.id != 0
   	</select>
 
+	<resultMap id="treeResourceResultMap" type="com.free.framework.core.resource.vo.ResourceTreeVO">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="pid" property="pId"/>
+		<result column="order_num" property="orderNum"/>
+		<result column="opened" property="open"/>
+	</resultMap>
 	<!-- 查询资源树信息 -->
-    <select id="treeResource" resultType="com.free.framework.core.resource.vo.ResourceTreeVO">
+    <select id="treeResource" resultMap="treeResourceResultMap">
 		SELECT
 			id,
 			name,
 			pid,
-			order_num
+			order_num,
+			IF(id, "false", "true") opened
 		FROM
 			free_resource
 		WHERE status = '1'

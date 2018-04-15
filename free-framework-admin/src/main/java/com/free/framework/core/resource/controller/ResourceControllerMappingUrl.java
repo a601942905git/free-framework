@@ -38,7 +38,7 @@ public interface ResourceControllerMappingUrl {
 	/**
 	 * 资源树请求映射路径
 	 */
-	String PAGE_RESOURCE_TREE = "/page/resource/tree";
+	String PAGE_RESOURCE_TREE = "/page/tree";
 
 	/**
 	* 列表页返回路径

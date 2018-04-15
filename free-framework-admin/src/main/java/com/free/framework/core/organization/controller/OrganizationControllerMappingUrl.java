@@ -38,7 +38,7 @@ public interface OrganizationControllerMappingUrl {
 	/**
 	 * 组织树请求映射路径
 	 */
-	String PAGE_ORGANIZATION_TREE = "/page/organization/tree";
+	String PAGE_ORGANIZATION_TREE = "/page/tree";
 
 	/**
 	* 列表页返回路径

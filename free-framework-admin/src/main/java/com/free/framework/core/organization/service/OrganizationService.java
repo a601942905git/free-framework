@@ -82,4 +82,5 @@ public class OrganizationService extends CommonService<Organization> {
 		List<OrganizationTreeVO> organizationTreeVoList = organizationMapper.treeOrganization();
 		return organizationTreeVoList;
 	}
+
 }

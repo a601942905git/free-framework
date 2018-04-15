@@ -38,13 +38,21 @@
 		WHERE 1=1 AND organization.id != 0
   	</select>
 
+	<resultMap id="treeOrganizationResultMap" type="com.free.framework.core.organization.vo.OrganizationTreeVO">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="pid" property="pId"/>
+		<result column="order_num" property="orderNum"/>
+		<result column="opened" property="open"/>
+	</resultMap>
 	<!--查询组织列表树-->
-    <select id="treeOrganization" resultType="com.free.framework.core.organization.vo.OrganizationTreeVO">
+    <select id="treeOrganization" resultMap="treeOrganizationResultMap">
 		SELECT
 			id,
 			name,
 			pid,
-			order_num
+			order_num,
+			IF(id, "false", "true") opened
 		FROM
 			free_organization
 		WHERE status = '1'
