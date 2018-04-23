@@ -9,6 +9,7 @@
                         <br/>
                         <form id="form" type="post" class="form-horizontal form-label-left">
                             <input type="hidden" th:value="${resourceTreeVOList}" id="tree_data" name="treeData"/>
+                            <input type="hidden" th:value="${id}" id="roleId" name="roleId"/>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12" style="height:400px;overflow: auto">
                                     <ul id="treeDemo" class="ztree"></ul>
@@ -17,8 +18,8 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="text-align: center">
-                                    <button type="button" class="btn btn-primary" th:onclick="'getCheckNode()'">确定</button>
-                                    <button type="button" class="btn btn-success" th:onclick="'closeDialog()'">关闭</button>
+                                    <button type="button" class="btn btn-primary" th:onclick="'submitRoleAuthority()'">确定</button>
+                                    <button type="button" class="btn btn-success" th:onclick="'closeAll()'">关闭</button>
                                 </div>
                             </div>
                         </form>
@@ -27,58 +28,5 @@
             </div>
         </div>
     </div>
-    <script>
-        let zTreeObj;
-
-        $(function () {
-            initTree();
-        });
-
-        function initTree() {
-            let setting = {
-                view: {
-                    addHoverDom: false,
-                    removeHoverDom: false,
-                    selectedMulti: false,
-                },
-                check: {
-                    enable: true,
-                },
-                data: {
-                    simpleData: {
-                        enable: true
-                    }
-                },
-            };
-
-            let zNodes = JSON.parse($('#tree_data').val());
-            zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-        }
-
-        /**
-         * 获取选中的结点信息
-         */
-        function getCheckNode() {
-            // 定义选中节点数组,里面包含全选中和半选中的节点
-            let checkNodeData = new Array();
-            // 获取节点选中状态
-            let checkedNodes = zTreeObj.getCheckedNodes(true);
-            for(let i = 0,len = checkedNodes.length;i < len;i++){
-                // 获取选中的状态
-                let checkStatus = checkedNodes[i].getCheckStatus();
-                // 如果是全选状态
-                if(!checkStatus.half){
-                    // 全选
-                    let allCheckedData = {"resourceId":checkedNodes[i].id,"authorType":checkedNodes[i].type,checked:"1"};
-                    checkNodeData.push(allCheckedData);
-                }else{
-                    // 半选
-                    let halfCheckedData = {"resourceId":checkedNodes[i].id,"authorType":checkedNodes[i].type,checked:"-1"};
-                    checkNodeData.push(halfCheckedData);
-                }
-            }
-            console.log(JSON.stringify(checkNodeData));
-            closeDialog();
-        }
-    </script>
+    <script th:src="@{/biz/role/role_authority.js}"></script>
 </html>

@@ -88,7 +88,7 @@
                                     <a th:if="${role.status == '-1'}" th:onclick="'updateStatus(\'roles/\', ' + ${role.id} + ', \'1\')'" class="btn btn-danger btn-xs">
                                         <i class="fa fa-folder"></i> 启用
                                     </a>
-                                    <a th:onclick="'dialog(\'roles/page/authority\', {id:' + ${role.id} + '}, \'授权\', \'600px\')'" style="cursor:pointer;">
+                                    <a th:onclick="'dialog(\'roles/' + ${role.id} +'/page/authority\', \'\', \'授权\', \'600px\')'" style="cursor:pointer;">
                                         <i class="fa fa-user"></i>
                                         <span>授权</span>
                                     </a>

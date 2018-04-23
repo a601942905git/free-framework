@@ -7,7 +7,7 @@ function dialog(url, param, dialogTitle, dialogWidth) {
         type: 'GET',
         data: param,
     }).done(function (data) {
-        openDailog({type: 1, title: dialogTitle, content: data, area: dialogWidth});
+        openDialog({type: 1, title: dialogTitle, content: data, area: dialogWidth});
     }).fail(function (ex) {
         console.log('弹框异常状态码:%s,异常返回内容:%s', ex.status, ex.responseText);
     });
@@ -23,7 +23,7 @@ function closeDialog() {
 /**
  * 关闭所有的弹框
  */
-function closeAlll() {
+function closeAll() {
     layer.closeAll();
 }
 
@@ -31,7 +31,7 @@ function closeAlll() {
  * 打开弹框
  * @param options
  */
-function openDailog(options) {
+function openDialog(options) {
     let defaults = {type: 0,icon: '1', title: '结果', content: '操作成功', area:'auto', yes : '', cancel: ''};
     let settings = $.extend(defaults, options);
     layer.open({
@@ -52,5 +52,22 @@ function openDailog(options) {
                 settings.cancel();
             }
         },
+    });
+}
+
+/**
+ * 消息提示
+ * @param options
+ */
+function showMsgTip(options) {
+    let defaults = {icon: '1', message: '操作成功', time: 1000, close: ''};
+    let settings = $.extend(defaults, options);
+    layer.msg(settings.message, {
+        icon: settings.icon,
+        time: settings.time,
+    }, function(){
+        if(jQuery.isFunction(settings.close)){
+            settings.close();
+        }
     });
 }

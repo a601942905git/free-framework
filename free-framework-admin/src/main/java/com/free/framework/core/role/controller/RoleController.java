@@ -110,9 +110,10 @@ public class RoleController extends BaseController {
      * @return
      */
     @GetMapping(RoleControllerMappingUrl.PAGE_AUTHORITY)
-    public String authorityPage() {
+    public String authorityPage(@PathVariable("id") Integer id) {
         List<ResourceTreeVO> resourceTreeVOList = resourceService.treeResource();
         setRequestAttribute("resourceTreeVOList", JSON.toJSONString(resourceTreeVOList));
+        setRequestAttribute("id", id);
         return RoleControllerMappingUrl.PAGE_AUTHORITY_RETURN;
     }
 }
