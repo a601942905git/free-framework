@@ -8,5 +8,5 @@ $$ |      $$ |  $$ |$$$$$$$$\ $$$$$$$$\        $$ |      $$ |  $$ |$$ |  $$ |$$ 
 \__|      \__|  \__|\________|\________|$$$$$$\\__|      \__|  \__|\__|  \__|\__|     \__|\________|\__/     \__| \______/ \__|  \__|\__|  \__|
                                         \______|
  :: Spring Boot      ::   ${spring-boot.formatted-version}
- :: Project Version  ::   ${project.build.artifactId}
- :: Project Name     ::   ${project.build.version}
+ :: Project Version  ::   ${project.build.version}
+ :: Project Name     ::   ${project.build.artifactId}
