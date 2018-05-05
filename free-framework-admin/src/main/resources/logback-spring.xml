@@ -6,7 +6,7 @@
     FILEWARN对应warn级别，文件名以log-warn-xxx.log形式命名 FILEINFO对应info级别，文件名以log-info-xxx.log形式命名
     FILEDEBUG对应debug级别，文件名以log-debug-xxx.log形式命名 stdout将日志信息输出到控制上，为方便开发测试使用 -->
 <configuration>
-
+    <jmxConfigurator/>
     <contextName>free-framework</contextName>
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
