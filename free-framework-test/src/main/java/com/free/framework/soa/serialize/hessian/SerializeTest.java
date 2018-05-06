@@ -20,35 +20,35 @@ public class SerializeTest {
 
     public static void main(String[] args) throws IOException {
         Person person = Person.builder().id(10001).name("test").build();
-        byte[] bytes = serialize1(person);
-        person = deserialize1(bytes);
+        byte[] bytes = jdkSerialize(person);
+        person = jdkDeserialize(bytes);
         System.out.println(person);
     }
 
-    public static byte[] serialize(Person person) throws IOException {
+    public static <T> byte[] jdkSerialize(T obj) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         HessianOutput hessianOutput = new HessianOutput(byteArrayOutputStream);
-        hessianOutput.writeObject(person);
+        hessianOutput.writeObject(obj);
         return byteArrayOutputStream.toByteArray();
     }
 
-    public static Person deserialize(byte[] bytes) throws IOException {
+    public static Person jdkDeserialize(byte[] bytes) throws IOException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         HessianInput hessianInput = new HessianInput(byteArrayInputStream);
         return (Person) hessianInput.readObject();
     }
 
-    public static byte[] serialize1(Person person) throws IOException {
+    public static <T> byte[] hessianSerialize1(T obj) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Hessian2Output hessian2Output = new Hessian2Output(byteArrayOutputStream);
         hessian2Output.startMessage();
-        hessian2Output.writeObject(person);
+        hessian2Output.writeObject(obj);
         hessian2Output.completeMessage();
         hessian2Output.close();
         return byteArrayOutputStream.toByteArray();
     }
 
-    public static Person deserialize1(byte[] bytes) throws IOException {
+    public static Person hessianDeserialize1(byte[] bytes) throws IOException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         Hessian2Input hessian2Input = new Hessian2Input(byteArrayInputStream);
         hessian2Input.startMessage();
