@@ -1,5 +1,3 @@
-package com.free.framework.thread;
-
 import java.util.concurrent.Semaphore;
 
 /**

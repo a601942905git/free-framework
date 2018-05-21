@@ -1,5 +1,3 @@
-package com.free.framework.thread;
-
 /**
  * com.free.framework.thread.JoinTest
  *
