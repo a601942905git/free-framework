@@ -14,6 +14,14 @@ public class LongEventProducer {
 
     private RingBuffer<LongEvent> ringBuffer;
 
+    public RingBuffer<LongEvent> getRingBuffer() {
+        return ringBuffer;
+    }
+
+    public void setRingBuffer(RingBuffer<LongEvent> ringBuffer) {
+        this.ringBuffer = ringBuffer;
+    }
+
     public LongEventProducer(RingBuffer<LongEvent> ringBuffer) {
         this.ringBuffer = ringBuffer;
     }
@@ -21,6 +29,7 @@ public class LongEventProducer {
     public void onData(ByteBuffer byteBuffer) {
         // 申请环形上的插槽,用来存放数据
         Long sequence = ringBuffer.next();
+        System.out.println("当前序列号=============>" + sequence);
 
         try {
             // 插槽上要进行发送的事件
