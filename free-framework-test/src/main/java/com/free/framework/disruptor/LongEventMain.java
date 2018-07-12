@@ -1,10 +1,11 @@
 package com.free.framework.disruptor;
 
+import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
+import com.lmax.disruptor.dsl.ProducerType;
 
 import java.nio.ByteBuffer;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -16,14 +17,14 @@ import java.util.concurrent.Executors;
 public class LongEventMain {
 
     public static void main(String[] args) throws InterruptedException {
-        ExecutorService executor = Executors.newCachedThreadPool();
 
         LongEventFactory eventFactory = new LongEventFactory();
 
         int ringBufferSize = 1024;
 
         // 构建disruptor
-        Disruptor disruptor = new Disruptor(eventFactory, ringBufferSize, executor);
+        Disruptor disruptor = new Disruptor(eventFactory, ringBufferSize,
+                Executors.defaultThreadFactory(), ProducerType.SINGLE, new BlockingWaitStrategy());
 
         // 设置消费者
         disruptor.handleEventsWith(new LongEventHandler());
