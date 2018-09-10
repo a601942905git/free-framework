@@ -1,3 +1,5 @@
+package com.free.framework.thread.one;
+
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 

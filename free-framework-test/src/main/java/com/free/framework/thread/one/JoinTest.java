@@ -1,3 +1,5 @@
+package com.free.framework.thread.one;
+
 /**
  * com.free.framework.thread.JoinTest
  *
