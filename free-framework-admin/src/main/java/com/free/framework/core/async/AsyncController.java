@@ -1,9 +1,10 @@
 package com.free.framework.core.async;
 
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.DeferredResult;
+import org.springframework.web.context.request.async.WebAsyncTask;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import java.util.concurrent.*;
  * @dateTime 2018/3/31 16:33
  */
 @RequestMapping("/async")
-@Controller
+@RestController
 public class AsyncController {
 
     private static ThreadPoolExecutor executor = new ThreadPoolExecutor(100, 200, 50000L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(100));
@@ -97,8 +98,7 @@ public class AsyncController {
     }
 
     @RequestMapping("/testCallable")
-    @ResponseBody
-    public Callable<List<Integer>> testCallable() {
+    public Callable<List<Integer>> testCallable() throws Exception {
         System.out.println("主线程开始执行");
         Callable<List<Integer>> listCallable = () -> {
             Thread.sleep(1000);
@@ -111,12 +111,12 @@ public class AsyncController {
                 add(5);
             }};
         };
+
         System.out.println("主线程结束执行");
         return listCallable;
     }
 
     @RequestMapping("/testCompletableFuture")
-    @ResponseBody
     public CompletableFuture<List<Integer>> testCompletableFuture() {
         System.out.println("主线程开始执行");
         CompletableFuture<List<Integer>> completableFuture = CompletableFuture.supplyAsync(() -> {
@@ -137,5 +137,58 @@ public class AsyncController {
         System.out.println("主线程结束执行");
 
         return completableFuture;
+    }
+
+    @RequestMapping("/testDeferredResult")
+    public DeferredResult<List<Integer>> testDeferredResult() {
+        System.out.println("主线程开始执行");
+        DeferredResult<List<Integer>> deferredResult = new DeferredResult<>();
+
+        executor.submit(() -> {
+            try {
+                Thread.sleep(3000);
+                List<Integer> numbers = new ArrayList(){{
+                    add(1);
+                    add(2);
+                    add(3);
+                    add(4);
+                    add(5);
+                    add(4);
+                    add(3);
+                    add(2);
+                    add(1);
+                }};
+                System.out.println("子线程执行完毕......");
+                deferredResult.setResult(numbers);
+            } catch (InterruptedException e) {
+                deferredResult.setErrorResult(null);
+                e.printStackTrace();
+            }
+
+        });
+        System.out.println("主线程结束执行");
+        return deferredResult;
+    }
+
+    @RequestMapping("/testWebAsyncTask")
+    public WebAsyncTask<List<Integer>> testWebAsyncTask() {
+        System.out.println("主线程开始执行");
+        DeferredResult<List<Integer>> deferredResult = new DeferredResult<>();
+
+        Callable<List<Integer>> callable = () -> {
+            Thread.sleep(3000);
+            List<Integer> numbers = new ArrayList(){{
+                add(1000);
+                add(2000);
+                add(3000);
+                add(4000);
+                add(5000);
+            }};
+            System.out.println("子线程执行完毕......");
+            return numbers;
+        };
+
+        System.out.println("主线程结束执行");
+        return new WebAsyncTask<>(callable);
     }
 }
