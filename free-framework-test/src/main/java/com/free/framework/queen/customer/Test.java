@@ -12,13 +12,13 @@ public class Test {
         CustomerBlockingQueue customerBlockingQueue = new CustomerBlockingQueue();
 
         new Thread(() -> {
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 20; i++) {
                 customerBlockingQueue.put((i + 1));
             }
         },"put_thread").start();
 
         new Thread(() -> {
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 20; i++) {
                 customerBlockingQueue.take();
             }
         },"take_thread").start();
