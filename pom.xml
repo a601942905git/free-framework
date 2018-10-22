@@ -48,7 +48,7 @@
         <swagger.ui.version>2.7.0</swagger.ui.version>
         <aliyun.oss.version>2.8.1</aliyun.oss.version>
         <logback.version>1.2.3</logback.version>
-        <jackson.databind.version>2.8.8</jackson.databind.version>
+        <jackson.databind.version>2.8.11.1</jackson.databind.version>
         <spring.statemachine.core.version>1.2.7.RELEASE</spring.statemachine.core.version>
         <log4j2.version>2.0.0.RELEASE</log4j2.version>
         <disruptor.version>3.3.7</disruptor.version>
