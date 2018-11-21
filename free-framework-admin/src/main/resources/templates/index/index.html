@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:include="/common/common_head::header">
+<head th:include="common/common_head::header">
 
 </head>
 
@@ -9,22 +9,22 @@
     <div class="container body">
         <div class="main_container">
             <!--left menu-->
-            <div th:replace="/common/common_left::left"></div>
+            <div th:replace="common/common_left::left"></div>
 
             <!-- top navigation -->
-            <div th:replace="/common/common_top::top"></div>
+            <div th:replace="common/common_top::top"></div>
             <!-- /top navigation -->
 
             <!-- page content -->
-            <div th:replace="/common/common_right::right"></div>
+            <div th:replace="common/common_right::right"></div>
             <!-- /page content -->
 
             <!-- footer content -->
-            <div th:replace="/common/common_bottom::bottom"></div>
+            <div th:replace="common/common_bottom::bottom"></div>
             <!-- /footer content -->
         </div>
     </div>
-    <div th:include="/common/common_js::js"></div>
+    <div th:include="common/common_js::js"></div>
 </body>
 </html>
 

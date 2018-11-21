@@ -8,10 +8,16 @@ import com.free.framework.plateform.common.controller.BaseController;
 import com.free.framework.plateform.common.response.ResponseData;
 import com.free.framework.plateform.csrf.annotation.GenerateToken;
 import com.free.framework.plateform.csrf.annotation.ValidateToken;
+import com.free.framework.plateform.util.web.WebContextUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.Objects;
 
 /**
  * com.free.framework.core.user.controller.UserController
@@ -33,6 +39,17 @@ public class UserController extends BaseController {
      */
     @GetMapping(UserControllerMappingUrl.USER)
     public String listUser(UserParam userParam) {
+        HttpServletRequest request = WebContextUtils.getRequest();
+        HttpServletResponse response = WebContextUtils.getResponse();
+        HttpSession session = request.getSession();
+        if (Objects.isNull(session.getAttribute("username"))) {
+            session.setAttribute("username", "admin");
+            session.setAttribute("password", "123456");
+        } else {
+            System.out.println("username======>" + session.getAttribute("username"));
+            System.out.println("password======>" + session.getAttribute("password"));
+        }
+        System.out.println("端口：" + request.getServerPort() + "服务器的sessionId=====>" + session.getId());
         PageInfo pageInfo = userService.pageUser(userParam);
         setRequestAttribute("pageInfo", pageInfo);
         setRequestAttribute("userParam", userParam);

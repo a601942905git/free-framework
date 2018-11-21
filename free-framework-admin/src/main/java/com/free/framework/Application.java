@@ -1,13 +1,10 @@
 package com.free.framework;
 
-import com.free.framework.plateform.util.web.ApplicationContextUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
-import org.springframework.context.ApplicationListener;
+import org.springframework.core.env.Environment;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -27,34 +24,17 @@ import java.util.Set;
  */
 @SpringBootApplication
 @Slf4j
-public class Application implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
+public class Application {
 
     @Autowired
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
-    /**
-     * 应用名
-     */
-    private static String applicationName;
-
-    /**
-     * 端口
-     */
-    private static Integer port;
-
-    @Override
-    public void onApplicationEvent(EmbeddedServletContainerInitializedEvent event) {
-        port = event.getEmbeddedServletContainer().getPort();
-        ServerProperties serverProperties = (ServerProperties) ApplicationContextUtils.getBean(ServerProperties.class);
-        applicationName = serverProperties.getDisplayName();
-    }
-
     public static void main(String[] args) throws UnknownHostException {
-        SpringApplication.run(Application.class, args);
+        Environment environment = SpringApplication.run(Application.class, args).getEnvironment();
         String ip = InetAddress.getLocalHost().getHostAddress();
         log.info("=================================");
-        log.info("      项目名称:" + applicationName);
-        log.info("      项目访问地址:" + ip + ":" + port);
+        log.info("      项目名称:" + environment.getProperty("server.display-name"));
+        log.info("      项目访问地址:" + ip + ":" + environment.getProperty("server.port"));
         log.info("=================================");
     }
 
